@@ -10,12 +10,12 @@ Our approach looks at how both actors and films benefit from awards, and how dif
 ### Subquestions we want to answer:
 
 In this analysis there are several reasearch subquestions we want to answer : 
-    - Is there a correlation between the actor's phenotype and/or their TV tropes and the award they received? 
-    - Does a past award win increase an actor's odds of winning again? 
-    - Is there a correlation between the movie's phenotype and/or box-office sales and/or plots and the award it won?
-    - How does public reviews translate a movie's prestige, whether it be critic or amateur? 
-    - How do regional preferences in film awards influence the diversity of films that gain global recognition?
-    - How does the timing of award recognition (before vs. after a film’s release) reflect changes in industry perceptions and audience reception?
+- Is there a correlation between the actor's phenotype and/or their TV tropes and the award they received? 
+- Does a past award win increase an actor's odds of winning again? 
+- Is there a correlation between the movie's phenotype and/or box-office sales and/or plots and the award it won?
+- How does public reviews translate a movie's prestige, whether it be critic or amateur? 
+- How do regional preferences in film awards influence the diversity of films that gain global recognition?
+- How does the timing of award recognition (before vs. after a film’s release) reflect changes in industry perceptions and audience reception?
 
 ### Used Dataset
 
@@ -35,19 +35,19 @@ We will use the CMU Summary Corpus, updated to 2024, which includes movies from 
 
 ### Proposed timeline
 
-`15.11.2024`: Data Handling and Preprocessing & Initial Exploratory Data Analysis.
-`30.11.2024`: Finishing the 5 tasks (each member of the team doing one), and preliminary analysis
-`06.12.2024`: Commpile the final analysis, and writing on Jekyll.
-`13.12.2024`: Writing of the final report. 
-`20.12.2024`: Deadline for submitting.  
+- `15.11.2024`: Data Handling and Preprocessing & Initial Exploratory Data Analysis.
+- `30.11.2024`: Finishing the 5 tasks (each member of the team doing one), and preliminary analysis
+- `06.12.2024`: Commpile the final analysis, and writing on Jekyll.
+- `13.12.2024`: Writing of the final report. 
+- `20.12.2024`: Deadline for submitting.  
 
 ### Team Organization
 
 Each member will take care of one task (specified before):
-    - Thierry Sokhn:
-    - Yassine Wahidy:
-    - Khalil Ouazzani Chahdi:
-    - William Jallot:
-    - Amine Bengelloun: 
+- Thierry Sokhn:
+- Yassine Wahidy:
+- Khalil Ouazzani Chahdi:
+- William Jallot:
+- Amine Bengelloun: 
 
 Each team member is responsible of their own task, while of course being responsible for writing their part of the data story and creating the final visualizations. 
