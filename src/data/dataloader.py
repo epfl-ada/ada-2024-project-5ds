@@ -8,7 +8,9 @@ import time
 from utils.csv import save_dataframe_to_csv
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support import expected_conditions as ECmport 
+import requests
+
 
 
 def load_initial_dataset(PATH_IN) :
@@ -40,19 +42,20 @@ def load_initial_dataset(PATH_IN) :
     tvtropes = tvtropes.drop(tvtropes.columns[1], axis=1)
     tvtropes = tvtropes.drop(tvtropes.columns[1], axis=1)
 
-
-
     fname = os.path.join(PATH_IN, 'name.clusters.txt')
     name_clusters = pd.read_csv(fname, delimiter='\t', header=None, names = ['Character Name','ID'])
 
     return  movie, character, plot_summaries,  tvtropes, name_clusters
 
 def load_oscar_winning_films(OS = 'WINDOWS') :
-    url = "https://en.wikipedia.org/wiki/Academy_Award_for_Best_Cinematography"
+    url = "https://en.wikipedia.org/wiki/Academy_Award_for_Best_Picture"
     df = search_golden_names(url,OS)
     save_dataframe_to_csv(df, "oscar_winning_films")
 
-
+def load_oscar_winning_films_ids(OS = 'WINDOWS') :
+    url = "https://en.wikipedia.org/wiki/Academy_Award_for_Best_Picture"
+    df = search_golden_names_ids(url,OS)
+    save_dataframe_to_csv(df, "oscar_winning_films_ids")
 
 def load_oscar_winning_actors(OS = 'WINDOWS') :
     """
@@ -75,6 +78,28 @@ def load_oscar_winning_actresses(OS = 'WINDOWS') :
     names_list = search_special_symbols(url, OS)
     df = pd.DataFrame(names_list, columns=['actresses'])
     save_dataframe_to_csv(df, 'oscar_winning_actresses')
+
+def load_oscar_winning_supporting_actors(OS = 'WINDOWS') :
+    """
+    Search all the supporting actors that won an oscar 
+    Params :
+        OS : The opearting system you are own, default Windows
+    """
+    url = "https://en.wikipedia.org/wiki/Academy_Award_for_Best_Supporting_Actor"
+    names_list = search_special_symbols(url, OS)
+    df = pd.DataFrame(names_list, columns=['supporting_actors'])
+    save_dataframe_to_csv(df, 'oscar_winning_supporting_actors')
+
+def load_oscar_winning_supporting_actresses(OS = 'WINDOWS') :
+    """
+    Search all the supporting actresses that won an oscar 
+    Params :
+        OS : The opearting system you are own, default Windows
+    """
+    url = "https://en.wikipedia.org/wiki/Academy_Award_for_Best_Supporting_Actress"
+    names_list = search_special_symbols(url, OS)
+    df = pd.DataFrame(names_list, columns=['supporting_actresses'])
+    save_dataframe_to_csv(df, 'oscar_winning_supporting_actresses')
    
 def load_reviews(movies_list, max_number_of_reviews,OS) :
 
@@ -210,3 +235,49 @@ def search_golden_names(url, OS) :
     movies_oscar_winning = pd.DataFrame(movie_names, columns=['Movie name'])
 
     return movies_oscar_winning
+
+def search_golden_names_ids(url, OS):
+    if OS == 'MAC':
+        driver = webdriver.Chrome()
+    else:
+        service = Service('C:\\webdrivers\\chromedriver.exe')
+        options = webdriver.ChromeOptions()
+        driver = webdriver.Chrome(service=service, options=options)
+
+    driver.get(url)
+    time.sleep(5)
+    page_ids = []
+
+    tr_tags = driver.find_elements(By.TAG_NAME, 'tr')
+
+    for tr_tag in tr_tags:
+        style = tr_tag.get_attribute('style')
+
+        if 'rgb(250, 235, 134)' in style:
+            td_tags = tr_tag.find_elements(By.TAG_NAME, 'td')
+            if len(td_tags) > 1:
+                link_tag = td_tags[0].find_element(By.TAG_NAME, 'a')
+                film_url = link_tag.get_attribute('href')
+                
+                # Extract page ID using Wikipedia API
+                page_id = get_page_id_from_url(film_url)
+                if page_id:
+                    page_ids.append(page_id)
+
+    driver.quit()
+    movies_oscar_winning = pd.DataFrame(page_ids, columns=['Page ID'])
+    return movies_oscar_winning
+
+def get_page_id_from_url(film_url):
+    # Extract the title from the film URL
+    title = film_url.split('/wiki/')[-1]
+    api_url = f"https://en.wikipedia.org/w/api.php?action=query&titles={title}&format=json"
+    
+    response = requests.get(api_url)
+    if response.status_code == 200:
+        data = response.json()
+        pages = data.get("query", {}).get("pages", {})
+        for page_id, page_data in pages.items():
+            if 'missing' not in page_data:  # Ensures page exists
+                return page_id
+    return None
