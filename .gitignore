@@ -1,7 +1,7 @@
 
-dataset/character.metadata.tsv
-dataset/movie.metadata.tsv
-dataset/name.clusters.txt
-dataset/plot_summaries.txt
-dataset/README.txt
-dataset/tvtropes.clusters.txt
+src/data/dataset/character.metadata.tsv
+src/data/dataset/movie.metadata.tsv
+src/data/dataset/name.clusters.txt
+src/data/dataset/plot_summaries.txt
+src/data/dataset/README.txt
+src/data/dataset/tvtropes.clusters.txt
