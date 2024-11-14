@@ -8,7 +8,7 @@ import time
 from utils.csv import save_dataframe_to_csv
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as ECmport 
+from selenium.webdriver.support import expected_conditions as EC
 import requests
 
 
@@ -253,12 +253,11 @@ def load_reviews(movies_list, max_number_of_reviews,OS) :
     movie_reviews = pd.DataFrame(columns=['Movie name', 'Review'])
 
     for movie_title in movies_list:
-        print(movie_title[0])
         url = f"https://www.rottentomatoes.com/search?search={movie_title[0].replace(' ', '_').lower()}"
         driver.get(url)
         time.sleep(5)
         link = WebDriverWait(driver, 15).until(
-            EC.presence_of_element_located((By.XPATH, "//a[@data-qa='info-name']"))  # Replace with your actual locator
+            EC.presence_of_element_located((By.XPATH, "//a[@data-qa='info-name']")) 
         )
         link.click()
         time.sleep(5)
