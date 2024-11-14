@@ -5,3 +5,12 @@ src/data/dataset/name.clusters.txt
 src/data/dataset/plot_summaries.txt
 src/data/dataset/README.txt
 src/data/dataset/tvtropes.clusters.txt
+src/data/__pycache__/csv.cpython-311.pyc
+src/data/__pycache__/loading_utils.cpython-311.pyc
+src/models/__pycache__/sentiment_analysis.cpython-311.pyc
+src/data/__pycache__/dataloader.cpython-311.pyc
+src/scripts/__pycache__/sentiment_analysis_plots.cpython-311.pyc
+src/utils/__pycache__/loading_utils.cpython-311.pyc
+src/data/__pycache__/dataloader.cpython-311.pyc
+src/data/__pycache__/dataloader.cpython-311.pyc
+src/data/__pycache__/dataloader.cpython-311.pyc

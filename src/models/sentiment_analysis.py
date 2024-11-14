@@ -1,18 +1,24 @@
+import nltk
+nltk.download('vader_lexicon')
 from nltk.sentiment import SentimentIntensityAnalyzer
-from nltk import tokenize
 from nltk.sentiment.util import *
 
-class SentimentAnalysis:
-
-    def __init__(self, text):
-        self.text_sentences = tokenize.sent_tokenize(text)
-        self.sentim_analyzer = SentimentIntensityAnalyzer()
-
-    def get_sentiment(self):
-        for sentence in self.text_sentences:
-            sentiment_score = self.sentim_analyzer.polarity_scores(sentence)
-            print(sentiment_score)
-            print("\n")
+def get_sentiment_string(text):
+    """
+    Function to get the sentiment of a given text
+    :param text: string
+    :return
+    sentiment_score: dict
+    composed of the following
+    - compound: float
+    - positive: float
+    - negative: float
+    - neutral: float
+    """
+    sia = SentimentIntensityAnalyzer()
+    sentiment_score = sia.polarity_scores(text)
+    
+    return sentiment_score
     
 
     
