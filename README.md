@@ -51,7 +51,6 @@ This task will investigate how genre and box office performance correlate with O
 
 In this task, we will create a network model in Neo4j to explore the relationships between films, actors, and awards. The network will include nodes representing films, actors, genres, and awards, with relationships linking films to their genres, actors, and the awards they have received. This model will be used to generate insights into the connections between different attributes, such as how film genre and actor diversity are linked to Oscar outcomes.
 
-##### Task 5:
 
 ### Proposed timeline
 
@@ -64,10 +63,10 @@ In this task, we will create a network model in Neo4j to explore the relationshi
 ### Team Organization
 
 Each member will take care of one task (specified before):
-- Thierry Sokhn:
-- Yassine Wahidy:
-- Khalil Ouazzani Chahdi:
-- William Jallot:
-- Amine Bengelloun: 
+- Thierry Sokhn: Task 1 & 2
+- Yassine Wahidy: Task 3
+- Khalil Ouazzani Chahdi: Task 2 & 4
+- William Jallot: Task 4
+- Amine Bengelloun: Task 3 & 5
 
 Each team member is responsible of their own task, while of course being responsible for writing their part of the data story and creating the final visualizations. 
