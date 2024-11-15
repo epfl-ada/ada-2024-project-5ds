@@ -2,9 +2,11 @@ import wikipediaapi
 from bs4 import BeautifulSoup
 import requests
 import pandas as pd
+import sys
 from SPARQLWrapper import SPARQLWrapper, JSON, CSV
-from utils.data_utils import save_dataframe_to_csv
-
+sys.path.append('/Users/williamjallot/Desktop/ADA/ada-2024-project-5ds/src/utils')
+from data_utils import save_dataframe_to_csv
+from collections import defaultdict
 
 user_agent = "Mus/1.0"
 wiki_wiki = wikipediaapi.Wikipedia(user_agent=user_agent, language='en')
@@ -200,3 +202,160 @@ def get_film_info(film_title):
 
         
     return info
+
+
+def get_wikidata_id(page_title):
+    # Get the page
+    
+    wiki_wiki = wikipediaapi.Wikipedia(user_agent=user_agent, language='en')
+    page = wiki_wiki.page(page_title)
+    
+    if not page.exists():
+        print(f"Page '{page_title}' does not exist.")
+        return None
+    
+    # Get the page url
+    url = page.canonicalurl
+    
+    response = requests.get(url)
+    
+    if response.status_code != 200:
+        print(f"Failed to retrieve page '{page_title}'.")
+        return None
+    
+    # Parse the page content
+    soup = BeautifulSoup(response.content, 'html.parser')
+    
+    table = soup.find("table", {"class": "infobox"})  # Find the infobox table
+    
+    informations = soup.find("a", title="More information about this page")
+    
+    page_info_url = "https://en.wikipedia.org"+informations.get("href")
+    
+    page_info_response = requests.get(page_info_url)
+    
+    page_info_soup = BeautifulSoup(page_info_response.content, 'html.parser')
+    
+    # Find all <tr> tags
+    rows = page_info_soup.find_all('tr')
+
+    # Loop through each row to find the one with the desired structure
+    for row in rows:
+        # Find all <td> elements within the row
+        tds = row.find_all('td')
+        # Check if there are exactly two <td> elements and if one contains the desired text
+        if len(tds) == 2 and "Wikidata item ID" in tds[0].text:
+            # Found the desired row, process it as needed
+            wikidata_id = tds[1].text.strip()
+        elif len(tds) == 2 and "Page ID" in tds[0].text:
+            page_id = tds[1].text.strip()
+    
+    return wikidata_id, page_id
+
+def get_title_from_page_id(page_id):
+ 
+    url = f'https://en.wikipedia.org/w/api.php?action=query&format=json&pageids={page_id}&prop=wikidata'
+
+    # Make the API request
+    response = requests.get(url)
+    data = response.json()
+    # Extract the Wikidata ID
+    title = data['query']['pages'][str(page_id)]['title']
+    return title
+
+def get_wikidata_id(page_title):
+    # Get the page
+    
+    wiki_wiki = wikipediaapi.Wikipedia(user_agent=user_agent, language='en')
+    page = wiki_wiki.page(page_title)
+    
+    if not page.exists():
+        print(f"Page '{page_title}' does not exist.")
+        return None
+    
+    # Get the page url
+    url = page.canonicalurl
+    
+    response = requests.get(url)
+    
+    if response.status_code != 200:
+        print(f"Failed to retrieve page '{page_title}'.")
+        return None
+    
+    # Parse the page content
+    soup = BeautifulSoup(response.content, 'html.parser')
+    
+    table = soup.find("table", {"class": "infobox"})  # Find the infobox table
+    
+    informations = soup.find("a", title="More information about this page")
+    
+    page_info_url = "https://en.wikipedia.org"+informations.get("href")
+    
+    page_info_response = requests.get(page_info_url)
+    
+    page_info_soup = BeautifulSoup(page_info_response.content, 'html.parser')
+    
+    # Find all <tr> tags
+    rows = page_info_soup.find_all('tr')
+
+    # Loop through each row to find the one with the desired structure
+    for row in rows:
+        # Find all <td> elements within the row
+        tds = row.find_all('td')
+        # Check if there are exactly two <td> elements and if one contains the desired text
+        if len(tds) == 2 and "Wikidata item ID" in tds[0].text:
+            # Found the desired row, process it as needed
+            wikidata_id = tds[1].text.strip()
+            break
+    
+    return wikidata_id
+
+def get_wikdata_information(wikidata_id, sparqlAgent):
+    query =f"""
+        SELECT ?actor ?sexLabel ?nativeLanguageLabel ?countryOfCitizenshipLabel ?ethnicGroupLabel WHERE {{
+        wd:{wikidata_id} wdt:P31 wd:Q5;  # Ensures it's a human (actor)
+                                OPTIONAL {{ wd:{wikidata_id} wdt:P21 ?sex. 
+                                        SERVICE wikibase:label {{ bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }} }}  # Sex or gender label
+                                OPTIONAL {{ wd:{wikidata_id} wdt:P103 ?nativeLanguage. 
+                                        SERVICE wikibase:label {{ bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }} }}  # Native language label
+                                OPTIONAL {{ wd:{wikidata_id} wdt:P27 ?countryOfCitizenship. 
+                                        SERVICE wikibase:label {{ bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }} }}  # Country of citizenship label
+                                OPTIONAL {{ wd:{wikidata_id} wdt:P172 ?ethnicGroup. 
+                                        SERVICE wikibase:label {{ bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }} }}  # Ethnic group label
+        }}
+        """
+
+
+
+    sparqlAgent.setQuery(query)
+    sparqlAgent.setReturnFormat(JSON)
+    results = sparqlAgent.query().convert()
+    
+    return results['results']['bindings']
+
+def get_actor_information(page_id):
+    title = get_title_from_page_id(page_id)
+    wikidata_id = get_wikidata_id(title)
+    
+    if wikidata_id is None:
+        return None
+    
+    results = get_wikdata_information(wikidata_id, sparql)
+    
+    actor_info = defaultdict(set)
+    
+    if len(results) == 0:
+        return None
+    
+    for result in results:
+        actor_info['page_id'].add(page_id)	
+        actor_info['wikidata_id'].add(wikidata_id)
+        actor_info['actor'].add(title)
+        actor_info['sexLabel'].add(result['sexLabel']['value'] if 'sexLabel' in result else None)
+        actor_info['nativeLanguageLabel'].add(result['nativeLanguageLabel']['value'] if 'nativeLanguageLabel' in result else None)
+        actor_info['countryOfCitizenshipLabel'].add(result['countryOfCitizenshipLabel']['value'] if 'countryOfCitizenshipLabel' in result else None)
+        actor_info['ethnicGroupLabel'].add(result['ethnicGroupLabel']['value'] if 'ethnicGroupLabel' in result else None)
+        
+    
+    return actor_info
+    

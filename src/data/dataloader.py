@@ -6,11 +6,19 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 import time
-
+import wikipediaapi
+from bs4 import BeautifulSoup
+import requests
+import pandas as pd
+from SPARQLWrapper import SPARQLWrapper, JSON, CSV
+from extend_dataset import get_actor_information
+user_agent = "Mus/1.0"
+wiki_wiki = wikipediaapi.Wikipedia(user_agent=user_agent, language='en')
+sparql = SPARQLWrapper("https://query.wikidata.org/sparql", agent=user_agent)
 import sys
 sys.path.append('/Users/williamjallot/Desktop/ADA/ada-2024-project-5ds/src/utils')
 
-from data_utils import save_dataframe_to_csv
+from data_utils import save_dataframe_to_csv, load_dataframe_from_csv
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -81,7 +89,7 @@ def load_oscar_winning_films_ids(OS = 'WINDOWS') :
     url = "https://en.wikipedia.org/wiki/Academy_Award_for_Best_Picture"
     page_ids = search_winning_films_ids(url,OS)
     df= pd.DataFrame(page_ids, columns=['Page ID'])
-    save_dataframe_to_csv(df, "oscar_winning_films_ids")
+    save_dataframe_to_csv(df, "oscar_winning_films_ids.csv")
 
 def load_oscar_winning_actors(OS='WINDOWS'):
     """
@@ -92,21 +100,17 @@ def load_oscar_winning_actors(OS='WINDOWS'):
     """
     # Get actor and film data
     url = "https://en.wikipedia.org/wiki/Academy_Award_for_Best_Actor"
-    page_ids, actor_ids = search_actors_and_films(url, OS)
-    
+    page_ids = search_actors_and_films(url, OS)
     # Construct the DataFrame
     rows = []
-    for actor_name, film_ids in page_ids.items():
-        actor_index = list(page_ids.keys()).index(actor_name)
-        actor_page_id = actor_ids[actor_index]
+    for actor_id, film_ids in page_ids.items():
         for film_id in film_ids:
-            rows.append((actor_name, actor_page_id, film_id))
+            rows.append((actor_id, film_id))
     
-    # Create DataFrame
-    df = pd.DataFrame(rows, columns=['Actor', 'Actor id', 'film_id'])
+    df = pd.DataFrame(rows, columns=['Actors id', 'film_id'])
+    save_dataframe_to_csv(df, 'oscar_winning_actors.csv')
     
-    # Save the DataFrame to a CSV file
-    save_dataframe_to_csv(df, 'oscar_winning_actors')
+
 
 def load_oscar_winning_actresses(OS = 'WINDOWS') :
     """
@@ -117,18 +121,15 @@ def load_oscar_winning_actresses(OS = 'WINDOWS') :
     """
     # Get actress and film data
     url = "https://en.wikipedia.org/wiki/Academy_Award_for_Best_Actress"
-    page_ids, actor_ids = search_actors_and_films(url, OS)
-    
+    page_ids = search_actors_and_films(url, OS)
     # Construct the DataFrame
     rows = []
-    for actor_name, film_ids in page_ids.items():
-        actor_index = list(page_ids.keys()).index(actor_name)
-        actor_page_id = actor_ids[actor_index]
+    for actor_id, film_ids in page_ids.items():
         for film_id in film_ids:
-            rows.append((actor_name, actor_page_id, film_id))
+            rows.append((actor_id, film_id))
     
-    df = pd.DataFrame(rows, columns=['Actress', 'Actress id', 'film_id'])
-    save_dataframe_to_csv(df, 'oscar_winning_actresses')
+    df = pd.DataFrame(rows, columns=['Actress id', 'film_id'])
+    save_dataframe_to_csv(df, 'oscar_winning_actresses.csv')
 
 def load_oscar_winning_supporting_actors(OS = 'WINDOWS') :
     """
@@ -139,18 +140,15 @@ def load_oscar_winning_supporting_actors(OS = 'WINDOWS') :
     """
     # Get supporting actor and film data
     url = "https://en.wikipedia.org/wiki/Academy_Award_for_Best_Supporting_Actor"
-    page_ids, actor_ids = search_actors_and_films(url, OS)
-    
+    # Construct the DataFrame
+    page_ids = search_actors_and_films(url, OS)
     # Construct the DataFrame
     rows = []
-    for actor_name, film_ids in page_ids.items():
-        actor_index = list(page_ids.keys()).index(actor_name)
-        actor_page_id = actor_ids[actor_index]
+    for actor_id, film_ids in page_ids.items():
         for film_id in film_ids:
-            rows.append((actor_name, actor_page_id, film_id))
-    
-    df = pd.DataFrame(rows, columns=['Supporting Actor', 'Supporting Actor id', 'film_id'])
-    save_dataframe_to_csv(df, 'oscar_winning_supporting_actors')
+            rows.append((actor_id, film_id))
+    df = pd.DataFrame(rows, columns=['Supporting Actor id', 'film_id'])
+    save_dataframe_to_csv(df, 'oscar_winning_supporting_actors.csv')
 
 def load_oscar_winning_supporting_actresses(OS) :
     """
@@ -160,18 +158,16 @@ def load_oscar_winning_supporting_actresses(OS) :
     """
     # Get actress and film data
     url = "https://en.wikipedia.org/wiki/Academy_Award_for_Best_Supporting_Actress"
-    page_ids, actor_ids = search_actors_and_films(url, OS)
-    
+     # Construct the DataFrame
+    page_ids = search_actors_and_films(url, OS)
     # Construct the DataFrame
     rows = []
-    for actor_name, film_ids in page_ids.items():
-        actor_index = list(page_ids.keys()).index(actor_name)
-        actor_page_id = actor_ids[actor_index]
+    for actor_id, film_ids in page_ids.items():
         for film_id in film_ids:
-            rows.append((actor_name, actor_page_id, film_id))
+            rows.append((actor_id, film_id))
     
-    df = pd.DataFrame(rows, columns=['Supporting Actress', 'Supporting Actress id', 'film_id'])
-    save_dataframe_to_csv(df, 'oscar_winning_supporting_actresses')
+    df = pd.DataFrame(rows, columns=['Supporting Actress id', 'film_id'])
+    save_dataframe_to_csv(df, 'oscar_winning_supporting_actresses.csv')
 
 
 def search_actors_and_films(url, OS) : 
@@ -187,8 +183,8 @@ def search_actors_and_films(url, OS) :
     tr_tags = driver.find_elements(By.TAG_NAME, 'tr')
     #define a variable actor name to match correctly the film id to the actor in case of several films
     page_ids = {}
-    actor_page_id = []
     actor_name = ""
+    actor_page_id = ''
 
 
     for tr_tag in tr_tags:
@@ -210,7 +206,7 @@ def search_actors_and_films(url, OS) :
                         #Get the film wikidata id
                         page_id = get_page_id_from_url(film_url)
                         if page_id:
-                            page_ids.setdefault(actor_name, []).append(page_id)
+                            page_ids.setdefault((actor_page_id), []).append(page_id)
                 else:
                     #If not a film, we want to check if it's an actor
                     text = td_tag.text.strip()
@@ -225,28 +221,10 @@ def search_actors_and_films(url, OS) :
                         #Get the film wikidata id
                         page_id = get_page_id_from_url(actor_url)
                         if page_id:
-                            actor_page_id.append(page_id)
+                            actor_page_id = page_id
 
-                #Actors that accepted the oscar
-                if '‡' in text:
-                    cleaned_text = text.replace('‡', '').strip()
-                    first_two_words = ' '.join(cleaned_text.split()[:2])
-                    actor_name = first_two_words
-
-                #Refused oscar
-                elif '§' in text:
-                    cleaned_text = text.replace('§', '').strip()
-                    first_two_words = ' '.join(cleaned_text.split()[:2])
-                    actor_name = first_two_words
-                
-                #Posthume oscar
-                elif '†' in text:
-                    cleaned_text = text.replace('†', '').strip()
-                    first_two_words = ' '.join(cleaned_text.split()[:2])
-                    actor_name = first_two_words
-                
     driver.quit()
-    return page_ids,actor_page_id
+    return page_ids
 
 
 def search_winning_films_ids(url, OS):
@@ -355,4 +333,33 @@ def load_academy_award_winning_films(OS='WINDOWS'):
     })
 
     # Optionally, save to a CSV file
-    save_dataframe_to_csv(df_films, "academy_award_winning_films")
+    save_dataframe_to_csv(df_films, "academy_award_winning_films.csv")
+
+
+def merge_actors_dataframe() : 
+    oscar_winning_actors = load_dataframe_from_csv('oscar_winning_actors.csv')
+    oscar_winning_actresses = load_dataframe_from_csv('oscar_winning_actresses.csv')
+    oscar_supporting_actors = load_dataframe_from_csv('oscar_winning_supporting_actors.csv')
+    oscar_supporting_actresses = load_dataframe_from_csv('oscar_winning_supporting_actresses.csv')
+
+    oscar_winning_actors.columns =  oscar_winning_actresses.columns =  oscar_supporting_actors.columns = oscar_supporting_actresses.columns = ['page_id', 'film_id']
+    combined_df = pd.concat([oscar_winning_actors, oscar_winning_actresses, oscar_supporting_actors, oscar_supporting_actresses], axis=0)
+
+
+    first_column_name = combined_df.columns[0]  # Get the name of the first column
+    combined_df = combined_df.drop_duplicates(subset=first_column_name, keep='first')
+    combined_df = combined_df.astype(int)
+    
+    processed_data = []
+    for id in combined_df[first_column_name] : 
+        item = get_actor_information(id)
+        processed_data.append({key: next(iter(value)) if value else None for key, value in item.items()})   
+
+    df = pd.DataFrame(processed_data)
+
+    save_dataframe_to_csv(df, 'winning_actors_information.csv')
+
+
+
+
+

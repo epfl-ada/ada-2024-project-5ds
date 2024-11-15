@@ -101,7 +101,7 @@ A Fantastic Woman,2017,1,1
 Heaven Is a Traffic Jam on the 405,2017,1,1
 Icarus,2017,1,1
 The Silent Child,2017,1,1
-Flesh and Sand (Carne y arena),2017,0 1,0
+Flesh and Sand (Carne y arena),2017,0 (1)[1],0
 Moonlight,2016,3,8
 La La Land,2016,6,14
 Hacksaw Ridge,2016,2,6
@@ -419,7 +419,7 @@ A Close Shave,1995,1,1
 Lieberman in Love,1995,1,1
 One Survivor Remembers,1995,1,1
 Antonia's Line (Antonia),1995,1,1
-Toy Story,1995,0,3
+Toy Story,1995,0 (1),3
 Forrest Gump,1994,6,13
 The Lion King,1994,2,4
 Speed,1994,2,3
@@ -489,7 +489,7 @@ Days of Waiting,1990,1,1
 Creature Comforts,1990,1,1
 The Lunch Date,1990,1,1
 Misery,1990,1,1
-Total Recall,1990,0,2
+Total Recall,1990,0 (1),2
 Driving Miss Daisy,1989,4,9
 Glory,1989,3,5
 Born on the Fourth of July,1989,2,8
@@ -507,7 +507,7 @@ Batman,1989,1,1
 Balance,1989,1,1
 Rain Man,1988,4,8
 Dangerous Liaisons,1988,3,7
-Who Framed Roger Rabbit,1988,3,6
+Who Framed Roger Rabbit,1988,3 (1),6
 Mississippi Burning,1988,1,7
 Working Girl,1988,1,6
 The Accidental Tourist,1988,1,4
@@ -533,7 +533,7 @@ Ray's Male Heterosexual Dance Hall,1987,1,1
 The Ten-Year Lunch,1987,1,1
 Wall Street,1987,1,1
 Young at Heart,1987,1,1
-RoboCop,1987,0,2
+RoboCop,1987,0 (1),2
 Platoon,1986,4,8
 A Room with a View,1986,3,8
 Hannah and Her Sisters,1986,3,7
@@ -577,7 +577,7 @@ The Stone Carvers,1984,1,1
 The Times of Harvey Milk,1984,1,1
 Up,1984,1,1
 The Woman in Red,1984,1,1
-The River,1984,0,4
+The River,1984,0 (1),4
 Terms of Endearment,1983,5,11
 The Right Stuff,1983,4,8
 Fanny & Alexander (Fanny och Alexander),1983,4,6
@@ -589,7 +589,7 @@ Flamenco at 5:15,1983,1,1
 He Makes Me Feel Like Dancin',1983,1,1
 Sundae in New York,1983,1,1
 The Year of Living Dangerously,1983,1,1
-Return of the Jedi,1983,0,4
+Return of the Jedi,1983,0 (1),4
 Gandhi,1982,8,11
 E.T.: The Extra-Terrestrial,1982,4,9
 An Officer and a Gentleman,1982,2,6
@@ -598,13 +598,13 @@ Victor/Victoria,1982,1,7
 Sophie's Choice,1982,1,5
 Missing,1982,1,4
 If You Love This Planet,1982,1,1
-Just Another Missing Kid,1982,1,1
+Just Another Missing Kid,1982,1,1[2]
 A Shocking Accident,1982,1,1
 Tango,1982,1,1
 To Begin Again (Volver a empezar),1982,1,1
 Quest for Fire,1982,1,1
 Chariots of Fire,1981,4,7
-Raiders of the Lost Ark,1981,4,8
+Raiders of the Lost Ark,1981,4 (1),8
 Reds,1981,3,12
 On Golden Pond,1981,3,10
 Arthur,1981,2,4
@@ -620,7 +620,7 @@ Raging Bull,1980,2,8
 Fame,1980,2,6
 Melvin and Howard,1980,2,3
 Coal Miner's Daughter,1980,1,7
-The Empire Strikes Back,1980,1,3
+The Empire Strikes Back,1980,1 (1),3
 The Dollar Bottom,1980,1,1
 The Fly (A Légy),1980,1,1
 From Mao to Mozart: Isaac Stern in China,1980,1,1
@@ -639,7 +639,7 @@ Board and Care,1979,1,1
 Every Child,1979,1,1
 Paul Robeson: Tribute to an Artist,1979,1,1
 The Tin Drum (Die Blechtrommel),1979,1,1
-The Black Stallion,1979,0,2
+The Black Stallion,1979,0 (1),2
 The Deer Hunter,1978,5,9
 Coming Home,1978,3,8
 Midnight Express,1978,2,6
@@ -654,11 +654,11 @@ Scared Straight!,1978,1,1
 Special Delivery,1978,1,1
 Teenage Father,1978,1,1
 Thank God It's Friday,1978,1,1
-Superman,1978,0,3
+Superman,1978,0 (1),3
 Annie Hall,1977,4,5
-Star Wars,1977,6,10
+Star Wars,1977,6 (1),10
 Julia,1977,3,11
-Close Encounters of the Third Kind,1977,1,8
+Close Encounters of the Third Kind,1977,1 (1),8
 The Goodbye Girl,1977,1,5
 A Little Night Music,1977,1,2
 Gravity Is My Enemy,1977,1,1
@@ -679,8 +679,8 @@ Black and White in Color (Noirs et blancs en couleur),1976,1,1
 In the Region of Ice,1976,1,1
 Leisure,1976,1,1
 Number Our Days,1976,1,1
-King Kong,1976,0,2
-Logan's Run,1976,0,2
+King Kong,1976,0 (1),2
+Logan's Run,1976,0 (1),2
 One Flew Over the Cuckoo's Nest,1975,5,9
 Barry Lyndon,1975,4,7
 Jaws,1975,3,4
@@ -693,15 +693,15 @@ Dersu Uzala,1975,1,1
 The End of the Game,1975,1,1
 Great (Great (Isambard Kingdom Brunel)),1975,1,1
 The Man Who Skied Down Everest,1975,1,1
-The Hindenburg,1975,0,3
+The Hindenburg,1975,0 (2),3
 The Godfather: Part II,1974,6,11
 The Towering Inferno,1974,3,8
 The Great Gatsby,1974,2,2
 Chinatown,1974,1,11
 Murder on the Orient Express,1974,1,6
-Earthquake,1974,1,4
+Earthquake,1974,1 (1),4
 Alice Doesn't Live Here Anymore,1974,1,3
-Amarcord,1974,1,3
+Amarcord,1974,1,3[3]
 Harry and Tonto,1974,1,2
 Closed Mondays,1974,1,1
 Don't,1974,1,1
@@ -720,15 +720,15 @@ The Bolero,1973,1,1
 Frank Film,1973,1,1
 The Great American Cowboy,1973,1,1
 Princeton: A Search for Answers,1973,1,1
-The Godfather,1972,3,10
+The Godfather,1972,3,10[4]
 Cabaret,1972,8,10
-The Poseidon Adventure,1972,1,8
+The Poseidon Adventure,1972,1 (1),8
 Travels with My Aunt,1972,1,4
 Butterflies Are Free,1972,1,3
 The Candidate,1972,1,2
 The Discreet Charm of the Bourgeoisie (Le charme discret de la bourgeoisie),1972,1,2
-A Christmas Carol,1972,1,1
-Limelight,1972,1,1
+A Christmas Carol,1972,1,1[5]
+Limelight,1972,1,1[6]
 Marjoe,1972,1,1
 Norman Rockwell's World... An American Dream,1972,1,1
 This Tiny World,1972,1,1
@@ -774,7 +774,7 @@ Arthur Rubinstein – The Love of Life (L'amour de la vie - Artur Rubinstein),19
 Cactus Flower,1969,1,1
 Czechoslovakia 1968,1969,1,1
 It's Tough to Be a Bird,1969,1,1
-Oliver!,1968,5,11
+Oliver!,1968,5 (1),11
 The Lion in Winter,1968,3,7
 Romeo and Juliet,1968,2,4
 Funny Girl,1968,1,8
@@ -790,7 +790,7 @@ Journey into Self,1968,1,1
 Robert Kennedy Remembered,1968,1,1
 Why Man Creates,1968,1,1
 Winnie the Pooh and the Blustery Day,1968,1,1
-Planet of the Apes,1968,0,2
+Planet of the Apes,1968,0 (1),2
 In the Heat of the Night,1967,5,7
 Camelot,1967,3,5
 Bonnie and Clyde,1967,2,10
@@ -829,7 +829,7 @@ The Shop on Main Street (Obchod na korze),1965,1,2
 The Sandpiper,1965,1,1
 The Eleanor Roosevelt Story,1965,1,1
 To Be Alive!,1965,1,1
-7 Faces of Dr. Lao,1964,0,1
+7 Faces of Dr. Lao,1964,0 (1),1
 7th Heaven,1927/28,3,5
 "20,000 Leagues Under the Sea",1954,2,3
 Adventures of Don Juan,1949,1,2
@@ -870,13 +870,13 @@ The Bells of St. Mary's,1945,1,8
 Ben-Hur,1959,11,12
 Benjy,1951,1,1
 The Bespoke Overcoat,1956,1,1
-The Best Years of Our Lives,1946,7,8
+The Best Years of Our Lives,1946,7 (1),8
 Beyond the Line of Duty,1942,1,1
-Bicycle Thieves,1949,0,1
+Bicycle Thieves,1949,0 (1),1
 The Big Broadcast of 1938,1938,1,1
 The Big Country,1958,1,2
 The Big House,1929/30,2,4
-Bill and Coo,1948,0,0
+Bill and Coo,1948,0 (1),0
 Birds Anonymous,1957,1,1
 The Bishop's Wife,1947,1,5
 Black Fox: The Rise and Fall of Adolf Hitler (The Black Fox),1962,1,1
@@ -919,7 +919,7 @@ The Charge of the Light Brigade,1936,1,3
 The Chicken (Le Poulet),1965,1,1
 Churchill's Island,1941,1,1
 Cimarron,1930/31,3,7
-The Circus,1927/28,0,0
+The Circus,1927/28,0 (1),0
 Citizen Kane,1941,1,9
 City of Wax,1934,1,1
 Cleopatra,1934,1,5
@@ -973,7 +973,7 @@ Exodus,1960,1,3
 The Face of Lincoln,1955,1,2
 Facing Your Danger,1946,1,1
 The Facts of Life,1960,1,5
-Fantasia,1940,0,0
+Fantasia,1940,0 (2),0
 A Farewell to Arms,1932/33,2,4
 The Farmer's Daughter,1947,1,2
 Father Goose,1964,1,3
@@ -985,14 +985,14 @@ Flowers and Trees,1931/32,1,1
 Folies Bergere,1935,1,1
 For Scent-imental Reasons,1949,1,1
 For Whom the Bell Tolls,1943,1,9
-Forbidden Games,1952,0,1
-A Force in Readiness,1961,0,0
+Forbidden Games,1952,0 (1),1
+A Force in Readiness,1961,0 (1),0
 A Free Soul,1930/31,1,3
 Frenchman's Creek,1945,1,1
 From Here to Eternity,1953,8,13
-The Garden of Allah,1936,0,2
+The Garden of Allah,1936,0 (1),2
 Gaslight,1944,2,7
-Gate of Hell (Jigokumon),1954,1,1
+Gate of Hell (Jigokumon),1954,1 (1),1
 The Gay Divorcee,1934,1,5
 Gentleman's Agreement,1947,3,8
 Gerald McBoing-Boing,1950,1,1
@@ -1006,7 +1006,7 @@ Going My Way,1944,7,10
 Gold Diggers of 1935,1935,1,2
 The Golden Fish (Histoire d'un poisson rouge),1959,1,1
 Goldfinger,1964,1,1
-Gone with the Wind,1939,8,13
+Gone with the Wind,1939,8 (2),13
 The Good Earth,1937,2,5
 "Goodbye, Miss Turlock",1947,1,1
 "Goodbye, Mr. Chips",1939,1,7
@@ -1031,7 +1031,7 @@ Heavenly Music,1943,1,1
 The Heiress,1949,4,8
 Helen Keller in Her Story (The Unconquered),1955,1,1
 "Hello, Frisco, Hello",1943,1,2
-Henry V,1946,0,4
+Henry V,1946,0 (1),4
 Here Comes Mr. Jordan,1941,2,7
 Here Comes the Groom,1951,1,2
 The High and the Mighty,1954,1,6
@@ -1041,7 +1041,7 @@ A Hole in the Head,1959,1,1
 The Hole,1962,1,1
 Holiday Inn,1942,1,3
 The Horse with the Flying Tail,1960,1,1
-The House I Live In,1945,0,0
+The House I Live In,1945,0 (1),0
 The House on 92nd Street,1945,1,1
 How Green Was My Valley,1941,5,10
 How the West Was Won,1963,3,8
@@ -1057,16 +1057,16 @@ I'll Cry Tomorrow,1955,1,4
 In Beaver Valley,1950,1,1
 In Old Arizona,1928/29,1,5
 In Old Chicago,1937,2,6
-In Which We Serve,1942,0,2
+In Which We Serve,1942,0 (1),2
 The Informer,1935,4,6
 Interrupted Melody,1955,1,3
 The Invaders,1942,1,3
 Irma la Douce,1963,1,3
 It Happened One Night,1934,5,5
 "It's a Mad, Mad, Mad, Mad World",1963,1,6
-The Jazz Singer,1927/28,0,1
+The Jazz Singer,1927/28,0 (1),1
 Jezebel,1938,2,5
-Joan of Arc,1948,2 ,7
+Joan of Arc,1948,2 (1),7
 Johann Mouse,1952,1,1
 Johnny Belinda,1948,1,12
 Johnny Eager,1942,1,1
@@ -1084,7 +1084,7 @@ Knighty Knight Bugs,1958,1,1
 Kokoda Front Line!,1942,1,1
 Kon-Tiki,1950,1,1
 Krakatoa,1932/33,1,1
-Kukan,1941,0,0
+Kukan,1941,0 (1),0
 La Strada (The Road),1956,1,2
 La Dolce Vita,1961,1,4
 Lady Be Good,1941,1,1
@@ -1100,7 +1100,7 @@ The Life of Emile Zola,1937,3,10
 Light in the Window,1952,1,1
 Lili,1953,1,6
 Lilies of the Field,1963,1,5
-The Little Kidnappers (The Kidnappers),1954,0,0
+The Little Kidnappers (The Kidnappers),1954,0 (2),0
 The Little Orphan,1948,1,1
 Little Women,1932/33,1,3
 Little Women,1949,1,2
@@ -1121,7 +1121,7 @@ Marty,1955,4,8
 Mary Poppins,1964,5,13
 Men Against the Arctic,1955,1,1
 The Merry Widow,1934,1,1
-A Midsummer Night's Dream,1935,2,4
+A Midsummer Night's Dream,1935,2,4[7]
 Mighty Joe Young,1949,1,1
 Mildred Pierce,1945,1,6
 The Milky Way,1940,1,1
@@ -1129,7 +1129,7 @@ Min and Bill,1930/31,1,1
 Miracle on 34th Street,1947,3,4
 The Miracle Worker,1962,2,5
 Mister Roberts,1955,1,3
-Monsieur Vincent,1948,0,0
+Monsieur Vincent,1948,0 (1),0
 Moonbird,1959,1,1
 The More the Merrier,1943,1,6
 Morning Glory,1932/33,1,1
@@ -1185,7 +1185,7 @@ The Pink Phink,1964,1,1
 Pinocchio,1940,2,2
 A Place in the Sun,1951,6,9
 Plymouth Adventure,1952,1,1
-Pollyanna,1960,0,0
+Pollyanna,1960,0 (1),0
 Porgy and Bess,1959,1,4
 Portrait of Jennie,1948,1,2
 Prelude to War,1942,1,1
@@ -1200,8 +1200,8 @@ Pygmalion,1938,1,4
 Quicker'n a Wink,1940,1,1
 The Quiet Man,1952,2,7
 Quiet Please!,1945,1,1
-The Rains Came,1939,1,6
-Rashomon,1951,0,1
+The Rains Came,1939,1,6[8]
+Rashomon,1951,0 (1),1
 The Razor's Edge,1946,1,4
 Reap the Wild Wind,1942,1,3
 Rebecca,1940,2,11
@@ -1214,13 +1214,13 @@ Room at the Top,1959,2,6
 The Rose Tattoo,1955,3,8
 Sabrina,1954,1,6
 Samson and Delilah,1950,2,5
-Samurai I: Musashi Miyamoto (Miyamoto Musashi),1955,0,0
+Samurai I: Musashi Miyamoto (Miyamoto Musashi),1955,0 (1),0
 San Francisco,1936,1,6
 Sayonara,1957,4,10
 The Scoundrel,1935,1,1
 The Sea Around Us,1952,1,1
 Seal Island,1948,1,1
-The Search,1948,1,4
+The Search,1948,1 (1),4
 Seawards the Great Ships,1961,1,1
 The Secret Land,1948,1,1
 Seeds of Destiny,1946,1,1
@@ -1233,27 +1233,27 @@ The Seventh Veil,1946,1,1
 Shane,1953,1,6
 Shanghai Express,1931/32,1,3
 She Wore a Yellow Ribbon,1949,1,1
-Shoeshine (Sciuscià),1947,0,1
+Shoeshine (Sciuscià),1947,0 (1),1
 The Silent World (Le Monde du silence),1956,1,1
 The Sin of Madelon Claudet,1931/32,1,1
 Since You Went Away,1944,1,9
 Skippy,1930/31,1,4
 Sky Above and Mud Beneath (Le Ciel et la boue),1961,1,1
 The Snake Pit,1948,1,6
-Snow White and the Seven Dwarfs,1937,0,1
+Snow White and the Seven Dwarfs,1937,0 (1),1
 So Much for So Little,1949,1,1
 So This Is Harris!,1932/33,1,1
 The Solid Gold Cadillac,1956,1,2
 Some Like It Hot,1959,1,6
 Somebody Up There Likes Me,1956,2,3
 The Song of Bernadette,1943,4,12
-Song of the South,1947,1,2
+Song of the South,1947,1 (1),2
 Song Without End,1960,1,1
 Sons and Lovers,1960,1,7
 Sons of Liberty,1939,1,1
 South Pacific,1958,1,3
 Spartacus,1960,4,6
-Spawn of the North,1938,0,0
+Spawn of the North,1938,0 (1),0
 Speaking of Animals and Their Families,1942,1,1
 Speedy Gonzales,1955,1,1
 Spellbound,1945,1,6
@@ -1262,7 +1262,7 @@ Stagecoach,1939,2,7
 Stairway to Light,1945,1,1
 Stalag 17,1953,1,3
 Star in the Night,1945,1,1
-A Star Is Born,1937,1,7
+A Star Is Born,1937,1 (1),7
 State Fair,1945,1,2
 The Story of Louis Pasteur,1936,3,4
 The Stratton Story,1949,1,1
@@ -1271,16 +1271,16 @@ A Streetcar Named Desire,1951,4,12
 Strike Up the Band,1940,1,3
 The Substitute,1961,1,1
 Sundays and Cybele (Le Dimanches de Ville d'Avray),1962,1,3
-Sunrise,1927/28,3,4
+Sunrise,1927/28,3,4[9]
 Sunset Boulevard,1950,3,11
 Survival City,1955,1,1
 Suspicion,1941,1,3
 Sweet Bird of Youth,1962,1,3
-Sweethearts,1938,0,2
+Sweethearts,1938,0 (1),2
 Swing Time,1936,1,2
 Symphony of a City,1948,1,1
 Tabu,1930/31,1,1
-Target for Tonight,1941,0,0
+Target for Tonight,1941,0 (1),0
 "Teddy, the Rough Rider",1940,1,1
 Tempest,1927/28,1,1
 The Ten Commandments,1956,1,7
@@ -1335,7 +1335,7 @@ The Virgin Spring (Jungfrukällan),1960,1,2
 Viva Villa!,1934,1,4
 Viva Zapata!,1952,1,5
 Waikiki Wedding,1937,1,2
-The Walls of Malapaga,1950,0,0
+The Walls of Malapaga,1950,0 (1),0
 The War of the Worlds,1953,1,3
 Watch on the Rhine,1943,1,4
 Water Birds,1952,1,1
@@ -1357,7 +1357,7 @@ Wings Over Everest,1935,1,1
 With a Song in My Heart,1952,1,5
 With Byrd at the South Pole,1929/30,1,1
 With the Marines at Tarawa,1944,1,1
-The Wizard of Oz,1939,2,6
+The Wizard of Oz,1939,2,6[10]
 Woman of the Year,1942,1,2
 Wonder Man,1945,1,4
 The Wonderful World of the Brothers Grimm,1962,1,4
