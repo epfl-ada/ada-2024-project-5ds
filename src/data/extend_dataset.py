@@ -27,7 +27,7 @@ sparql = SPARQLWrapper("https://query.wikidata.org/sparql", agent=user_agent)
 
 def extend_dataset() :
     """
-    Retreive all the films available on wikipedia spanning from 2013 to 2024 (included) along with the film_title, release_date, box_office, runtime, languages, countries, genres, reviewScores, awardsReceived
+    Retrieve all the films available on wikipedia spanning from 2013 to 2024 (included) along with the film_title, release_date, box_office, runtime, languages, countries, genres, reviewScores, awardsReceived
     #,awardsNominated andcapitalCost. Save each year in a csv file located in the directory called data
     """
     
