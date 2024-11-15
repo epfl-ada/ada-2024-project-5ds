@@ -1,11 +1,16 @@
 import pandas as pd
 import os
+import sys
 import ast
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 import time
-from utils.csv import save_dataframe_to_csv
+
+import sys
+sys.path.append('/Users/williamjallot/Desktop/ADA/ada-2024-project-5ds/src/utils')
+
+from data_utils import save_dataframe_to_csv
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -78,52 +83,96 @@ def load_oscar_winning_films_ids(OS = 'WINDOWS') :
     df= pd.DataFrame(page_ids, columns=['Page ID'])
     save_dataframe_to_csv(df, "oscar_winning_films_ids")
 
-def load_oscar_winning_actors(OS = 'WINDOWS') :
+def load_oscar_winning_actors(OS='WINDOWS'):
     """
-    Search all the actors that won an oscar and save the actor along with the wikipedia film id in the cleane_data directory
-    Params :
-        OS : The opearting system you are own, default Windows
+    Search all the actors that won an Oscar and save the actor along with the Wikipedia film ID and the actor ID in the cleane_data directory.
+    
+    Params:
+        OS: The operating system you are on, default is Windows.
     """
+    # Get actor and film data
     url = "https://en.wikipedia.org/wiki/Academy_Award_for_Best_Actor"
-    page_ids = search_actors_and_films(url, OS)
-    df = pd.DataFrame([(name, id_) for name, ids in page_ids.items() for id_ in ids], columns=['Actor', 'film_id'])
+    page_ids, actor_ids = search_actors_and_films(url, OS)
+    
+    # Construct the DataFrame
+    rows = []
+    for actor_name, film_ids in page_ids.items():
+        actor_index = list(page_ids.keys()).index(actor_name)
+        actor_page_id = actor_ids[actor_index]
+        for film_id in film_ids:
+            rows.append((actor_name, actor_page_id, film_id))
+    
+    # Create DataFrame
+    df = pd.DataFrame(rows, columns=['Actor', 'Actor id', 'film_id'])
+    
+    # Save the DataFrame to a CSV file
     save_dataframe_to_csv(df, 'oscar_winning_actors')
 
 def load_oscar_winning_actresses(OS = 'WINDOWS') :
     """
-    Search all the actresses that won an oscar and save the actor along with the wikipedia film id in the cleane_data directory
-    Params :
-        OS : The opearting system you are own, default Windows
+    Search all the actresses that won an Oscar and save the actress along with the Wikipedia film ID and the actor ID in the cleane_data directory.
+    
+    Params:
+        OS: The operating system you are on, default is Windows.
     """
+    # Get actress and film data
     url = "https://en.wikipedia.org/wiki/Academy_Award_for_Best_Actress"
-    page_ids = search_actors_and_films(url, OS)
-    df = pd.DataFrame([(name, id_) for name, ids in page_ids.items() for id_ in ids], columns=['Actress', 'film_id'])
+    page_ids, actor_ids = search_actors_and_films(url, OS)
+    
+    # Construct the DataFrame
+    rows = []
+    for actor_name, film_ids in page_ids.items():
+        actor_index = list(page_ids.keys()).index(actor_name)
+        actor_page_id = actor_ids[actor_index]
+        for film_id in film_ids:
+            rows.append((actor_name, actor_page_id, film_id))
+    
+    df = pd.DataFrame(rows, columns=['Actress', 'Actress id', 'film_id'])
     save_dataframe_to_csv(df, 'oscar_winning_actresses')
 
 def load_oscar_winning_supporting_actors(OS = 'WINDOWS') :
     """
-    Search all the supporting actors that won an oscar and save the actor along with the wikipedia film id in the cleane_data directory
-    Params :
-        OS : The opearting system you are own, default Windows
+    Search all the supporting actors that won an oscar and save the actor along with the wikipedia film id and the actor ID in the cleane_data directory
+    
+    Params:
+        OS: The operating system you are on, default is Windows.
     """
+    # Get supporting actor and film data
     url = "https://en.wikipedia.org/wiki/Academy_Award_for_Best_Supporting_Actor"
-    page_ids = search_actors_and_films(url, OS)
-    df = pd.DataFrame([(name, id_) for name, ids in page_ids.items() for id_ in ids], columns=['Supporting Actor', 'film_id'])
+    page_ids, actor_ids = search_actors_and_films(url, OS)
+    
+    # Construct the DataFrame
+    rows = []
+    for actor_name, film_ids in page_ids.items():
+        actor_index = list(page_ids.keys()).index(actor_name)
+        actor_page_id = actor_ids[actor_index]
+        for film_id in film_ids:
+            rows.append((actor_name, actor_page_id, film_id))
+    
+    df = pd.DataFrame(rows, columns=['Supporting Actor', 'Supporting Actor id', 'film_id'])
     save_dataframe_to_csv(df, 'oscar_winning_supporting_actors')
 
-    
-
-def load_oscar_winning_supporting_actresses(OS = 'WINDOWS') :
+def load_oscar_winning_supporting_actresses(OS) :
     """
-    Search all the supporting actresses that won an oscar and save the actor along with the wikipedia film id in the cleane_data directory
+    Search all the supporting actresses that won an oscar and save the actor along with the wikipedia film id and the actress ID in the cleane_data directory
     Params :
         OS : The opearting system you are own, default Windows
     """
+    # Get actress and film data
     url = "https://en.wikipedia.org/wiki/Academy_Award_for_Best_Supporting_Actress"
-    page_ids = search_actors_and_films(url, OS)
-    df = pd.DataFrame([(name, id_) for name, ids in page_ids.items() for id_ in ids], columns=['Supporting Actress', 'film_id'])
+    page_ids, actor_ids = search_actors_and_films(url, OS)
+    
+    # Construct the DataFrame
+    rows = []
+    for actor_name, film_ids in page_ids.items():
+        actor_index = list(page_ids.keys()).index(actor_name)
+        actor_page_id = actor_ids[actor_index]
+        for film_id in film_ids:
+            rows.append((actor_name, actor_page_id, film_id))
+    
+    df = pd.DataFrame(rows, columns=['Supporting Actress', 'Supporting Actress id', 'film_id'])
     save_dataframe_to_csv(df, 'oscar_winning_supporting_actresses')
-   
+
 
 def search_actors_and_films(url, OS) : 
     if OS == 'MAC' :
@@ -138,6 +187,7 @@ def search_actors_and_films(url, OS) :
     tr_tags = driver.find_elements(By.TAG_NAME, 'tr')
     #define a variable actor name to match correctly the film id to the actor in case of several films
     page_ids = {}
+    actor_page_id = []
     actor_name = ""
 
 
@@ -168,6 +218,14 @@ def search_actors_and_films(url, OS) :
                 #Separated the cases in case we want to module the code depending on the winning circumstances
                 #Set the variable 'actor_name' to the name of the actor to correctly save the film id with the corresponding actors
                 #All actors won an oscar by playing in a film so each actor is associated with one or several films
+                if '‡' in text or '§' in text or  '†' in text :
+                    a_tag = td_tag.find_element(By.TAG_NAME, 'a') if len(td_tag.find_elements(By.TAG_NAME, 'a')) > 0 else None
+                    if a_tag:
+                        actor_url = a_tag.get_attribute('href')
+                        #Get the film wikidata id
+                        page_id = get_page_id_from_url(actor_url)
+                        if page_id:
+                            actor_page_id.append(page_id)
 
                 #Actors that accepted the oscar
                 if '‡' in text:
@@ -188,7 +246,7 @@ def search_actors_and_films(url, OS) :
                     actor_name = first_two_words
                 
     driver.quit()
-    return page_ids
+    return page_ids,actor_page_id
 
 
 def search_winning_films_ids(url, OS):
@@ -240,65 +298,61 @@ def get_page_id_from_url(film_url):
     #If unsucessful return None
     return None
 
-def load_reviews(movies_list, max_number_of_reviews,OS) :
 
-    if OS == 'MAC' :
+def load_academy_award_winning_films(OS='WINDOWS'):
+    # Set up the Chrome WebDriver for Selenium
+    if OS == 'MAC':
         driver = webdriver.Chrome()
-    else :
-        service = Service('C:\webdrivers\chromedriver.exe')
+    else:
+        service = Service('C:\\webdrivers\\chromedriver.exe')  # Update with the correct path to your chromedriver
         options = webdriver.ChromeOptions()
-        driver = webdriver.Chrome(service = service, options = options)
-
-    real_movie_titles = []
-    movie_reviews = pd.DataFrame(columns=['Movie name', 'Review'])
-
-    for movie_title in movies_list:
-        url = f"https://www.rottentomatoes.com/search?search={movie_title[0].replace(' ', '_').lower()}"
-        driver.get(url)
-        time.sleep(5)
-        link = WebDriverWait(driver, 15).until(
-            EC.presence_of_element_located((By.XPATH, "//a[@data-qa='info-name']")) 
-        )
-        link.click()
-        time.sleep(5)
-        # Wait until the rt-text element with the slot attribute is present
-        rt_text_element = WebDriverWait(driver, 15).until(
-            EC.presence_of_element_located((By.XPATH, "//rt-text[@slot='title']"))
-        )
-
-
-        title_name = rt_text_element.text
-        real_movie_titles.append(title_name)
-        base_url = driver.current_url
-        
-        reviews_url = f"{base_url}/reviews?type=user"
-        
-
-        driver.get(reviews_url)
+        driver = webdriver.Chrome(service=service, options=options)
     
-        time.sleep(1)  
-       
-        number_reviews = 0
-        output_txt_path = 'movie_reviews.txt'
+    # Navigate to the Wikipedia page for Academy Award-winning films
+    url = "https://en.wikipedia.org/wiki/List_of_Academy_Award%E2%80%93winning_films"
+    driver.get(url)
+    time.sleep(5)  # Allow time for the page to load
 
-        with open(output_txt_path, mode='a', encoding='utf-8') as file:
-            while number_reviews < max_number_of_reviews:
-                try:
-                    reviews = WebDriverWait(driver, 15).until(
-                        EC.presence_of_all_elements_located((By.XPATH, "//p[@class='audience-reviews__review js-review-text']"))
-                    )
-                    for review in reviews:
-                        review_text = review.text.strip()
-                        movie_review_entry = f"Movie name: {title_name}\nReview: {review_text}\n\n"
-                        file.write(movie_review_entry)
-                        number_reviews += 1
+    # Initialize lists to store the extracted data
+    film_names = []
+    years = []
+    awards_won = []
+    nominations_received = []
 
-                    load_more_button = WebDriverWait(driver, 10).until(
-                        EC.element_to_be_clickable((By.XPATH, "//rt-button[@data-qa='load-more-btn']"))
-                    )
-                    driver.execute_script("arguments[0].scrollIntoView(true);", load_more_button)
-                    load_more_button.click()
-                except:
-                    break
+    # Locate the table with Academy Award-winning films
+    table = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.XPATH, "//table[contains(@class, 'wikitable')]"))
+    )
+
+    # Get all rows of the table except the header row
+    rows = table.find_elements(By.XPATH, ".//tr")[1:]  # Skips the header row
+
+    for row in rows:
+        columns = row.find_elements(By.XPATH, ".//td")
+
+        # Ensure there are enough columns (Film, Year, Awards Won, Nominations Received)
+        if len(columns) >= 4:
+            film_name = columns[0].text.strip()  # First column: Film name
+            year = columns[1].text.strip()  # Second column: Year
+            awards_won_count = columns[2].text.strip()  # Third column: Awards won
+            nominations_count = columns[3].text.strip()  # Fourth column: Nominations received
+
+            # Append the extracted data to the lists
+            film_names.append(film_name)
+            years.append(year)
+            awards_won.append(awards_won_count)
+            nominations_received.append(nominations_count)
+
+    # Close the browser
     driver.quit()
-    return real_movie_titles, 
+
+    # Create a DataFrame from the extracted data
+    df_films = pd.DataFrame({
+        'Movie name': film_names,
+        'Movie release date': years,
+        'Awards Won': awards_won,
+        'Nominations': nominations_received
+    })
+
+    # Optionally, save to a CSV file
+    save_dataframe_to_csv(df_films, "academy_award_winning_films")
