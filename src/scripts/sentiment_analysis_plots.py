@@ -3,7 +3,7 @@ sys.path.append('D:/UNIV/MASTER-EPFL/ADA/applied-project/ada-2024-project-5ds/sr
 sys.path.append('D:/UNIV/MASTER-EPFL/ADA/applied-project/ada-2024-project-5ds/src/utils')
 sys.path.append('D:/UNIV/MASTER-EPFL/ADA/applied-project/ada-2024-project-5ds/src/data')
 from dataloader import load_initial_dataset
-from loading_utils import save_dataframe_to_csv, load_dataframe_from_csv
+from data_utils import save_dataframe_to_csv, load_dataframe_from_csv
 from sentiment_analysis import get_sentiment_string
 import pandas as pd
 
@@ -31,3 +31,13 @@ def get_sentiment_from_dataframe(df, column_name, name_csv):
     
     save_dataframe_to_csv(df, name_csv)
     return df 
+
+def get_sentiment_from_plot(df, column_name, name_csv):
+    print("Entering test function")
+    df = get_sentiment_from_dataframe(df, column_name, name_csv)
+    save_dataframe_to_csv(df, "plot_summaries.csv")
+    print("Finished test function")
+
+plot_summaries = load_dataframe_from_csv("plot_summaries.csv")
+
+get_sentiment_from_plot(plot_summaries, "Summary", "plot_summaries.csv")
