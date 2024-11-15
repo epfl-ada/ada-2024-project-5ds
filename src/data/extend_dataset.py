@@ -4,7 +4,16 @@ import requests
 import pandas as pd
 import sys
 from SPARQLWrapper import SPARQLWrapper, JSON, CSV
-sys.path.append('/Users/williamjallot/Desktop/ADA/ada-2024-project-5ds/src/utils')
+import os
+
+current_directory = os.getcwd()
+utils_directory = os.path.join(current_directory,'src', 'utils')
+data_directory = os.path.join(current_directory, 'src', 'data')
+
+sys.path.append(os.path.abspath(utils_directory))
+sys.path.append(os.path.abspath(data_directory))
+
+
 from data_utils import save_dataframe_to_csv
 from collections import defaultdict
 

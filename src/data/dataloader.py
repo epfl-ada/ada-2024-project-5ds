@@ -18,8 +18,18 @@ user_agent = "Mus/1.0"
 wiki_wiki = wikipediaapi.Wikipedia(user_agent=user_agent, language='en')
 sparql = SPARQLWrapper("https://query.wikidata.org/sparql", agent=user_agent)
 import sys
-sys.path.append('/Users/williamjallot/Desktop/ADA/ada-2024-project-5ds/src/utils')
-sys.path.append('/Users/williamjallot/Desktop/ADA/ada-2024-project-5ds/src/data')
+
+current_directory = os.getcwd()
+
+
+utils_directory = os.path.join(current_directory,'src', 'utils')
+data_directory = os.path.join(current_directory, 'src', 'data')
+
+
+sys.path.append(os.path.abspath(utils_directory))
+sys.path.append(os.path.abspath(data_directory))
+
+
 from data_utils import save_dataframe_to_csv, load_dataframe_from_csv
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
