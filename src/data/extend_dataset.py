@@ -6,6 +6,8 @@ import sys
 from SPARQLWrapper import SPARQLWrapper, JSON, CSV
 import os
 
+
+#Add upper directories to the system to ensure working importatons
 current_directory = os.getcwd()
 utils_directory = os.path.join(current_directory,'src', 'utils')
 data_directory = os.path.join(current_directory, 'src', 'data')
@@ -17,20 +19,28 @@ sys.path.append(os.path.abspath(data_directory))
 from data_utils import save_dataframe_to_csv
 from collections import defaultdict
 
+#Set up sparql in order to use it for our requests
 user_agent = "Mus/1.0"
 wiki_wiki = wikipediaapi.Wikipedia(user_agent=user_agent, language='en')
 sparql = SPARQLWrapper("https://query.wikidata.org/sparql", agent=user_agent)
 
 
 def extend_dataset() :
+    """
+    Retreive all the films available on wikipedia spanning from 2013 to 2024 (included) along with the film_title, release_date, box_office, runtime, languages, countries, genres, reviewScores, awardsReceived
+    #,awardsNominated andcapitalCost. Save each year in a csv file located in the directory called data
+    """
+    
     films_since_2013 = {}
 
+    #Get all the films listed on wikipedia for each year in the range
     for year in range(2013, 2025):  # Adjust end year as needed
         films = get_films_by_year(year)
         films_since_2013[year] = films
         print(f"{year}: Retrieved {len(films)} films.")
         film_dict = {}
 
+    #For each film collected, store the required informaton
     for year, films in films_since_2013.items():
         print(f"\n{year} films:")
         for film in films:
@@ -41,11 +51,11 @@ def extend_dataset() :
             else:
                 print(f"Failed to retrieve information for '{film}'.")
                 
+        #Save each year in a csv file
         df = pd.DataFrame.from_dict(film_dict, orient='index').T
         save_dataframe_to_csv(df, f'films_{year}.csv')
         
         film_dict = {}
-            
             
         print(f'Processed films for {year}.')
         
@@ -68,8 +78,7 @@ def get_films_by_year(year):
 
 
 def get_id(page_title):
-    # Get the page
-    
+    # Get the page given the page_title
     wiki_wiki = wikipediaapi.Wikipedia(user_agent=user_agent, language='en')
     page = wiki_wiki.page(page_title)
     
@@ -82,6 +91,7 @@ def get_id(page_title):
     
     response = requests.get(url)
     
+    #Handle bad response
     if response.status_code != 200:
         print(f"Failed to retrieve page '{page_title}'.")
         return None
@@ -117,6 +127,8 @@ def get_id(page_title):
 
 def get_wikidata_info(wikidata_id, sparqlAgent):
     
+    #Set the query with the attributes we want to retreive : film_title, release_date, box_office, runtime, languages, countries, genres, reviewScores, awardsReceived
+    #awardsNominated, capitalCost
     query = f"""
       SELECT ?film ?filmLabel (MIN(?releaseDate) AS ?earliestReleaseDate) (MAX(?boxOffice) AS ?highestBoxOffice) ?runtime 
             (GROUP_CONCAT(DISTINCT ?languageLabel; separator=", ") AS ?languages) 
@@ -146,6 +158,7 @@ def get_wikidata_info(wikidata_id, sparqlAgent):
       GROUP BY ?film ?filmLabel ?runtime ?capitalCost
       """
     
+    #Request query to wikidata
     sparqlAgent.setQuery(query)
     sparqlAgent.setReturnFormat(JSON)
     results = sparqlAgent.query().convert()
@@ -153,6 +166,8 @@ def get_wikidata_info(wikidata_id, sparqlAgent):
     return results['results']['bindings']
 
 def get_film_info(film_title):
+
+    #Get the wikidata id and the page id from the film title
     wikidata_id, page_id = get_id(film_title)
     
     if wikidata_id is None:
@@ -180,7 +195,7 @@ def get_film_info(film_title):
         info['capitalCost'] = None
     
     
-    
+    #Retreive every desired info from the data retreived from wikidata
     for film in film_info:
         
         info['film'] = film['filmLabel']['value']
@@ -214,8 +229,10 @@ def get_film_info(film_title):
 
 
 def get_wikidata_id(page_title):
+    """
+    Returns the wikidata id from the page title
+    """
     # Get the page
-    
     wiki_wiki = wikipediaapi.Wikipedia(user_agent=user_agent, language='en')
     page = wiki_wiki.page(page_title)
     
@@ -263,6 +280,7 @@ def get_wikidata_id(page_title):
 
 def get_title_from_page_id(page_id):
  
+
     url = f'https://en.wikipedia.org/w/api.php?action=query&format=json&pageids={page_id}&prop=wikidata'
 
     # Make the API request
@@ -344,16 +362,21 @@ def get_wikdata_information(wikidata_id, sparqlAgent):
     return results['results']['bindings']
 
 def get_actor_information(page_id):
+    """
+    Returns the information about the actor from the actor wikipedia page id
+    """
     title = get_title_from_page_id(page_id)
     wikidata_id = get_wikidata_id(title)
     
     if wikidata_id is None:
         return None
     
+    #Get the information
     results = get_wikdata_information(wikidata_id, sparql)
     
     actor_info = defaultdict(set)
     
+    #Load the retreived information
     if len(results) == 0:
         return None
     for result in results:
