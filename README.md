@@ -35,15 +35,15 @@ Before diving into complex modeling, we performed exploratory data analysis to u
 #### Graph Plotting
 Various graphs were plotted to visualize relationships between factors such as actor characteristics, movie genres, and award success. These visualizations helped in identifying patterns and potential correlations that will be explored further in our analysis.
 
-#### Task 1:
+##### Task 1:
 
-#### Task 2:
+##### Task 2:
 
-#### Task 3:
+##### Task 3:
 
-#### Task 4:
+##### Task 4:
 
-#### Task 5:
+##### Task 5:
 
 ### Proposed timeline
 
