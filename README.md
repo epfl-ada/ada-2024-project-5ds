@@ -27,7 +27,9 @@ We believe that this comprehensive dataset will provide enough information to ad
 When extracting data from the CMU dataset, we found that additional processing and filtering were necessary to ensure the data was clean and relevant for our analysis.
 
 #### Data cleaning 
-The birth dates were standardized by retaining only the year of birth, and the same was done for the movie release dates. Additionally, we extracted important features such as movie genres, languages, and other columns that were necessary for our analysis. For the ethnicities, we handled missing values by leaving some as 'NaN' when it was more appropriate to avoid assumptions or incorrect imputations.
+The birth dates were standardized by retaining only the year of birth, and the same process was applied to the movie release dates. Additionally, we extracted important features such as movie genres, languages, and other relevant columns required for our analysis. For ethnicities, we also managed to extract the different values.
+
+We are aware that our dataframe contains certain NaN values for some columns. However, we have decided to retain them in order to utilize the other available variables.
 
 #### Initial analyses
 Before diving into complex modeling, we performed exploratory data analysis to understand the distribution and trends in our dataset. This included inspecting correlations, missing values, and data ranges to ensure accuracy and completeness.
