@@ -24,10 +24,14 @@ We believe that this comprehensive dataset will provide enough information to ad
 
 ### Methods
 
--Data cleaning: Uniformisation des date of birth, date of release / extraction des genres, novies languages .... / Ethnicités /Certains 'nan' ont été laissé volontairement
+#### Data cleaning 
+The birth dates were standardized by retaining only the year of birth, and the same was done for the movie release dates. Additionally, we extracted important features such as movie genres, languages, and other columns that were necessary for our analysis. For the ethnicities, we handled missing values by leaving some as 'NaN' when it was more appropriate to avoid assumptions or incorrect imputations.
 
--Initial analyses
--Plot des graphes
+#### Initial analyses
+Before diving into complex modeling, we performed exploratory data analysis to understand the distribution and trends in our dataset. This included inspecting correlations, missing values, and data ranges to ensure accuracy and completeness.
+
+#### Graph Plotting
+Various graphs were plotted to visualize relationships between factors such as actor characteristics, movie genres, and award success. These visualizations helped in identifying patterns and potential correlations that will be explored further in our analysis.
 
 #### Task 1:
 
