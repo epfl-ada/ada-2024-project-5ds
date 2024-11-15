@@ -39,11 +39,17 @@ Various graphs were plotted to visualize relationships between factors such as a
 
 ##### Task 1:
 
-##### Task 2:
+##### Task 2: Actor Diversity Analysis
 
-##### Task 3:
+This task will focus on quantifying the diversity of actors in Oscar-winning films. An index will be created to assess the diversity of actors based on ethnicity, gender, and nationality. Statistical comparisons will be made between lead and supporting actors to determine if there is a significant difference in diversity between the two roles. The analysis will also explore whether diversity plays a significant role in Oscar nominations and wins, with potential implications for the broader industry.
 
-##### Task 4:
+##### Task 3: Film Genre and Box Office Performance Analysis
+
+This task will investigate how genre and box office performance correlate with Oscar nominations and wins. Using the tvtropes dataset, we will classify films by genre and explore how genre affects the likelihood of winning an Oscar. We will also examine the relationship between a film’s box office performance and its chances of winning an Oscar. A predictive model will be developed to assess how well box office and genre performance can predict Oscar nominations and wins.
+
+##### Task 4: Network Modeling of Relationships Between Films, Actors, and Awards
+
+In this task, we will create a network model in Neo4j to explore the relationships between films, actors, and awards. The network will include nodes representing films, actors, genres, and awards, with relationships linking films to their genres, actors, and the awards they have received. This model will be used to generate insights into the connections between different attributes, such as how film genre and actor diversity are linked to Oscar outcomes.
 
 ##### Task 5:
 
