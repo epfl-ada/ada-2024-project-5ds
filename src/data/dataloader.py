@@ -66,8 +66,9 @@ def load_initial_dataset(PATH_IN) :
     character.columns = ['Wikipedia movie ID', 'Freebase movie ID', 'Movie release date', 'Character name', 'Actor date of birth', ' Actor gender', 'Actor height)', 'Actor ethnicity', 'Actor name',
                         'Actor age at movie release', 'Freebase character', 'Freebase character ID', 'Freebase actor ID']
     
-    ethnicities = character['Actor ethnicity'].values.tolist()
 
+    #Convert the free base ID of the ethnicity to a string indicating the ethnicity
+    ethnicities = character['Actor ethnicity'].values.tolist()
     ethnicities = set(ethnicities)
     freebase_ids_to_labels = {}
 
@@ -364,7 +365,6 @@ def load_academy_award_winning_films(OS='WINDOWS'):
         'Nominations': nominations_received
     })
 
-    # Optionally, save to a CSV file
     save_dataframe_to_csv(df_films, "academy_award_winning_films.csv")
 
 
@@ -395,10 +395,12 @@ def merge_actors_dataframe() :
 
 
 
-def get_ethnicity_info(ethnicitie):
+def get_ethnicity_info(ethnicity):
+
+    #Query the ethnicty given the freebase id
     query = f"""
         SELECT ?item ?itemLabel WHERE {{
-        ?item wdt:P646 "{ethnicitie}".  # Replace with your Freebase ID
+        ?item wdt:P646 "{ethnicity}".  
         SERVICE wikibase:label {{ bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }}
         }}
     """

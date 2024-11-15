@@ -11,6 +11,9 @@ from extend_dataset import extend_dataset
 
 
 def create_datasets() :
+    """
+    Create the dataset used for our analysis
+    """
     OS = 'MAC'
     print('Formatting the inital CMU data set : ')
     load_initial_dataset('data')

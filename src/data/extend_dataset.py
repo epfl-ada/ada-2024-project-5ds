@@ -320,6 +320,7 @@ def get_wikidata_id(page_title):
     return wikidata_id
 
 def get_wikdata_information(wikidata_id, sparqlAgent):
+    #Query the desired results
     query =f"""
         SELECT ?actor ?sexLabel ?nativeLanguageLabel ?countryOfCitizenshipLabel ?ethnicGroupLabel WHERE {{
         wd:{wikidata_id} wdt:P31 wd:Q5;  # Ensures it's a human (actor)
@@ -355,7 +356,6 @@ def get_actor_information(page_id):
     
     if len(results) == 0:
         return None
-    
     for result in results:
         actor_info['page_id'].add(page_id)	
         actor_info['wikidata_id'].add(wikidata_id)
