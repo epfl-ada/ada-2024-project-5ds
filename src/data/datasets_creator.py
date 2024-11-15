@@ -6,14 +6,18 @@ import pandas as pd
 import time
 import sys
 
-from dataloader import load_oscar_winning_films_ids, load_oscar_winning_actors, load_oscar_winning_actresses, load_oscar_winning_supporting_actors, load_oscar_winning_supporting_actresses, load_academy_award_winning_films, merge_actors_dataframe
+from dataloader import load_oscar_winning_films_ids, load_oscar_winning_actors, load_oscar_winning_actresses, load_oscar_winning_supporting_actors, load_oscar_winning_supporting_actresses, load_academy_award_winning_films, merge_actors_dataframe, load_initial_dataset
 from extend_dataset import extend_dataset
 
 
 def create_datasets() :
     OS = 'MAC'
+    print('Formatting the inital CMU data set : ')
+    load_initial_dataset('data')
+    print('Completed')
+
     print('Creating the external datasets :')
-    
+
     print('Merge actor : ')
     merge_actors_dataframe() 
 

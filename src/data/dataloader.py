@@ -11,19 +11,21 @@ from bs4 import BeautifulSoup
 import requests
 import pandas as pd
 from SPARQLWrapper import SPARQLWrapper, JSON, CSV
-from extend_dataset import get_actor_information
+
+
+
 user_agent = "Mus/1.0"
 wiki_wiki = wikipediaapi.Wikipedia(user_agent=user_agent, language='en')
 sparql = SPARQLWrapper("https://query.wikidata.org/sparql", agent=user_agent)
 import sys
 sys.path.append('/Users/williamjallot/Desktop/ADA/ada-2024-project-5ds/src/utils')
-
+sys.path.append('/Users/williamjallot/Desktop/ADA/ada-2024-project-5ds/src/data')
 from data_utils import save_dataframe_to_csv, load_dataframe_from_csv
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import requests
-
+from extend_dataset import get_actor_information
 
 
 def load_initial_dataset(PATH_IN) :
@@ -53,6 +55,21 @@ def load_initial_dataset(PATH_IN) :
     character = pd.read_csv(fname, delimiter='\t', header=None)
     character.columns = ['Wikipedia movie ID', 'Freebase movie ID', 'Movie release date', 'Character name', 'Actor date of birth', ' Actor gender', 'Actor height)', 'Actor ethnicity', 'Actor name',
                         'Actor age at movie release', 'Freebase character', 'Freebase character ID', 'Freebase actor ID']
+    
+    ethnicities = character['Actor ethnicity'].values.tolist()
+
+    ethnicities = set(ethnicities)
+    freebase_ids_to_labels = {}
+
+    for ethnicity in ethnicities:
+        results = get_ethnicity_info(ethnicity)
+        for result in results:
+            freebase_id = ethnicity
+            label = result['itemLabel']['value']
+            freebase_ids_to_labels[freebase_id] = label
+            
+    character['Actor ethnicity'] = character['Actor ethnicity'].map(freebase_ids_to_labels)
+
 
     #Load the plot summary data frame
     fname = os.path.join(PATH_IN, 'plot_summaries.txt')
@@ -77,7 +94,12 @@ def load_initial_dataset(PATH_IN) :
     fname = os.path.join(PATH_IN, 'name.clusters.txt')
     name_clusters = pd.read_csv(fname, delimiter='\t', header=None, names = ['Character Name','ID'])
 
-    return  movie, character, plot_summaries,  tvtropes, name_clusters
+    save_dataframe_to_csv(movie, 'movie_cmu.csv')
+    save_dataframe_to_csv(character, 'character.csv')
+    save_dataframe_to_csv(plot_summaries, 'plot_summaries.csv')
+    save_dataframe_to_csv(tvtropes, 'tvtropes.csv')
+    save_dataframe_to_csv(name_clusters, 'name_clusters.csv')
+
 
 
 def load_oscar_winning_films_ids(OS = 'WINDOWS') :
@@ -363,3 +385,16 @@ def merge_actors_dataframe() :
 
 
 
+def get_ethnicity_info(ethnicitie):
+    query = f"""
+        SELECT ?item ?itemLabel WHERE {{
+        ?item wdt:P646 "{ethnicitie}".  # Replace with your Freebase ID
+        SERVICE wikibase:label {{ bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }}
+        }}
+    """
+    
+    sparql.setQuery(query)
+    sparql.setReturnFormat(JSON)
+    results = sparql.query().convert()
+    
+    return results['results']['bindings']
