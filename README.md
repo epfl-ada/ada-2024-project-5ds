@@ -24,6 +24,8 @@ We believe that this comprehensive dataset will provide enough information to ad
 
 ### Methods
 
+When extracting data from the CMU dataset, we found that additional processing and filtering were necessary to ensure the data was clean and relevant for our analysis.
+
 #### Data cleaning 
 The birth dates were standardized by retaining only the year of birth, and the same was done for the movie release dates. Additionally, we extracted important features such as movie genres, languages, and other columns that were necessary for our analysis. For the ethnicities, we handled missing values by leaving some as 'NaN' when it was more appropriate to avoid assumptions or incorrect imputations.
 
