@@ -16,7 +16,7 @@ sys.path.append(os.path.abspath(utils_directory))
 sys.path.append(os.path.abspath(data_directory))
 
 
-from data_utils import save_dataframe_to_csv
+from utils.data_utils import save_dataframe_to_csv
 from collections import defaultdict
 
 #Set up sparql in order to use it for our requests

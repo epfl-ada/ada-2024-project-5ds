@@ -30,7 +30,7 @@ page_id,wikidata_id,actor,sexLabel,nativeLanguageLabel,countryOfCitizenshipLabel
 53762,Q181917,David Niven,male,British English,United Kingdom,
 46165,Q80739,Charlton Heston,male,English,United States of America,
 4537,Q160528,Burt Lancaster,male,English,United States of America,
-161516,Q153018,Maximilian Schell,male,,Austria,
+161516,Q153018,Maximilian Schell,male,,Switzerland,
 77491,Q108366,Gregory Peck,male,,United States of America,
 46052,Q104049,Sidney Poitier,male,English,United States of America,African Americans
 99019,Q181887,Rex Harrison,male,British English,United Kingdom,
@@ -56,12 +56,12 @@ page_id,wikidata_id,actor,sexLabel,nativeLanguageLabel,countryOfCitizenshipLabel
 168534,Q105825,William Hurt,male,,United States of America,
 49706,Q41871,Paul Newman,male,English,United States of America,
 78781,Q119798,Michael Douglas,male,English,United States of America,
-171003,Q166389,Daniel Day-Lewis,male,,United Kingdom,English people
+171003,Q166389,Daniel Day-Lewis,male,,United Kingdom,Jewish people
 26274410,Q171745,Jeremy Irons,male,,United Kingdom,
 2397,Q65932,Anthony Hopkins,male,English,United Kingdom,
 41906,Q41163,Al Pacino,male,,United States of America,Sicilian Americans
-43568,Q2263,Tom Hanks,male,English,Greece,
-21111,Q42869,Nicolas Cage,male,English,United States of America,Scottish Americans
+43568,Q2263,Tom Hanks,male,English,United States of America,
+21111,Q42869,Nicolas Cage,male,English,United States of America,Italian Americans
 171515,Q166272,Geoffrey Rush,male,,Australia,
 46344,Q23301,Roberto Benigni,male,Italian,Italy,
 16768,Q25144,Kevin Spacey,male,English,United States of America,
@@ -75,12 +75,12 @@ page_id,wikidata_id,actor,sexLabel,nativeLanguageLabel,countryOfCitizenshipLabel
 56439,Q174843,Jeff Bridges,male,English,United States of America,
 170409,Q162492,Colin Firth,male,British English,United Kingdom,
 16272829,Q189422,Jean Dujardin,male,French,France,
-27834683,Q188955,Matthew McConaughey,male,English,United States of America,British Americans
+27834683,Q188955,Matthew McConaughey,male,English,United States of America,German Americans
 7028414,Q28288,Eddie Redmayne,male,,United Kingdom,
 52711,Q38111,Leonardo DiCaprio,male,English,United States of America,
 689839,Q270730,Casey Affleck,male,English,United States of America,
 213163,Q83492,Gary Oldman,male,English,United Kingdom,
-4109849,Q375590,Rami Malek,male,,United States of America,
+4109849,Q375590,Rami Malek,male,,Egypt,
 178826,Q185140,Joaquin Phoenix,male,English,United States of America,
 154698,Q40096,Will Smith,male,English,United States of America,African Americans
 386491,Q193555,Brendan Fraser,male,English,United States of America,
@@ -93,7 +93,7 @@ page_id,wikidata_id,actor,sexLabel,nativeLanguageLabel,countryOfCitizenshipLabel
 43337,Q56016,Katharine Hepburn,female,English,United States of America,
 61350,Q203819,Claudette Colbert,female,,United States of America,
 63517,Q71206,Bette Davis,female,,United States of America,
-180908,Q18994,Luise Rainer,female,,United States of America,
+180908,Q18994,Luise Rainer,female,,Germany,
 32788,Q129429,Vivien Leigh,female,English,United Kingdom,
 64612,Q95089,Ginger Rogers,female,,United States of America,
 180982,Q95076,Joan Fontaine,female,English,United Kingdom,
@@ -107,7 +107,7 @@ page_id,wikidata_id,actor,sexLabel,nativeLanguageLabel,countryOfCitizenshipLabel
 187074,Q253298,Judy Holliday,female,,United States of America,
 187098,Q253308,Shirley Booth,female,,United States of America,
 52139,Q42786,Audrey Hepburn,female,Dutch,United Kingdom,
-42620,Q3925,Grace Kelly,female,American English,Monaco,
+42620,Q3925,Grace Kelly,female,American English,United States of America,
 190388,Q56011,Anna Magnani,female,,Italy,
 193843,Q1111542,Joanne Woodward,female,English,United States of America,
 183785,Q248837,Susan Hayward,female,English,United States of America,
@@ -148,18 +148,18 @@ page_id,wikidata_id,actor,sexLabel,nativeLanguageLabel,countryOfCitizenshipLabel
 16553,Q40523,Julia Roberts,female,English,United States of America,
 13717,Q1033016,Halle Berry,female,English,United States of America,African Americans
 21504,Q37459,Nicole Kidman,female,English,United States of America,
-5132,Q80046,Charlize Theron,female,Afrikaans,South Africa,
+5132,Q80046,Charlize Theron,female,Afrikaans,United States of America,
 93560,Q44063,Reese Witherspoon,female,American English,United States of America,
 230698,Q349391,Helen Mirren,female,English,United Kingdom,
 2539269,Q8927,Marion Cotillard,female,French,France,
 52707,Q202765,Kate Winslet,female,,United Kingdom,
-29455,Q40791,Sandra Bullock,female,German,United States of America,
-38459,Q37876,Natalie Portman,female,Hebrew,Israel,
-12684530,Q189490,Jennifer Lawrence,female,English,United States of America,French Americans
+29455,Q40791,Sandra Bullock,female,English,Germany,
+38459,Q37876,Natalie Portman,female,English,United States of America,
+12684530,Q189490,Jennifer Lawrence,female,English,United States of America,British Americans
 160126,Q80966,Cate Blanchett,female,English,United States of America,
 243685,Q80405,Julianne Moore,female,English,United Kingdom,
 1339248,Q29328,Brie Larson,female,French,United States of America,
-3741746,Q147077,Emma Stone,female,English,United States of America,Swedish Americans
+3741746,Q147077,Emma Stone,female,English,United States of America,British Americans
 1856120,Q7088045,Olivia Colman,female,British English,United Kingdom,
 204352,Q122614,Renée Zellweger,female,English,United States of America,
 17181314,Q229313,Jessica Chastain,female,English,United States of America,
@@ -178,7 +178,7 @@ page_id,wikidata_id,actor,sexLabel,nativeLanguageLabel,countryOfCitizenshipLabel
 779306,Q471309,Dean Jagger,male,English,United States of America,
 463180,Q296491,George Sanders,male,,United Kingdom,
 342375,Q94992,Karl Malden,male,,United Kingdom,
-43913,Q83484,Anthony Quinn,male,English,Mexico,
+43913,Q83484,Anthony Quinn,male,Spanish,United States of America,
 11181,Q40912,Frank Sinatra,male,American English,United States of America,Italian Americans
 779370,Q119935,Edmond O'Brien,male,English,United States of America,
 650385,Q313198,Red Buttons,male,,United States of America,
@@ -224,7 +224,7 @@ page_id,wikidata_id,actor,sexLabel,nativeLanguageLabel,countryOfCitizenshipLabel
 161895,Q108283,Alan Arkin,male,English,United States of America,
 171593,Q134895,Javier Bardem,male,,Spain,
 17173785,Q40572,Heath Ledger,male,English,Australia,
-8104201,Q76819,Christoph Waltz,male,,Austria,
+8104201,Q76819,Christoph Waltz,male,,Germany,
 331124,Q45772,Christian Bale,male,British English,United Kingdom,
 343134,Q190523,Christopher Plummer,male,English,Canada,
 483360,Q484523,Jared Leto,male,English,United States of America,
@@ -232,10 +232,10 @@ page_id,wikidata_id,actor,sexLabel,nativeLanguageLabel,countryOfCitizenshipLabel
 2227406,Q324572,Mark Rylance,male,,United Kingdom,
 2214063,Q360531,Mahershala Ali,male,English,United States of America,
 1360740,Q316446,Sam Rockwell,male,,United States of America,
-44849,Q35332,Brad Pitt,male,English,United States of America,Swedish Americans
+44849,Q35332,Brad Pitt,male,English,United States of America,British Americans
 9405817,Q510970,Daniel Kaluuya,male,,United Kingdom,
 68502180,Q3508016,Troy Kotsur,male,American Sign Language,United States of America,
-266346,Q445017,Ke Huy Quan,male,Vietnamese,Republic of Vietnam,
+266346,Q445017,Ke Huy Quan,male,Vietnamese,United States of America,
 171045,Q165219,Robert Downey Jr.,male,English,United States of America,Swiss Americans
 577751,Q233845,Gale Sondergaard,female,English,United States of America,
 189229,Q233856,Alice Brady,female,,United States of America,
@@ -288,16 +288,16 @@ page_id,wikidata_id,actor,sexLabel,nativeLanguageLabel,countryOfCitizenshipLabel
 54985,Q49001,Whoopi Goldberg,female,,United States of America,African Americans
 768280,Q232933,Mercedes Ruehl,female,,United States of America,
 219358,Q191828,Marisa Tomei,female,,United States of America,
-276341,Q199884,Anna Paquin,female,English,New Zealand,
+276341,Q199884,Anna Paquin,female,English,Canada,
 277368,Q212026,Mira Sorvino,female,English,United States of America,
 55117,Q106275,Juliette Binoche,female,French,France,
 204467,Q131380,Kim Basinger,female,American English,United States of America,
 85432,Q28054,Judi Dench,female,British English,United Kingdom,
 5792809,Q13909,Angelina Jolie,female,English,United States of America,
 385525,Q228931,Marcia Gay Harden,female,English,United States of America,
-20647767,Q103343,Jennifer Connelly,female,American English,United States of America,Ashkenazi Jews
+20647767,Q103343,Jennifer Connelly,female,American English,United States of America,Norwegian Americans
 150996,Q47664,Catherine Zeta-Jones,female,,United Kingdom,
-158448,Q134077,Rachel Weisz,female,British English,United Kingdom,
+158448,Q134077,Rachel Weisz,female,English,United Kingdom,
 518700,Q192410,Jennifer Hudson,female,,United States of America,
 476044,Q200534,Tilda Swinton,female,,United Kingdom,
 23006,Q39666,Penélope Cruz,female,,Spain,
@@ -305,7 +305,7 @@ page_id,wikidata_id,actor,sexLabel,nativeLanguageLabel,countryOfCitizenshipLabel
 1363953,Q229410,Melissa Leo,female,English,United States of America,
 8694199,Q229254,Octavia Spencer,female,English,United States of America,African Americans
 604244,Q36301,Anne Hathaway,female,,United States of America,
-38179119,Q3840847,Lupita Nyong'o,female,,Mexico,
+38179119,Q3840847,Lupita Nyong'o,female,,Kenya,
 400595,Q215976,Patricia Arquette,female,English,United States of America,
 32601798,Q439314,Alicia Vikander,female,Swedish,Sweden,
 6713737,Q229181,Viola Davis,female,,United States of America,

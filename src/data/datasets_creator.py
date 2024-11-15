@@ -23,7 +23,8 @@ def create_datasets() :
 
     print('Merge actor : ')
     merge_actors_dataframe() 
-
+    print('Completed')
+    
     print('Searching information on awards for films')
     load_academy_award_winning_films(OS)
     print('Completed')
