@@ -39,7 +39,9 @@ Various graphs were plotted to visualize relationships between factors such as a
 
 ### Tasks
 
-##### Task 1:
+##### Task 1: Character Representation and Oscar Success
+
+This task will analyze how different character types are represented in Oscar-winning films. We will examine attributes such as gender, age, role significance (lead or supporting), and personality archetypes using the "character" dataset. The goal is to identify if certain character traits are more likely to lead to Oscar nominations or wins. We will also assess if diverse representation—such as non-traditional roles or underrepresented groups—affects Oscar success. This task will involve clustering characters by traits and using statistical tests to uncover patterns in Oscar-winning films.
 
 ##### Task 2: Actor Diversity Analysis
 
@@ -53,6 +55,9 @@ This task will investigate how genre and box office performance correlate with O
 
 In this task, we will create a network model in Neo4j to explore the relationships between films, actors, and awards. The network will include nodes representing films, actors, genres, and awards, with relationships linking films to their genres, actors, and the awards they have received. This model will be used to generate insights into the connections between different attributes, such as how film genre and actor diversity are linked to Oscar outcomes.
 
+
+##### Task 5: Sentiment Analysis of Plot Summaries and Oscar Outcomes
+This task will analyze the sentiment of film plot summaries to determine its impact on Oscar outcomes. Using the "plot_summaries" dataset, we will use our plots classififcation into positive, negative, or mixed sentiments in order to explore if specific types of emotional narratives are more common among Oscar winners. Additionally, we will investigate sentiment distribution across genres to see if certain sentiments are more likely to lead to nominations or wins. This task may also involve building a predictive model that uses sentiment, genre, and other factors to predict Oscar success.
 
 ### Proposed timeline
 

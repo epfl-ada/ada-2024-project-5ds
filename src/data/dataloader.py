@@ -19,6 +19,7 @@ wiki_wiki = wikipediaapi.Wikipedia(user_agent=user_agent, language='en')
 sparql = SPARQLWrapper("https://query.wikidata.org/sparql", agent=user_agent)
 import sys
 
+#Add upper directories to the system to ensure working importatons
 current_directory = os.getcwd()
 
 
@@ -261,6 +262,7 @@ def search_actors_and_films(url, OS) :
 
 
 def search_winning_films_ids(url, OS):
+    # Set up the Chrome WebDriver for Selenium
     if OS == 'MAC':
         driver = webdriver.Chrome()
     else:
@@ -272,6 +274,7 @@ def search_winning_films_ids(url, OS):
     time.sleep(5)
     page_ids = []
 
+    #Find every tr tags, which contains tags of interest
     tr_tags = driver.find_elements(By.TAG_NAME, 'tr')
     for tr_tag in tr_tags:
 
@@ -369,11 +372,17 @@ def load_academy_award_winning_films(OS='WINDOWS'):
 
 
 def merge_actors_dataframe() : 
+    """
+    Merge all the dataframes containing actors and retreive some information on the actors. Save it in a csv file located in a directory called data
+    """
+
+    #Load all the actors dataframe
     oscar_winning_actors = load_dataframe_from_csv('oscar_winning_actors.csv')
     oscar_winning_actresses = load_dataframe_from_csv('oscar_winning_actresses.csv')
     oscar_supporting_actors = load_dataframe_from_csv('oscar_winning_supporting_actors.csv')
     oscar_supporting_actresses = load_dataframe_from_csv('oscar_winning_supporting_actresses.csv')
 
+    #Rename to ensure a effective merge
     oscar_winning_actors.columns =  oscar_winning_actresses.columns =  oscar_supporting_actors.columns = oscar_supporting_actresses.columns = ['page_id', 'film_id']
     combined_df = pd.concat([oscar_winning_actors, oscar_winning_actresses, oscar_supporting_actors, oscar_supporting_actresses], axis=0)
 
@@ -382,6 +391,7 @@ def merge_actors_dataframe() :
     combined_df = combined_df.drop_duplicates(subset=first_column_name, keep='first')
     combined_df = combined_df.astype(int)
     
+    #For every actor page id ask retreive somme additional data
     processed_data = []
     for id in combined_df[first_column_name] : 
         item = get_actor_information(id)
@@ -396,7 +406,6 @@ def merge_actors_dataframe() :
 
 
 def get_ethnicity_info(ethnicity):
-
     #Query the ethnicty given the freebase id
     query = f"""
         SELECT ?item ?itemLabel WHERE {{
@@ -405,6 +414,7 @@ def get_ethnicity_info(ethnicity):
         }}
     """
     
+    #Retreive desired information given the query
     sparql.setQuery(query)
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()

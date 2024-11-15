@@ -12,7 +12,7 @@ from extend_dataset import extend_dataset
 
 def create_datasets() :
     """
-    Create the dataset used for our analysis
+    Create the dataset used for our analysis, save all the created datasets in the folder called data
     """
     OS = 'MAC'
     print('Formatting the inital CMU data set : ')
