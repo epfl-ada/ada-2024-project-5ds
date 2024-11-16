@@ -1,8 +1,16 @@
 import sys
-sys.path.append('D:/UNIV/MASTER-EPFL/ADA/applied-project/ada-2024-project-5ds/src/models')
-sys.path.append('D:/UNIV/MASTER-EPFL/ADA/applied-project/ada-2024-project-5ds/src/scripts')
-sys.path.append('D:/UNIV/MASTER-EPFL/ADA/applied-project/ada-2024-project-5ds/src/data')
-sys.path.append('D:/UNIV/MASTER-EPFL/ADA/applied-project/ada-2024-project-5ds/src/utils')
+import os
+
+current_directory = os.getcwd()
+utils_directory = os.path.join(current_directory,'src', 'utils')
+data_directory = os.path.join(current_directory, 'src', 'data')
+model_directory = os.path.join(current_directory, 'src', 'models')
+script_directory = os.path.join(current_directory, 'src', 'scripts')
+sys.path.append(os.path.abspath(utils_directory))
+sys.path.append(os.path.abspath(data_directory))
+sys.path.append(os.path.abspath(model_directory))
+sys.path.append(os.path.abspath(script_directory))
+
 from dataloader import load_initial_dataset
 from sentiment_analysis_plots import get_sentiment_from_dataframe
 from sentiment_analysis import get_sentiment_string

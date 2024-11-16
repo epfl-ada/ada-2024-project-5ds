@@ -4,3 +4,4 @@ pandas==2.1.1
 wikipedia-api==0.5.8
 beautifulsoup4==4.13.0
 SPARQLWrapper==2.0.0
+nltk==3.9.1

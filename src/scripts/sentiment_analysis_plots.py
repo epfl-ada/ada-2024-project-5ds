@@ -1,7 +1,15 @@
 import sys
-sys.path.append('D:/UNIV/MASTER-EPFL/ADA/applied-project/ada-2024-project-5ds/src/models')
-sys.path.append('D:/UNIV/MASTER-EPFL/ADA/applied-project/ada-2024-project-5ds/src/utils')
-sys.path.append('D:/UNIV/MASTER-EPFL/ADA/applied-project/ada-2024-project-5ds/src/data')
+import os
+#Add upper directories to the system to ensure working importatons
+current_directory = os.getcwd()
+utils_directory = os.path.join(current_directory,'src', 'utils')
+data_directory = os.path.join(current_directory, 'src', 'data')
+model_directory = os.path.join(current_directory, 'src', 'models')
+
+sys.path.append(os.path.abspath(utils_directory))
+sys.path.append(os.path.abspath(data_directory))
+sys.path.append(os.path.abspath(model_directory))
+
 from dataloader import load_initial_dataset
 from data_utils import save_dataframe_to_csv, load_dataframe_from_csv
 from sentiment_analysis import get_sentiment_string
