@@ -14,3 +14,4 @@ src/utils/__pycache__/loading_utils.cpython-311.pyc
 src/data/__pycache__/dataloader.cpython-311.pyc
 src/data/__pycache__/dataloader.cpython-311.pyc
 src/data/__pycache__/dataloader.cpython-311.pyc
+config.py
