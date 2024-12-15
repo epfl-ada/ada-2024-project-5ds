@@ -1,0 +1,222 @@
+---
+title: "Unveiling Award-Winning Movies"
+
+layout: page
+
+permalink: /
+
+header:
+    overlay_image: /assets/images/header.webp
+    overlay_filter: rgba(0, 0, 0, 0.6)
+
+    actions:
+        - label: "Explore the Analysis"
+          url: "#section-1"
+        - label: "Meet the Team"
+          url: "#section-2"
+        - label: "Explore Movies"
+          url: "#section-3"
+        - label: "Explore Actors"
+          url: "#section-4"
+        - label: "Combination Analysis"
+          url: "#section-5"
+        - label: "Conclusion"
+          url: "#section-6"
+
+    caption: "Photo generated with DALL-E"
+
+excerpt: "**Unveiling the recipe behind award-winning movies with data-driven insights.**"
+
+round-images:
+    - image-path: "/assets/images/photo_yassine.jpg"
+      size: "fifth"
+      header: "Yassine Mustapha Wahidy"
+      caption: "The Goat"
+    - image-path: "/assets/images/photo_amine.jpg"
+      size: "fifth"
+      header: "Amine Bengelloun"
+      caption: "The Goat"
+    - image-path: "/assets/images/photo_william.jpg"
+      size: "fifth"
+      header: "William Jallot"
+      caption: "The Goat"
+    - image-path: "/assets/images/photo_thierry.jpg"
+      size: "fifth"
+      header: "Thierry Sokhn"
+      caption: "The Goat"
+    - image-path: "/assets/images/photo_khalil.jpg"
+      size: "fifth"
+      header: "Khalil Ouazzani Chahdi"
+      caption: "The Goat"
+---
+
+<!-- Section: Introduction -->
+<section class="site-section alternative-color first-section" id="dialogue">
+  <h1>Alice and Bob’s Debate: Art vs. Data</h1>
+  <p>Alice and Bob are a couple of cinema directors in the region of California, in Hollywood. They have won every kind of award across the globe, by the power of them taking the ADA course and their movie direction passion! However, they still have one challenge, and it is not a small one: setting up a movie that will win an Oscar.</p>
+  <p>Bob thinks that they mastered the art of movie direction and that they should not rely on any data whatsoever, while Alice wants a more thorough analysis, stating that, nowadays, we could not skip data as it is one of the revolutions of our world, to have a further idea of how to get an Oscar.</p>
+
+  <!-- Dialog as Text Bubbles -->
+  <div class="chat-container">
+      <div class="bubble alice">
+          <p><strong>Alice:</strong> "Bob, we’ve been phenomenal so far, but the Oscars? That’s a different beast. We need to strategize, and data analysis is the way forward."</p>
+      </div>
+      <div class="bubble bob">
+          <p><strong>Bob:</strong> "Alice, come on. We’re directors, not statisticians. We’ve mastered this craft with instinct, storytelling, and vision. Why complicate it with numbers?"</p>
+      </div>
+      <div class="bubble alice">
+          <p><strong>Alice:</strong> "Because numbers don’t lie, Bob. They tell us what resonates with the audience, what themes are trending, and what the Academy historically loves. Think about it. Every Oscar winner has a certain... formula."</p>
+      </div>
+      <div class="bubble bob">
+          <p><strong>Bob:</strong> "A formula? Really? You think we can boil down art to some algorithm? Art is passion, emotion, and risks, Alice. You can’t program that."</p>
+      </div>
+      <div class="bubble alice">
+          <p><strong>Alice:</strong> "No, but you can guide it. Look, take last year's Best Picture. The themes of Oppenheimer? Ethical and political struggles. The tone? Bittersweet but uplifting. The cast? Accurate. That wasn’t a coincidence, Bob."</p>
+      </div>
+      <div class="bubble bob">
+          <p><strong>Bob:</strong> "So what, you want me to pitch some cookie-cutter, Academy-friendly plot? That’s not us. That’s not me. We’re artists, not trend-chasers."</p>
+      </div>
+      <div class="bubble alice">
+          <p><strong>Alice:</strong> "Not trend-chasers, but trend-aware. You have to adapt. The industry is evolving, and data is part of the revolution. It’s not about copying; it’s about understanding the playing field. Then we innovate within it."</p>
+      </div>
+      <div class="bubble bob">
+          <p><strong>Bob:</strong> "Alright, Madame Analyst, what would this data-driven Oscar bait look like? Enlighten me."</p>
+      </div>
+  </div>
+
+  <p>They clink glasses, their collaboration set on a delicate balance of artistry and strategy.</p>
+</section>
+
+
+
+
+<hr class="section-sep">
+
+<!-- Section: Problematic -->
+<section class="site-section" id="section-1">
+    <h1>The Problematic</h1>
+    <h2>Our Question</h2>
+    <p>To help Alice convince Bob, we have been given the challenging task of identifying the factors that contribute to winning an Oscar—whether for an artist or a movie. Fortunately, Alice has provided us with some key starting points for our analysis, particularly the CMU dataset, which includes information on tropes, nationalities, summaries, and more.</p>
+    <h2>Why It Matters</h2>
+    <p>This analysis sheds light on trends that matter to filmmakers, fans, and anyone curious about the art of cinema.</p>
+</section>
+
+<hr class="section-sep">
+
+<!-- Section: Meet the Team -->
+<section class="site-section alternative-color" id="section-2">
+    <h1>Meet the Team</h1>
+    {% include round-images %}
+</section>
+
+<hr class="section-sep">
+
+<!-- Section: Dataset Presentation -->
+<section class="site-section" id="dataset">
+    <h1>Dataset Presentation</h1>
+    <h2>About the Dataset</h2>
+    <p>This dataset was curated from sources like IMDb and awards databases. It includes information on movies, actors, genres, budgets, and revenues.</p>
+    <ul>
+        <li>Movies: Titles, genres, release years, budgets, box office revenues, and awards.</li>
+        <li>Actors: Names, roles, and collaborations.</li>
+    </ul>
+    <h2>Data Exploration</h2>
+    <p>Initial graphs help us understand the data distribution and potential patterns.</p>
+    <div class="two-columns">
+        <div class="text-column">
+            <h3>Graph 1 Title</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus fermentum felis sit amet arcu faucibus.</p>
+        </div>
+        <div class="graph-column">
+          {% include plots/mean_runtime.html %}
+        </div>
+    </div>
+    <div class="two-columns">
+        <div class="graph-column">
+          {% include plots/mean_title_length.html %}
+        </div>
+        <div class="text-column">
+            <h3>Graph 2 Title</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tincidunt, odio vel auctor consequat.</p>
+        </div>
+    </div>
+    <!-- Repeat for 3 more graphs -->
+</section>
+
+<hr class="section-sep">
+
+<!-- Section: Movie Analysis -->
+<section class="site-section alternative-color" id="section-3">
+    <h1>Movie Analysis</h1>
+    <h2>Exploring Key Insights</h2>
+    {% for i in (1..3) %}
+    <div class="two-columns">
+        <div class="text-column">
+            <h3>Graph {{ i }} Title</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eu metus luctus facilisis.</p>
+        </div>
+        <div class="graph-column">
+            <img src="/assets/images/sydney-2.webp" alt="Graph {{ i }}" class="graph-placeholder">
+        </div>
+    </div>
+    <div class="two-columns">
+      <div class="graph-column">
+        <img src="/assets/images/sydney-2.webp" alt="Graph {{ i }}" class="graph-placeholder">
+      </div>
+      <div class="text-column">
+          <h3>Graph {{ i }} Title</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eu metus luctus facilisis.</p>
+      </div>
+  </div>
+    {% endfor %}
+</section>
+
+<hr class="section-sep">
+
+<!-- Section: Actor Analysis -->
+<section class="site-section" id="section-4">
+    <h1>Actor Analysis</h1>
+    <h2>The People Behind the Awards</h2>
+    {% for i in (1..5) %}
+    <div class="two-columns">
+        <div class="text-column">
+            <h3>Graph {{ i }} Title</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur scelerisque nisl vitae purus feugiat vehicula.</p>
+        </div>
+        <div class="graph-column">
+            <img src="/assets/images/sydney-2.webp" alt="Graph {{ i }}" class="graph-placeholder">
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+<hr class="section-sep">
+
+<!-- Section: Combination -->
+<section class="site-section alternative-color" id="section-5">
+    <h1>Combination</h1>
+    <h2>Finding the Winning Formula</h2>
+    {% for i in (1..5) %}
+    <div class="two-columns">
+        <div class="text-column">
+            <h3>Graph {{ i }} Title</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tristique mi quis justo aliquet mollis.</p>
+        </div>
+        <div class="graph-column">
+            <img src="/assets/images/sydney-2.webp" alt="Graph {{ i }}" class="graph-placeholder">
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+<hr class="section-sep">
+
+<!-- Section: Conclusion -->
+<section class="site-section" id="section-6">
+    <h1>Conclusion</h1>
+    <h2>Key Takeaways</h2>
+    <p>Summarizing the trends and insights discovered in this project, along with implications for filmmakers and fans alike.</p>
+    <h3>What’s Next?</h3>
+    <p>Ideas for extending this analysis into new domains, such as global cinema or TV series.</p>
+    <a href="#" class="btn btn--primary">Back to Top</a>
+</section>

@@ -1,0 +1,794 @@
+<!doctype html>
+<!--
+  OneFlow Jekyll Theme 1.0 by Per Starme
+  Copyright 2024 Per Starke - https://perstarke-webdev.de/
+  Free for personal and commercial use under the MIT license
+  https://opensource.org/license/mit/
+-->
+
+<!--
+  Based on Minimal Mistakes Jekyll Theme.
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose.
+  Copyright 2013-2021 Michael Rose - mademistakes.com | @mmistakes
+  Licensed under MIT.
+-->
+
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Welcome to OneFlow Jekyll Theme - OneFlow Jekyll Theme</title>
+<meta name="description" content="Crafting effortless One-Pager Websites">
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="OneFlow Jekyll Theme">
+<meta property="og:title" content="Welcome to OneFlow Jekyll Theme">
+<meta property="og:url" content="http://0.0.0.0:4000/">
+
+
+  <meta property="og:description" content="Crafting effortless One-Pager Websites">
+
+
+
+  <meta property="og:image" content="http://0.0.0.0:4000/assets/images/header.webp">
+
+
+
+
+
+
+
+
+
+
+<link rel="canonical" href="http://0.0.0.0:4000/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "http://0.0.0.0:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="OneFlow Jekyll Theme Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--page">
+    
+
+<div class="masthead" style="opacity: 0.85 !important;  position: sticky;">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/images/logo.webp" alt=" "></a>
+        
+        <a class="site-title" href="/">
+           
+          <span class="site-subtitle"> </span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/#section-1" title="Get to know the team behind the analysis." >Introduction</a>
+            </li><li class="masthead__menu-item">
+              <a href="/#section-3" title="Explore insights into what makes movies award-winning." >Movie Analysis</a>
+            </li><li class="masthead__menu-item">
+              <a href="/#section-4" title="Discover trends and patterns among award-winning actors." >Actor Analysis</a>
+            </li><li class="masthead__menu-item">
+              <a href="/#section-5" title="See how movies and actors combine for cinematic magic." >Combination</a>
+            </li><li class="masthead__menu-item">
+              <a href="/#section-6" title="Wrap up the analysis with key takeaways and implications." >Conclusion</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+
+    <style>
+
+        .bg {
+          background-image: url();
+        }
+
+        .bg::after {
+           background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        
+
+        }
+    </style>
+
+
+    
+
+        
+        <div id="cookie-banner">
+    This website is made available via GitHub Pages, which means it uses a global distribution network (CDN) to reliably display content. When you use the website, some of your non-personal data, such as IP address and page usage information, may be transmitted over this network to ensure the proper functioning of the website.
+    You can find more information in the
+    <a href="/imprint#github-pages-und-cdn-nutzung"
+       target="_blank" rel="noopener noreferrer nofollow">
+        imprint</a><br><br>
+
+
+    Please confirm that you agree to this and that we use a consent cookie that is stored for a period of one day. This cookie enables us to save your consent to the use of non-personal data and the proper functioning of the website.<br><br>
+
+    <small>For information in german, refer to the
+        <a href="/imprint"
+           target="_blank" rel="noopener noreferrer nofollow">
+            imprint</a>
+    </small>
+
+    <br><br>
+
+    <button class="btn btn--warning" id="cookie-consent-btn">Agree</button>
+</div>
+
+
+
+
+
+
+<!-- JavaScript-code for the cookie consent-banner -->
+<script>
+    if (document.cookie.indexOf('cookieConsent=1') !== -1) {
+        document.getElementById('cookie-banner').style.display = 'none';
+    }
+
+  function setCookieConsent() {
+      document.getElementById('cookie-banner').style.display = 'none';
+
+      var expiresDate = new Date();
+      expiresDate.setDate(expiresDate.getDate() + 1);
+
+      document.cookie = 'cookieConsent=1; expires=' + expiresDate.toUTCString() + '; path=/';
+  }
+
+    document.getElementById('cookie-consent-btn').addEventListener('click', setCookieConsent);
+</script>
+        
+
+      <div class="initial-content">
+        
+  
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+     style=" background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/assets/images/header.webp');; height: 100vh; background-size: cover; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+  
+    <div class="wrapper">
+      <h1 id="page-title" class="page__title" itemprop="headline">
+          Welcome to OneFlow Jekyll Theme
+
+      </h1>
+      
+        <p class="page__lead"><strong>Crafting effortless One-Pager Websites</strong>
+</p>
+      
+      
+      <div style="text-align: center">
+        <p>
+        <!-- 
+          <a href="https://github.com/perstarke-webdev/oneflow-jekyll-theme?tab=readme-ov-file#oneflow-jekyll-theme" class="btn btn--light-outline btn--large"  target="_blank" rel="noopener noreferrer nofollow">Get Started</a>
+        
+          <a href="https://github.com/mmistakes/minimal-mistakes" class="btn btn--light-outline btn--large"  target="_blank" rel="noopener noreferrer nofollow">Minimal Mistakes, the base for this theme</a>
+         -->
+      </div>
+      
+    </div>
+  
+  
+    <span class="page__hero-caption">Photo by <strong><a href="https://www.instagram.com/alexandrosmargo?igsh=eHl2cGx0amVocmJi">Alexandros Margo Photography</a></strong>
+</span>
+  
+</div>
+
+
+
+<div id="main" role="main">
+    <section class="page__content" itemprop="text">
+      <section class="site-section alternative-color first-section" id="section-1">
+
+    <h1>This is OneFlow Jekyll Theme. Section 1, in alternative color</h1>
+
+    <h2>Practical Design</h2>
+
+    <p>With its practical design and intuitive layout, OneFlow offers a seamless user experience for showcasing your content.</p>
+
+    <a href="https://oneflow-jekyll-theme-example-one.github.io/" rel="noopener noreferrer nofollow" target="_blank" class="btn btn--primary">
+        Theme Example Website One
+    </a>
+    <a href="https://oneflow-jekyll-theme-example-two.github.io/" rel="noopener noreferrer nofollow" target="_blank" class="btn btn--primary">
+        Theme Example Website Two
+    </a>
+    <a href="https://perstarke-webdev.de/canvas" rel="noopener noreferrer nofollow" target="_blank" class="btn btn--info">
+        Also check out the Homepage Canvas
+    </a>
+
+    <h2>Open-Source & free to use</h2>
+
+    OneFlow is licensed under the <a href="https://opensource.org/license/mit/" rel="noopener noreferrer nofollow" target="_blank">MIT License</a>.
+    That means, you can freely copy, use and customize it - whatever you like!
+
+    <h2>Drop in galleries, round images or image-text-rows</h2>
+
+    <h3>Gallery</h3>
+
+    
+
+
+
+<figure class="third ">
+  
+    
+      <a href="/assets/images/header.webp"
+        title="Image 1 title caption">
+          <img src="/assets/images/header.webp"
+               alt="placeholder image 1">
+      </a>
+    
+  
+    
+      <a href="/assets/images/sydney-2.webp"
+        title="Image 2 title caption">
+          <img src="/assets/images/sydney-2.webp"
+               alt="placeholder image 2">
+      </a>
+    
+  
+    
+      <a href="/assets/images/sydney-3.webp"
+        title="Image 3 title caption">
+          <img src="/assets/images/sydney-3.webp"
+               alt="placeholder image 3">
+      </a>
+    
+  
+  
+    <figcaption>Gallery captions, just like the rest of the theme, <strong>support Markdown</strong>
+</figcaption>
+  
+</figure>
+
+
+    <h3> Round Images</h3>
+
+    
+
+<div class="round-image-container">
+
+
+<div class="round-image-box round-image-box-full">
+
+<div class="round-image">
+<img src=/assets/images/header.webp>
+</div>
+
+<h3>Header 1</h3>
+
+
+<p>Caption 1</p>
+
+</div>
+
+
+<div class="round-image-box round-image-box-third">
+
+<div class="round-image">
+<img src=/assets/images/sydney-2.webp>
+</div>
+
+<h3>Header 2</h3>
+
+
+<p>Caption 2</p>
+
+</div>
+
+
+<div class="round-image-box round-image-box-third">
+
+<div class="round-image">
+<img src=/assets/images/sydney-3.webp>
+</div>
+
+<h3>Header 3</h3>
+
+
+<p>Caption 3</p>
+
+</div>
+
+
+<div class="round-image-box round-image-box-third">
+
+<div class="round-image">
+<img src=/assets/images/sydney-4.webp>
+</div>
+
+<h3>Header 4</h3>
+
+
+<p>Caption 4</p>
+
+</div>
+
+
+<div class="round-image-box round-image-box-half">
+
+<div class="round-image">
+<img src=/assets/images/sydney-5.webp>
+</div>
+
+<h3>Header 5</h3>
+
+
+<p>Caption 5</p>
+
+</div>
+
+
+<div class="round-image-box round-image-box-half">
+
+<div class="round-image">
+<img src=/assets/images/sydney-6.webp>
+</div>
+
+<h3>Header 6</h3>
+
+
+<p>Caption 6</p>
+
+</div>
+
+</div>
+
+    <h3> Image-Text-Rows</h3>
+
+    
+
+
+
+    
+
+        <div class="itr-container">
+            <div class="itr-image-container">
+                <img src="/assets/images/header.webp" alt="Alternative text for the image" class="itr-image" 
+                style="width:400px">
+            </div>
+            <div class="itr-text">
+                
+                    <h3>Image-Text-Row</h3>
+                
+                
+                    <p>This is an image-text-row</p>
+                
+                
+            </div>
+        </div>
+
+    
+
+
+
+    <hr>
+
+    
+
+
+
+    
+
+        <div class="itr-container">
+            <div class="itr-text">
+                
+                    <h3>Image-Text-Row</h3>
+                
+                
+                    <p>This is an image-text-row with the image on the right (on large enough screens) and a little bit longer text plus a button</p>
+                
+                
+                    <a href="#"
+                        
+                        class="btn btn--info">
+                        A button
+                </a>
+                
+            </div>
+            <div class="itr-image-container">
+                <img src="/assets/images/sydney-2.webp" alt="Alternative text for the image" class="itr-image" 
+                style="width:400px">
+            </div>
+        </div>
+
+    
+
+
+
+    <h2> Responsive Video Embed</h2>
+
+    
+
+
+
+
+
+
+<!-- Courtesy of embedresponsively.com -->
+
+  <div class="responsive-video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/xTo8Q9asVfc" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowfullscreen></iframe>
+  </div>
+
+
+
+</section>
+
+
+
+
+
+
+<hr class="section-sep">
+
+
+
+
+
+
+
+<section class="site-section" id="section-2">
+
+    <h1>This is OneFlow Jekyll Theme. Section 2, in normal color</h1>
+
+    <h2>Utilities</h2>
+
+    <h3>Notices</h3>
+
+    <div class="notice">
+        <h4>Notice</h4>
+        <p>This is a notice. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+
+    <div class="notice--primary">
+        <h4>Primary Notice</h4>
+        <p>This is a pirmary notice. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+
+    <div class="notice--success">
+        <h4>Success Notice</h4>
+        <p>This is a success notice. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+
+    <div class="notice--warning">
+        <h4>Warning Notice</h4>
+        <p>This is a warning notice. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+
+    <div class="notice--danger">
+        <h4>Danger Notice</h4>
+        <p>This is a danger notice. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+
+    <div class="notice--info">
+        <h4>Info Notice</h4>
+        <p>This is an info notice. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+
+    <hr>
+
+    <h3>Boxes of different sizes in a container</h3>
+
+    <div class="box-container">
+
+        <div class="box">
+            <h4>Box</h4>
+            <p>Text in a box</p>
+        </div>
+
+        <div class="box box--primary box-half">
+            <h4>Primary Box</h4>
+            <p>Text in a box</p>
+        </div>
+
+        <div class="box box--success box-half">
+            <h4>Success Box</h4>
+            <p>Text in a box</p>
+        </div>
+
+        <div class="box box--warning box-third">
+            <h4>Warning Box</h4>
+            <p>Text in a box</p>
+        </div>
+
+        <div class="box box--danger box-third">
+            <h4>Danger Box</h4>
+            <p>Text in a box</p>
+        </div>
+
+        <div class="box box--info box-third">
+            <h4>Info Box</h4>
+            <p>Text in a box</p>
+        </div>
+
+    </div>
+
+    <hr>
+
+    <h3>Buttons</h3>
+
+    <a href="#" class="btn btn--primary">Primary Button</a>
+    <a href="#" class="btn btn--success">Success Button</a>
+    <a href="#" class="btn btn--warning">Warning Button</a>
+    <a href="#" class="btn btn--danger">Danger Button</a>
+    <a href="#" class="btn btn--info">Info Button</a>
+    <a href="#" class="btn btn--inverse">Inverse Button</a>
+    <br><br>
+    <a href="#" class="btn btn--primary btn--x-large">Extra Large Button</a>
+    <a href="#" class="btn btn--primary btn--large">Large Button</a>
+    <a href="#" class="btn btn--primary">Default Button</a>
+    <a href="#" class="btn btn--primary btn--small">Small Button</a>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+<hr class="section-sep">
+
+
+
+
+
+
+
+<section class="site-section alternative-color" id="section-3">
+
+    <h1>This is OneFlow Jekyll Theme. Section 3</h1>
+
+    <h2>Easy customization</h2>
+
+    <h3>Color skins</h3>
+
+    OneFlow offers various color skins, easily settable in the <code>_config.yml</code> file.
+
+    <h3>Masthead</h3>
+
+    The masthead is set to sticky, so it always stays visible. You can easily change that in the <code>_config.yml</code> file. <br>
+    You can also set the opacity of the masthead there.<br>
+    Of course, the navigation links also can easily be changed, in <code>/_data/navigation.yml</code>.<br>
+    The masthead can show your logo, the site title or the site title + a subtitle.
+
+    <h3>Footer</h3>
+
+    The links, copyright and creator in the footer can easily be set in the <code>_config.yml</code> file.
+
+    <h3>Custom stylesheet, custom fonts</h3>
+    Add your own styles in <code>/assets/css/custom-styles.css</code>,
+    <span style="font-family: 'Great Vibes';"> and easily apply any font you want. </span>
+
+    <h3>Cookie / cdn-usage consent banner</h3>
+    OneFlow comes with a build-in popup banner that you can easily turn on and off plus customize to suit your needs.
+    The existing version of the popup is a suggestion and should (no legal advice given) fulfill german laws regarding
+    cookie and cdn-usage consent.
+
+</section>
+
+
+
+
+
+
+
+<hr class="section-sep">
+
+
+
+
+
+
+
+
+<section class="site-section" id="section-4">
+
+    <h1>This is OneFlow Jekyll Theme. Section 4</h1>
+
+    <h2>Easy local build with docker</h2>
+
+    OneFlow comes with build-in docker configuration using
+    <a href="https://github.com/BretFisher/jekyll-serve" rel="noopener noreferrer nofollow" target="_blank">BretFisher's jekyll serve</a>.
+    Just open up a terminal, navigate to your site and run <code>docker-compose up</code>. Easy as that. 
+
+    <h2>Client editables</h2>
+
+    <!--
+
+-->
+
+Are you a Web Developer and using OneFlow to build a site for a client?
+If the client him/herself regularly wants to change certain parts of the site, for example upcoming dates,
+OneFlow offers easy editables within Jekyll's <code>/_includes</code> folder, so the client does not have to touch
+the rest of the site, but can still edit whatever he/she needs to edit.
+
+    <h2>HTML and Markdown</h2>
+
+    Use raw and flexible HTML or clear markdown to write your content.
+    Markdown is rendered with <a href="https://kramdown.gettalong.org/" rel="noopener noreferrer nofollow" target="_blank">kramdown</a>,
+    which supports applying css classes to the Markdown. That means, you can add notices, boxes and other utilities even to your Markdown content,
+    as simple as <code>"Text you want to add the classes to {: .class1 .class2}"</code>.
+
+    <h2>Icons with Font Awesome</h2>
+
+    Add icons anywhere, using <a href="https://fontawesome.com/" rel="noopener noreferrer nofollow" target="_blank"><i class="fa-solid fa-font-awesome"></i> Font Awesome</a>.
+    Locally hosted and directly build into OneFlow, ready to be applied.
+
+    <h2>Responsive design</h2>
+
+    All of OneFlows features are 100% responsive and adapt to different screen sizes, so your site looks good
+    on all devices!
+
+
+</section>
+    </section>
+</div>
+
+      </div>
+
+      <div id="footer" class="page__footer">
+        <footer>
+          <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+          <div class="page__footer-follow">
+
+  <ul class="socials">
+
+    <li></li>
+
+    
+    
+    <li class="socials__item">
+      <a href="https://perstarke-webdev.de" rel="noopener noreferrer nofollow" target="_blank" class="socials__item__link" title="Website">
+        <i class="fa fa-globe footer-icon" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+    
+    
+    <li class="socials__item">
+      <a href="mailto: per@starke-team.de" rel="noopener noreferrer nofollow" target="_blank" class="socials__item__link" title="Email">
+        <i class="fa fa-envelope footer-icon" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li class="socials__item">
+      <a href="https://github.com/perstarke-webdev" rel="noopener noreferrer nofollow" target="_blank" class="socials__item__link" title="GitHub">
+        <i class="fab fa-github footer-icon" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+    
+    
+    <li class="socials__item">
+      <a href="https://www.instagram.com/per.starke/" rel="noopener noreferrer nofollow" target="_blank" class="socials__item__link" title="Instagram">
+        <i class="fab fa-instagram footer-icon" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+    
+    
+    <li class="socials__item">
+      <a href="https://www.youtube.com/channel/UCG2Ndo4IEH8Fa0oIv2FBRMA" rel="noopener noreferrer nofollow" target="_blank" class="socials__item__link" title="YouTube">
+        <i class="fab fa-youtube footer-icon" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+    
+    
+    <li class="socials__item">
+      <a href="https://dev.to/per-starke-642" rel="noopener noreferrer nofollow" target="_blank" class="socials__item__link" title="Dev">
+        <i class="fab fa-dev footer-icon" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+    
+
+    <li class="socials__item">
+      <a href="/imprint" rel="noopener noreferrer nofollow" target="_blank" class="socials__item__link" title="Imprint">
+        <i class="fas fa-gavel footer-icon" aria-hidden="true"></i>
+      </a>
+    </li>
+
+  </ul>
+
+  </div>
+
+  <div class="page__footer-copyright">&copy; 2024 Per Starke Web Development.  Created by <a rel="noopener noreferrer nofollow" target="_blank"href="https://perstarke-webdev.de">Per Starke Web Development</a></div>
+
+        </footer>
+      </div>
+
+    
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+  </body>
+</html>

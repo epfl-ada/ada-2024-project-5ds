@@ -1,0 +1,23 @@
+# main links
+main:
+  - title: "Introduction"
+    url: /#section-1
+    blank: false
+    description: "Learn about the project, its methodology, and purpose."
+    description: "Get to know the team behind the analysis."
+  - title: "Movie Analysis"
+    url: /#section-3
+    blank: false
+    description: "Explore insights into what makes movies award-winning."
+  - title: "Actor Analysis"
+    url: /#section-4
+    blank: false
+    description: "Discover trends and patterns among award-winning actors."
+  - title: "Combination"
+    url: /#section-5
+    blank: false
+    description: "See how movies and actors combine for cinematic magic."
+  - title: "Conclusion"
+    url: /#section-6
+    blank: false
+    description: "Wrap up the analysis with key takeaways and implications."
