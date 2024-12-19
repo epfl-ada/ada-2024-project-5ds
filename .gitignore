@@ -24,3 +24,5 @@ src/utils/__pycache__/loading_utils.cpython-311.pyc
 
 # Ignore the configuration file
 config.py
+src/data/__pycache__/dataloader.cpython-311.pyc
+src/data/__pycache__/extend_dataset.cpython-311.pyc
