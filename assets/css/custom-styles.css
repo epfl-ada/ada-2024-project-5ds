@@ -1,0 +1,197 @@
+/* Custom stylesheet, add your own styles here */
+/* General layout for two-columns */
+.two-columns {
+    display: flex;
+    flex-wrap: wrap; /* Ensure content wraps on smaller screens */
+    margin-bottom: 2rem; /* Space between graph-text pairs */
+    gap: 1.5rem; /* Space between columns */
+}
+
+/* Text column styling */
+.text-column {
+    flex: 1; /* Text column takes up equal space */
+    max-width: 50%; /* Prevent it from growing too wide */
+    padding: 1rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #333; /* Text color */
+}
+
+/* Graph column styling */
+.graph-column {
+    flex: 1; /* Graph column takes up equal space */
+    max-width: 50%; /* Prevent it from growing too wide */
+    padding: 1rem;
+    display: flex;
+    justify-content: center; /* Center-align graph in its column */
+    align-items: center;
+}
+
+/* Ensure images and iframes fit inside the graph column */
+.graph-column img,
+.graph-column iframe {
+    max-width: 100%; /* Prevent overflowing */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px; /* Rounded corners for aesthetics */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .two-columns {
+        flex-direction: column; /* Stack columns vertically */
+    }
+    .text-column,
+    .graph-column {
+        max-width: 100%; /* Take full width */
+    }
+}
+
+/* Dialog Section */
+.dialog {
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: #f9f9f9; /* Light background for contrast */
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.dialog .alice,
+.dialog .bob {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border-left: 4px solid; /* Indicator for Alice and Bob */
+    border-radius: 4px;
+}
+
+/* Alice Styling */
+.dialog .alice {
+    border-color: #007BFF; /* Blue for Alice */
+    background-color: #eef7ff; /* Light blue background */
+}
+
+.dialog .alice strong {
+    color: #007BFF;
+}
+
+/* Bob Styling */
+.dialog .bob {
+    border-color: #28A745; /* Green for Bob */
+    background-color: #e9f9e8; /* Light green background */
+}
+
+.dialog .bob strong {
+    color: #28A745;
+}
+
+/* General Dialog Text */
+.dialog p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #333; /* Neutral text color */
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .dialog {
+        padding: 1rem;
+    }
+
+    .dialog .alice,
+    .dialog .bob {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+}
+
+
+/* Chat Container */
+.chat-container {
+    max-width: 100%;
+    margin: 2rem auto; /* Center the chat on the page */
+    padding: 1rem;
+    /* background-color: transparent;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); */
+}
+
+/* Chat Bubble Base */
+.bubble {
+    margin: 1rem 0;
+    padding: 0.8rem 1rem;
+    border-radius: 20px;
+    position: relative;
+    max-width: 75%;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Alice's Bubble */
+.bubble.alice {
+    background-color: #b7c3f3; /* Light Blue */
+    color: #007Bf0;
+    align-self: flex-start;
+    text-align: left;
+    margin-left: 0;
+}
+
+/* Bob's Bubble */
+.bubble.bob {
+    background-color: #c3f4bf; /* Light Green */
+    color: #28A745;
+    align-self: flex-end;
+    text-align: left;
+    margin-left: auto; /* Push to the right */
+}
+
+/* Text Styling */
+.bubble strong {
+    display: block; /* Display speaker name as a block */
+    margin-bottom: 0.3rem;
+    font-weight: bold;
+    color: inherit;
+}
+
+/* Pointer (triangle) for chat bubbles */
+.bubble.alice::before,
+.bubble.bob::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+.bubble.alice::before {
+    border-width: 10px 10px 10px 0;
+    border-color: transparent #b7c3f3 transparent transparent;
+    top: 15px;
+    left: -10px;
+}
+
+.bubble.bob::before {
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent #c3f4bf;
+    top: 15px;
+    right: -10px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .chat-container {
+        padding: 0.5rem;
+    }
+
+    .bubble {
+        max-width: 90%;
+        font-size: 0.9rem;
+    }
+}
+
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
