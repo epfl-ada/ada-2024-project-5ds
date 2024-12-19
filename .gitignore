@@ -1,17 +1,26 @@
+# Ignore macOS system files
+.DS_Store
 
+# Ignore cache directories and compiled Python files
+__pycache__/
+*.pyc
+apicache/
+
+# Ignore specific dataset files
 src/data/dataset/character.metadata.tsv
 src/data/dataset/movie.metadata.tsv
 src/data/dataset/name.clusters.txt
 src/data/dataset/plot_summaries.txt
 src/data/dataset/README.txt
 src/data/dataset/tvtropes.clusters.txt
+
+# Ignore specific compiled Python cache files
 src/data/__pycache__/csv.cpython-311.pyc
 src/data/__pycache__/loading_utils.cpython-311.pyc
 src/models/__pycache__/sentiment_analysis.cpython-311.pyc
 src/data/__pycache__/dataloader.cpython-311.pyc
 src/scripts/__pycache__/sentiment_analysis_plots.cpython-311.pyc
 src/utils/__pycache__/loading_utils.cpython-311.pyc
-src/data/__pycache__/dataloader.cpython-311.pyc
-src/data/__pycache__/dataloader.cpython-311.pyc
-src/data/__pycache__/dataloader.cpython-311.pyc
+
+# Ignore the configuration file
 config.py
