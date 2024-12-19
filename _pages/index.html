@@ -52,30 +52,6 @@ round-images:
 
 
 
-{% include plots/box_office_distrib.html %}
-<!-- {% include plots/country_map.html %}
-{% include plots/genres_cloud.html %}
-{% include plots/mean_negative_sentiment.html %}
-{% include plots/mean_positive_sentiment.html %}
-{% include plots/mean_runtime.html %}
-{% include plots/mean_title_length.html %}
-{% include plots/oscar_genres_cloud.html %}
-{% include plots/Pearson_Correlation_Heatmap.html %}
-{% include plots/pvalues.html %}
-{% include plots/runtime_distrib.html %}
-{% include plots/Spearman_Correlation_Heatmap.html %}
-{% include plots/runtime_distrib.html %}
-{% include plots/word_cloud_not_oscars.html %}
-{% include plots/yassinefuckingwahidy_boxoffice.html %}
-{% include plots/yassinefuckingwahidy_genres.html %}
-{% include plots/yassinefuckingwahidy_monthly_release.html %}
-{% include plots/yassinefuckingwahidy_reviews.html %}
-{% include plots/yassinefuckingwahidy_runtime.html %}
-{% include plots/yassinefuckingwahidy_year_release.html %} -->
-
-
-
-
 <!-- Section: Introduction -->
 <section class="site-section alternative-color first-section" id="dialogue">
   <h1>Alice and Bob’s Debate: Art vs. Data</h1>
@@ -112,8 +88,6 @@ round-images:
 
   <p>They clink glasses, their collaboration set on a delicate balance of artistry and strategy.</p>
 </section>
-
-
 
 
 <hr class="section-sep">
@@ -254,12 +228,12 @@ round-images:
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus fermentum felis sit amet arcu faucibus.</p>
         </div>
         <div class="graph-column">
-          {% include plots/mean_runtime.html %}
+          <!-- {% include plots/mean_runtime.html %} -->
         </div>
     </div>
     <div class="two-columns">
         <div class="graph-column">
-          {% include plots/mean_title_length.html %}
+          <!-- {% include plots/mean_title_length.html %} -->
         </div>
         <div class="text-column">
             <h3>Graph 2 Title</h3>
@@ -272,30 +246,163 @@ round-images:
 <hr class="section-sep">
 
 <!-- Section: Movie Analysis -->
-<section class="site-section alternative-color" id="section-3">
-    <h1>Movie Analysis</h1>
-    <h2>Exploring Key Insights</h2>
-    {% for i in (1..3) %}
+<section class="site-section alternative-color" id="movie-analysis">
+    <h1>Movie Analysis: Unveiling the Secrets of Success</h1>
+    
+    <p>
+        What sets Oscar-winning movies apart? Is it their genre, runtime, or perhaps their thematic depth? 
+        Using our data, we analyze key factors that differentiate award-winning films from the rest. 
+        From runtime and revenue to global trends, we uncover patterns that define success in cinema.
+    </p>
+
+    <h2>1. Global Distribution of Oscar-Winning Movies</h2>
     <div class="two-columns">
         <div class="text-column">
-            <h3>Graph {{ i }} Title</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eu metus luctus facilisis.</p>
+            <p>
+                Oscar winners predominantly hail from Hollywood, yet contributions from other regions are growing. 
+                This highlights a trend toward greater diversity in Academy recognition, but the dominance of the western world remains strong.
+            </p>
+            <div class="chat-container">
+                <div class="bubble alice">
+                    <p><strong>Alice:</strong> "Look at that, Bob. Hollywood is still the star of the show, but it’s great to see international contributions rising."</p>
+                </div>
+                <div class="bubble bob">
+                    <p><strong>Bob:</strong> "Sure, Alice. But let’s not kid ourselves—Hollywood’s still running the game."</p>
+                </div>
+            </div>
         </div>
         <div class="graph-column">
-            <img src="/assets/images/sydney-2.webp" alt="Graph {{ i }}" class="graph-placeholder">
+            <div class="plot-container">
+                {% include plots/country_map.html %}
+                <p class="plot-caption">Map of Oscar-Winning Movies by Country</p>
+            </div>
         </div>
     </div>
+
+    <h2>2. Runtime: Is Longer Always Better?</h2>
     <div class="two-columns">
-      <div class="graph-column">
-        <img src="/assets/images/sydney-2.webp" alt="Graph {{ i }}" class="graph-placeholder">
-      </div>
-      <div class="text-column">
-          <h3>Graph {{ i }} Title</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eu metus luctus facilisis.</p>
-      </div>
-  </div>
-    {% endfor %}
+        <div class="graph-column">
+            <div class="plot-container">
+                {% include plots/yassinefuckingwahidy_runtime.html %}
+                <p class="plot-caption">Runtime Distribution of Oscar-Winning Movies</p>
+            </div>
+        </div>
+        <div class="text-column">
+            <p>
+                The majority of Oscar-winning films have a runtime of 120–150 minutes. Shorter films (less than 90 minutes) are rare winners, 
+                suggesting the Academy prefers movies with more time to develop their narrative complexity.
+            </p>
+            <div class="chat-container">
+                <div class="bubble bob">
+                    <p><strong>Bob:</strong> "So, Alice, the secret is to make it long enough for the audience to feel every minute of their ticket price."</p>
+                </div>
+                <div class="bubble alice">
+                    <p><strong>Alice:</strong> "Not quite, Bob. It’s about telling a detailed story that captures attention—not just filling time."</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <h2>3. Title and Theme Analysis</h2>
+    <p>
+        Oscar-winning movies often showcase themes of love, war, and personal struggles. But what about the movies that didn’t win? 
+        By comparing title keywords from winners and non-winners, we can uncover what sets these two groups apart.
+    </p>
+    
+    <!-- Two-Column Layout: Winners -->
+    <div class="two-columns">
+        <div class="graph-column">
+            <div class="plot-container">
+            <img src= '/ada-2024-project-5ds/assets/images/world_cloud_oscar.png' alt="Oscar Winners Word Cloud">
+            <p class="plot-caption">Word Cloud of Oscar-Winning Movie Titles</p>
+            </div>
+        </div>
+        <div class="graph-column">
+            <div class="plot-container">
+                <img src= '/ada-2024-project-5ds/assets/images/world_cloud_not_oscar.png' alt="Non Oscar Winners Word Cloud">
+                <p class="plot-caption">Word Cloud of Non-Oscar-Winning Movie Titles</p>
+            </div>
+        </div>
+    </div>    
+    <div class="two-columns">
+        <div class="text-column">
+            <h3>Oscar Winners</h3>
+            <p>
+                Word clouds of Oscar-winning movie titles reveal recurring themes that resonate with the Academy. Words like 
+                "Love," "King," and "War" dominate, reflecting a preference for emotionally and historically significant narratives.
+            </p>
+        </div>
+        <div class="text-column">
+            <h3>Non-Oscar Winners</h3>
+            <p>
+                In contrast, non-winning movies often focus on lighter or niche themes, with titles emphasizing adventure, humor, or less traditional narratives. 
+                These differences suggest the Academy’s preferences lean toward impactful, serious storytelling.
+            </p>
+        </div>
+    </div>
+    <div class="chat-container">
+        <div class="bubble alice">
+            <p><strong>Alice:</strong> "See those words, Bob? ‘Love,’ ‘King,’ ‘War’—they scream depth and emotion."</p>
+        </div>
+        <div class="bubble bob">
+            <p><strong>Bob:</strong> "I guess we need a tragic love story set during a war. Call it ‘The King’s Heartache.’"</p>
+        </div>
+    </div>
+
+
+    <h2>4. Box Office: Does Money Buy Awards?</h2>
+    <div class="two-columns">
+        <div class="text-column">
+            <p>
+                Box office performance correlates with Oscar nominations, but high-budget films don’t always guarantee success. 
+                Consistency and storytelling often outweigh financial clout.
+            </p>
+            <div class="chat-container">
+                <div class="bubble bob">
+                    <p><strong>Bob:</strong> "So big budgets help, but they’re not everything. Underdogs have a shot too."</p>
+                </div>
+                <div class="bubble alice">
+                    <p><strong>Alice:</strong> "Exactly, Bob. It’s about balance—using resources wisely to tell a compelling story."</p>
+                </div>
+            </div>
+        </div>
+        <div class="graph-column">
+            <div class="plot-container">
+                <p class="plot-caption">Box Office Correlation with Oscar Nominations</p>
+                {% include plots/yassinefuckingwahidy_boxoffice.html %}
+            </div>
+        </div>
+    </div>
+
+
+    <h2>5. Release Timing: The Award Season Advantage</h2>
+    <div class="two-columns">
+        <div class="graph-column">
+            <div class="plot-container">
+                {% include plots/yassinefuckingwahidy_monthly_release.html %}
+                <p class="plot-caption">Monthly Distribution of Oscar-Winning Movies</p>
+            </div>
+        </div>
+        <div class="text-column">
+            <p>
+                Award-winning movies are often released closer to award season, maximizing their visibility to the Academy. 
+                December and January releases tend to perform better, aligning with voting cycles.
+            </p>
+        </div>
+    </div>
+    <div class="chat-container">
+        <div class="bubble alice">
+            <p><strong>Alice:</strong> "Timing is everything, Bob. Release too early, and you risk being forgotten by the time voting starts."</p>
+        </div>
+        <div class="bubble bob">
+            <p><strong>Bob:</strong> "Good to know, Alice. Let’s aim for a December release for maximum impact."</p>
+        </div>
+    </div>
 </section>
+
+
+
 
 <hr class="section-sep">
 

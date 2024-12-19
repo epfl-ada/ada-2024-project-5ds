@@ -1,40 +1,35 @@
 /* Custom stylesheet, add your own styles here */
 /* General layout for two-columns */
+/* Two-columns Layout */
 .two-columns {
     display: flex;
-    flex-wrap: wrap; /* Ensure content wraps on smaller screens */
-    margin-bottom: 2rem; /* Space between graph-text pairs */
-    gap: 1.5rem; /* Space between columns */
-}
-
-/* Text column styling */
-.text-column {
-    flex: 1; /* Text column takes up equal space */
-    max-width: 50%; /* Prevent it from growing too wide */
-    padding: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+    gap: 1.5rem;
+  }
+  
+  .text-column {
+    flex: 1;
+    max-width: 50%;
     font-size: 1rem;
-    line-height: 1.5;
-    color: #333; /* Text color */
-}
-
-/* Graph column styling */
-.graph-column {
-    flex: 1; /* Graph column takes up equal space */
-    max-width: 50%; /* Prevent it from growing too wide */
+    line-height: 1.6;
     padding: 1rem;
+  }
+  
+  .graph-column {
+    flex: 1;
+    max-width: 50%;
     display: flex;
-    justify-content: center; /* Center-align graph in its column */
+    justify-content: center;
     align-items: center;
-}
-
-/* Ensure images and iframes fit inside the graph column */
-.graph-column img,
-.graph-column iframe {
-    max-width: 100%; /* Prevent overflowing */
-    height: auto; /* Maintain aspect ratio */
-    border-radius: 8px; /* Rounded corners for aesthetics */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-}
+  }
+  
+  .graph-column img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
@@ -194,4 +189,40 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
+}
+
+/* Plot Container */
+.plot-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem; /* Space between plots */
+    padding: 0.5rem;
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    background-color: #ffffff; /* White background for contrast */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hover effect */
+}
+
+/* Plot Image */
+.plot-container .plot-image {
+    max-width: 100%; /* Make image responsive */
+    height: auto;
+    border-radius: 4px; /* Slight rounding for consistency */
+}
+
+/* Plot Caption */
+.plot-container .plot-caption {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #555; /* Softer text for captions */
+    text-align: center; /* Center-align captions */
+}
+
+/* Hover Effect for Plot Container */
+.plot-container:hover {
+    transform: scale(1.02); /* Slight zoom-in effect */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
 }
