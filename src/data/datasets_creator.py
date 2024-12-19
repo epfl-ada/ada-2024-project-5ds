@@ -8,7 +8,7 @@ import sys
 
 from dataloader import load_oscar_winning_films_ids, load_oscar_winning_actors, load_oscar_winning_actresses, load_oscar_winning_supporting_actors, load_oscar_winning_supporting_actresses, load_academy_award_winning_films, merge_actors_dataframe, load_initial_dataset
 from extend_dataset import extend_dataset
-
+from create_full_film import create_full_film
 
 def create_datasets() :
     """
@@ -54,7 +54,8 @@ def create_datasets() :
     print('Extending the CMU dataset with newer films :')
     extend_dataset()
     print('Completed')
+    print('Creating the final dataset')
+    create_full_film()
 
 
 create_datasets()
-    
