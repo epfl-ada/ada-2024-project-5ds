@@ -120,6 +120,7 @@ def get_movies_and_first_oscar_date(group):
     # Sort movies by release date
     group["Movie release date"] = group["Movie release date"].apply(lambda x: x.split('-')[0] if isinstance(x, str) else x)
     group = group.sort_values(by='Movie release date')
+    print(group)
     # Find the first Oscar-winning movie and its date
     first_oscar = group.loc[group['Best Actor Reward']].nsmallest(1, 'Movie release date')
     first_oscar_date = first_oscar['Movie release date'].iloc[0] if not first_oscar.empty else None
