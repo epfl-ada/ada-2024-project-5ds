@@ -1,5 +1,7 @@
 import pandas as pd
 import re
+import plotly.express as px
+import plotly.graph_objects as go
 
 def data_cleaning(extended_films, winning_actors_info, imdb_ratings, new_film_dataset):
     extended_films["Movie genres"] = extended_films["genres"]
@@ -118,9 +120,8 @@ def get_pie_genre_counts(oscar_movies_all):
 
 def get_movies_and_first_oscar_date(group):
     # Sort movies by release date
-    group["Movie release date"] = group["Movie release date"].apply(lambda x: x.split('-')[0] if isinstance(x, str) else x)
+    group["Movie release date"] = group["Movie release date"].apply(lambda x: int(x.split('-')[0]) if isinstance(x, str) else int(x))
     group = group.sort_values(by='Movie release date')
-    print(group)
     # Find the first Oscar-winning movie and its date
     first_oscar = group.loc[group['Best Actor Reward']].nsmallest(1, 'Movie release date')
     first_oscar_date = first_oscar['Movie release date'].iloc[0] if not first_oscar.empty else None
@@ -131,3 +132,290 @@ def get_movies_and_first_oscar_date(group):
         movies_before = group.shape[0]  # If no Oscar win, count all movies
     
     return pd.Series({'Movies Before First Oscar': movies_before, 'First Oscar Date': first_oscar_date})
+
+
+def evolution_imdb_scores(imdb_ratings, oscar_act_movies_all):
+    imdb_ratings['Movie name'] = imdb_ratings['Movie name'].str.strip()
+    filtered_ratings = imdb_ratings[['Movie name', 'Movie release date', 'imdb_score']]
+    filtered_oscar_actors = oscar_act_movies_all[['Movie name', 'Movie release date', 'Actor name', 'Best Actor Reward']]
+    filtered_oscar_actors['Movie release date'] = filtered_oscar_actors['Movie release date'].apply(lambda x: int(x.split('-')[0]) if isinstance(x, str) and pd.notna(x) else x)
+    merged_data = pd.merge(filtered_ratings, filtered_oscar_actors, how='right', on=['Movie name', 'Movie release date'])
+
+
+    # Extract relevant columns for analysis
+    rating_evolution = merged_data[['Actor name', 'Movie name', 'Movie release date', 'imdb_score', 'Best Actor Reward']]
+
+    # Convert release_year to numeric for proper sorting
+    rating_evolution['Movie release date'] = pd.to_numeric(rating_evolution['Movie release date'], errors='coerce')
+
+
+    # Filter data for movies released from 1980 onwards
+    rating_evolution = rating_evolution[rating_evolution['Movie release date'] >= 1980]
+
+    # Remove rows with missing or invalid IMDb score
+    rating_evolution = rating_evolution.dropna(subset=['Movie release date', 'imdb_score'])
+
+    # Sort data by actress name and release date
+    rating_evolution = rating_evolution.sort_values(by=['Actor name', 'Movie release date'])
+
+    return rating_evolution
+
+def show_imdb_scores(rating_evolution):
+    # Adjust x-axis range to start before the first movie release date
+    rating_evolution['Movie release date'] = rating_evolution['Movie release date'].astype(int)
+    x_range = [1975, 2020]  
+
+
+    # Generate a color palette using Plotly's native discrete color scale
+    actors_movies_count = rating_evolution['Actor name'].value_counts()
+    relevant_actors = actors_movies_count[actors_movies_count >= 4].index
+    relevant_actors = rating_evolution[rating_evolution['Actor name'].isin(relevant_actors)]
+    unique_actors = relevant_actors[relevant_actors['Best Actor Reward'] == True]['Actor name'].unique()
+
+    colors = px.colors.qualitative.Plotly  # Or use other palettes like `D3`, `Viridis`, etc.
+    color_map = {actor: colors[i % len(colors)] for i, actor in enumerate(unique_actors)}
+
+    # Create legend-only traces
+    legend_traces = [
+        go.Scatter(
+            x=[None],  # No data points for this trace
+            y=[None],  # No data points for this trace
+            mode="markers",
+            marker=dict(
+                size=8,
+                color=color_map[actor],
+                symbol="circle"  # Always use a circle for the legend
+            ),
+            name=actor,  # Actress name in the legend
+            showlegend=True,
+            legendgroup=actor  # Group legend items for the same actor
+        )
+        for actor in unique_actors
+    ]
+
+
+    scatter_traces = [
+        go.Scatter(
+            x=rating_evolution[rating_evolution['Actor name'] == actor]['Movie release date'],
+            y=rating_evolution[rating_evolution['Actor name'] == actor]['imdb_score'],
+            mode='markers',
+            marker=dict(
+                size=[15 if reward else 8 for reward in rating_evolution[rating_evolution['Actor name'] == actor]['Best Actor Reward']],
+                color=color_map[actor],
+                symbol=[
+                    'star' if reward else 'circle'  # Conditional marker symbol
+                    for reward in rating_evolution[rating_evolution['Actor name'] == actor]['Best Actor Reward']
+                ]
+            ),
+            name=actor,
+            legendgroup=actor,  # Group scatter and line for the same actor
+            showlegend=False,  # Show legend for scatter
+            hovertext=[
+                f"Name: {actress_i}<br>Movie: {movie}<br>IMDb Score: {score}<br>Release Date: {year}<br>Academy Award for Best Actor/Actress: {'Yes' if reward else 'No'}"
+                for movie, score, year, reward, actress_i in zip(
+                    rating_evolution[rating_evolution['Actor name'] == actor]['Movie name'],
+                    rating_evolution[rating_evolution['Actor name'] == actor]['imdb_score'],
+                    rating_evolution[rating_evolution['Actor name'] == actor]['Movie release date'],
+                    rating_evolution[rating_evolution['Actor name'] == actor]['Best Actor Reward'],
+                    rating_evolution[rating_evolution['Actor name'] == actor]['Actor name']
+                )
+            ],
+            hoverinfo="text",  # Show only hover text
+        )
+        for actor in unique_actors
+    ]
+
+    line_traces = [
+        go.Scatter(
+            x=rating_evolution[rating_evolution['Actor name'] == actor]['Movie release date'],
+            y=rating_evolution[rating_evolution['Actor name'] == actor]['imdb_score'],
+            mode='lines+markers',  # Add both lines and markers
+            line=dict(color=color_map[actor]),  # Use the same color as the scatter
+            marker=dict(
+                size=[15 if reward else 8 for reward in rating_evolution[rating_evolution['Actor name'] == actor]['Best Actor Reward']],
+                symbol=[
+                    'star' if reward else 'circle'  # Conditional marker symbol
+                    for reward in rating_evolution[rating_evolution['Actor name'] == actor]['Best Actor Reward']
+                ]
+            ),
+            name=actor,
+            legendgroup=actor,
+            visible=False,  # Start with lines hidden
+            hovertext=[
+                f"Movie: {movie}<br>IMDb Score: {score}<br>Release Date: {year}<br>Academy Award for Best Actor/Actress : {'Yes' if reward else 'No'}"
+                for movie, score, year, reward in zip(
+                    rating_evolution[rating_evolution['Actor name'] == actor]['Movie name'],
+                    rating_evolution[rating_evolution['Actor name'] == actor]['imdb_score'],
+                    rating_evolution[rating_evolution['Actor name'] == actor]['Movie release date'],
+                    rating_evolution[rating_evolution['Actor name'] == actor]['Best Actor Reward']
+                )
+            ],
+            hoverinfo="text"  # Show only hover text
+        )
+        for actor in unique_actors
+    ]
+
+    # Combine scatter and line traces
+    traces = legend_traces + scatter_traces + line_traces
+
+    # Create dropdown buttons
+    buttons = [
+        {
+            "label": "All",
+            "method": "update",
+            "args": [
+                {"visible": [True]*len(legend_traces) + [True] * len(scatter_traces) + [False] * len(line_traces)},  # Show scatter, hide all lines
+                {"title": "Evolution of IMDb Scores for Movies Starring Oscar-Winning Actresses (All Actresses)"}
+            ]
+        }
+    ]
+
+    buttons += [
+        {
+            "label": actor,
+            "method": "update",
+            "args": [
+                {"visible": [False]*len(legend_traces) + [False] * len(scatter_traces) + [actor == a for a in unique_actors]},
+                {"title": f"Evolution of IMDb Scores for Movies Starring {actor}"}
+            ]
+        }
+        for actor in unique_actors
+    ]
+
+    # Create layout
+    layout = go.Layout(
+        title="Evolution of IMDb Scores for Movies Starring Oscar-Winning Actresses/Actors Before and After the Reward(s)",
+        xaxis=dict(title="Release Year", range=x_range),
+        yaxis=dict(title="IMDb Score"),
+        updatemenus=[
+            {
+                "buttons": buttons,
+                "direction": "down",
+                "showactive": True,
+            }
+        ],
+        height=700,
+        width=1200,
+        showlegend=True  # Ensure legend is visible
+    )
+
+    # Create figure
+    fig = go.Figure(data=traces, layout=layout)
+
+    # Show figure
+    fig.show()
+
+def get_actor_genre_distribution(oscar_act_movies_all):
+    # First, let's get the genres for each actor
+    genre_by_actor = oscar_act_movies_all.groupby('Actor name')['Movie genres'].apply(lambda x: ','.join([str(g) for g in x if pd.notna(g)])).reset_index()
+
+    # Split the genres string and explode to get one row per genre
+    genre_by_actor['Movie genres'] = genre_by_actor['Movie genres'].str.split(',')
+    genre_by_actor = genre_by_actor.explode('Movie genres')
+
+    # Clean up genres by stripping whitespace and removing empty strings
+    genre_by_actor['Movie genres'] = genre_by_actor['Movie genres'].str.strip()
+    genre_by_actor = genre_by_actor[genre_by_actor['Movie genres'] != '']
+
+    # Define genre mappings to group similar genres
+    genre_mappings = {
+        'Drama': ['Drama', 'Family Drama', 'Comedy-drama', 'Melodrama', 'Docudrama'],
+        'Comedy': ['Comedy', 'Romantic comedy', 'Comedy-drama', 'Black comedy'],
+        'Action/Adventure': ['Action', 'Adventure', 'Action/Adventure', 'Thriller', 'War film'],
+        'Crime': ['Crime Fiction', 'Crime film', 'Detective fiction', 'Film noir'],
+        'Historical': ['Period piece', 'Historical fiction', 'Biography', 'History'],
+        'Romance': ['Romance Film', 'Romantic drama', 'Romantic comedy'],
+        'Musical': ['Musical', 'Music film', 'Opera film', 'Concert film'],
+        'Horror': ['Horror', 'Supernatural horror', 'Slasher', 'Psychological horror'],
+        'Western': ['Western', 'Spaghetti Western', 'Contemporary Western'],
+        'SciFi/Fantasy': ['Science Fiction', 'Fantasy', 'Superhero film', 'Space opera'],
+        'Documentary': ['Documentary', 'Docudrama', 'Documentary drama'],
+        'Animation': ['Animation', 'Anime', 'Stop motion', 'Computer animation'],
+        'Other': [] # Will catch any genres not matched above
+    }
+
+    # Map genres to their groups
+    def map_genre(genre):
+        for group, genres in genre_mappings.items():
+            if any(g.lower() in genre.lower() for g in genres):
+                return group
+        return 'Other'
+
+    genre_by_actor['Movie genres'] = genre_by_actor['Movie genres'].apply(map_genre)
+
+    # Count genres for each actor
+    genre_counts = genre_by_actor.groupby(['Actor name', 'Movie genres']).size().reset_index(name='count')
+
+    # Filter to only include genres that appear frequently
+    min_appearances = 5
+    frequent_genres = genre_counts.groupby('Movie genres')['count'].sum().reset_index()
+    frequent_genres = frequent_genres[frequent_genres['count'] >= min_appearances]['Movie genres']
+    genre_counts = genre_counts[genre_counts['Movie genres'].isin(frequent_genres)]
+
+    return genre_counts
+
+
+def bubble_graph(winning_actors_info, oscar_winning_actors, oscar_winning_actresses, film_full, character, imdb_ratings, oscar_winning_films):
+    oscar_act = pd.concat([oscar_winning_actors, oscar_winning_actresses], axis=0)
+
+    oscar_act_movies_new = pd.merge(oscar_act, film_full, left_on='film_id', right_on='Wikipedia movie ID')
+    oscar_act_movies_new.drop(columns=['film_id'], inplace=True)
+
+    oscar_actress_info_new = pd.merge(winning_actors_info, oscar_act_movies_new, left_on='page_id', right_on='Actress id')
+    oscar_actors_info_new = pd.merge(winning_actors_info, oscar_act_movies_new, left_on='page_id', right_on='Actors id')
+    oscar_act_info_new = pd.concat([oscar_actors_info_new, oscar_actress_info_new], axis=0)
+
+    oscar_act_info_new = pd.merge(oscar_act_info_new, character[['Wikipedia movie ID', 'Actor name', 'Actor age at movie release', 'Actor date of birth', 'Actor ethnicity', 'Freebase actor ID']], on=['Wikipedia movie ID', 'Actor name'])
+    oscar_act_info_new['Movie release date'] = oscar_act_info_new['Movie release date'].apply(standardize_date_format)
+
+    oscar_act_new_movies_all = character[character['Freebase actor ID'].isin(oscar_act_info_new['Freebase actor ID'])]
+    oscar_act_new_movies_all = oscar_act_new_movies_all.drop(columns=['Freebase movie ID', 'Movie release date'])
+    oscar_act_new_movies_all = oscar_act_new_movies_all.merge(film_full, on='Wikipedia movie ID', how='left')
+    oscar_act_new_movies_all['Movie release year'] = oscar_act_new_movies_all['Movie release date'].apply(standardize_date_format)
+
+    # Create a set of unique (Actor name, Wikipedia movie ID) combinations for rewards
+    best_act_movies = set(
+        zip(oscar_act_info_new['Actor name'], oscar_act_info_new['Wikipedia movie ID'])
+    )
+
+    # Add a new column indicating if the movie is a Best Actress Reward
+    oscar_act_new_movies_all['Best Actress Reward'] = oscar_act_new_movies_all.apply(
+        lambda row: (row['Actor name'], row['Wikipedia movie ID']) in best_act_movies,
+        axis=1
+    )
+
+    imdb_ratings['Movie name'] = imdb_ratings['Movie name'].str.strip()
+
+    filtered_ratings = imdb_ratings[['Movie name', 'Movie release date', 'imdb_score']]
+    filtered_oscar_act_new = oscar_act_info_new[['Movie name', 'Movie release date', 'Actor name', 'Movie box office revenue']]
+
+    merged_data = pd.merge(filtered_ratings, filtered_oscar_act_new, on=['Movie name', 'Movie release date'])
+
+    rating_box_office = merged_data[['Actor name', 'Movie name', 'Movie release date', 'imdb_score', 'Movie box office revenue']]
+    rating_box_office['Movie release date'] = pd.to_numeric(rating_box_office['Movie release date'], errors='coerce')
+
+    rating_box_office = rating_box_office[rating_box_office['Movie release date'] >= 1980]
+    rating_box_office = rating_box_office.dropna(subset=['Movie box office revenue', 'imdb_score'])
+
+    new_film_dataset_oscar = film_full[film_full['Wikipedia movie ID'].isin(oscar_winning_films['Page ID'])]
+    new_film_dataset_oscar['Movie release date'] = pd.to_datetime(new_film_dataset_oscar['Movie release date'], errors='coerce').dt.year
+
+    filtered_ratings = imdb_ratings[['Movie name', 'Movie release date', 'imdb_score']]
+    filtered_oscar_act_new = new_film_dataset_oscar[['Movie name', 'Movie release date', 'Movie box office revenue', 'nbOscarNominated', 'nbOscarReceived']]
+
+    merged_data = pd.merge(filtered_ratings, filtered_oscar_act_new, on=['Movie name', 'Movie release date'])
+
+    rating_box_office = merged_data[['Movie name', 'Movie release date', 'imdb_score', 'Movie box office revenue', 'nbOscarNominated', 'nbOscarReceived']]
+
+    rating_box_office = rating_box_office[rating_box_office['Movie release date'] >= 1980]
+    rating_box_office = rating_box_office.dropna(subset=['Movie box office revenue', 'imdb_score'])
+
+    # Filter out rows with missing or invalid data in critical columns
+    rating_box_office = rating_box_office.dropna(subset=['Movie release date', 'imdb_score', 'Movie box office revenue', 'nbOscarNominated'])
+    rating_box_office = rating_box_office[rating_box_office['Movie name'] != 'Titanic']
+    # Ensure `nbOscarNominated` is numeric
+    rating_box_office['nbOscarNominated'] = pd.to_numeric(
+        rating_box_office['nbOscarNominated'], errors='coerce'
+    )
+
+    return rating_box_office
