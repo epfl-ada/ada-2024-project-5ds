@@ -17,23 +17,23 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Welcome to OneFlow Jekyll Theme - OneFlow Jekyll Theme</title>
+<!-- begin _includes/seo.html --><title>Welcome to OneFlow Jekyll Theme - project-5DS</title>
 <meta name="description" content="Crafting effortless One-Pager Websites">
 
 
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
-<meta property="og:site_name" content="OneFlow Jekyll Theme">
+<meta property="og:site_name" content="project-5DS">
 <meta property="og:title" content="Welcome to OneFlow Jekyll Theme">
-<meta property="og:url" content="http://0.0.0.0:4000/">
+<meta property="og:url" content="http://0.0.0.0:4000/ada-2024-project-5ds/">
 
 
   <meta property="og:description" content="Crafting effortless One-Pager Websites">
 
 
 
-  <meta property="og:image" content="http://0.0.0.0:4000/assets/images/header.webp">
+  <meta property="og:image" content="http://0.0.0.0:4000/ada-2024-project-5ds/assets/images/header.webp">
 
 
 
@@ -44,7 +44,7 @@
 
 
 
-<link rel="canonical" href="http://0.0.0.0:4000/">
+<link rel="canonical" href="http://0.0.0.0:4000/ada-2024-project-5ds/">
 
 
 
@@ -55,7 +55,7 @@
     
       "@type": "Person",
       "name": null,
-      "url": "http://0.0.0.0:4000/"
+      "url": "http://0.0.0.0:4000/ada-2024-project-5ds/"
     
   }
 </script>
@@ -70,7 +70,7 @@
 
 
 
-  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="OneFlow Jekyll Theme Feed">
+  <link href="/ada-2024-project-5ds/feed.xml" type="application/atom+xml" rel="alternate" title="project-5DS Feed">
 
 
 <!-- https://t.co/dKP3o1e -->
@@ -81,7 +81,7 @@
 </script>
 
 <!-- For all browsers -->
-<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="/ada-2024-project-5ds/assets/css/main.css">
 
 
 
@@ -103,27 +103,27 @@
   <body class="layout--page">
     
 
-<div class="masthead" style="opacity: 0.85 !important;  position: sticky;">
+<div class="masthead" style="opacity: 1 !important;  position: sticky;">
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
         
-          <a class="site-logo" href="/"><img src="/assets/images/logo.webp" alt=" "></a>
+          <a class="site-logo" href="/ada-2024-project-5ds/"><img src="/ada-2024-project-5ds/assets/images/logo.webp" alt=" "></a>
         
-        <a class="site-title" href="/">
+        <a class="site-title" href="/ada-2024-project-5ds/">
            
           <span class="site-subtitle"> </span>
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/#section-1" title="Get to know the team behind the analysis." >Introduction</a>
+              <a href="/ada-2024-project-5ds/#section-1" title="Get to know the team behind the analysis." >Introduction</a>
             </li><li class="masthead__menu-item">
-              <a href="/#section-3" title="Explore insights into what makes movies award-winning." >Movie Analysis</a>
+              <a href="/ada-2024-project-5ds/#section-3" title="Explore insights into what makes movies award-winning." >Movie Analysis</a>
             </li><li class="masthead__menu-item">
-              <a href="/#section-4" title="Discover trends and patterns among award-winning actors." >Actor Analysis</a>
+              <a href="/ada-2024-project-5ds/#section-4" title="Discover trends and patterns among award-winning actors." >Actor Analysis</a>
             </li><li class="masthead__menu-item">
-              <a href="/#section-5" title="See how movies and actors combine for cinematic magic." >Combination</a>
+              <a href="/ada-2024-project-5ds/#section-5" title="See how movies and actors combine for cinematic magic." >Combination</a>
             </li><li class="masthead__menu-item">
-              <a href="/#section-6" title="Wrap up the analysis with key takeaways and implications." >Conclusion</a>
+              <a href="/ada-2024-project-5ds/#section-6" title="Wrap up the analysis with key takeaways and implications." >Conclusion</a>
             </li></ul>
         
         <button class="greedy-nav__toggle hidden" type="button">
@@ -213,7 +213,7 @@
 
 
 <div class="page__hero--overlay"
-     style=" background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/assets/images/header.webp');; height: 100vh; background-size: cover; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+     style=" background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/ada-2024-project-5ds/assets/images/header.webp');; height: 100vh; background-size: cover; display: flex; flex-direction: column; justify-content: center; align-items: center;">
   
     <div class="wrapper">
       <h1 id="page-title" class="page__title" itemprop="headline">
@@ -280,25 +280,25 @@
 <figure class="third ">
   
     
-      <a href="/assets/images/header.webp"
+      <a href="/ada-2024-project-5ds/assets/images/header.webp"
         title="Image 1 title caption">
-          <img src="/assets/images/header.webp"
+          <img src="/ada-2024-project-5ds/assets/images/header.webp"
                alt="placeholder image 1">
       </a>
     
   
     
-      <a href="/assets/images/sydney-2.webp"
+      <a href="/ada-2024-project-5ds/assets/images/sydney-2.webp"
         title="Image 2 title caption">
-          <img src="/assets/images/sydney-2.webp"
+          <img src="/ada-2024-project-5ds/assets/images/sydney-2.webp"
                alt="placeholder image 2">
       </a>
     
   
     
-      <a href="/assets/images/sydney-3.webp"
+      <a href="/ada-2024-project-5ds/assets/images/sydney-3.webp"
         title="Image 3 title caption">
-          <img src="/assets/images/sydney-3.webp"
+          <img src="/ada-2024-project-5ds/assets/images/sydney-3.webp"
                alt="placeholder image 3">
       </a>
     
@@ -784,7 +784,7 @@ the rest of the site, but can still edit whatever he/she needs to edit.
     
 
     
-  <script src="/assets/js/main.min.js"></script>
+  <script src="/ada-2024-project-5ds/assets/js/main.min.js"></script>
 
 
 
