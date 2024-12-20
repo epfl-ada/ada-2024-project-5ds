@@ -220,26 +220,30 @@ round-images:
             female actors peak earlier.
         </p>
             
-            <!-- New Content: Graphs and Centered Text -->
-        <div class="graphs-with-text">
-            <div class="two-columns">
-                <div class="graph-column">
-                    <div class="plot-container">
-                        {% include plots/Pearson_Correlation_Heatmap.html %}
-                        <div class="plot-caption">
-                            <p>Pearson Correlation Heatmap</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="graph-column">
-                    <div class="plot-container">
-                        {% include plots/Spearman_Correlation_Heatmap.html %}
-                        <div class="plot-caption">
-                            <p>Spearman Correlation Heatmap</p>
-                        </div>
+    <!-- New Content: Graphs and Centered Text -->
+    <div class="graphs-with-text">
+        <div class="two-columns">
+            <!-- First Graph -->
+            <div class="graph-column">
+                <div class="plot-container">
+                    {% include plots/Pearson_Correlation_Heatmap.html %}
+                    <div class="plot-caption">
+                        <p>Pearson Correlation Heatmap</p>
                     </div>
                 </div>
             </div>
+            <!-- Second Graph -->
+            <div class="graph-column">
+                <div class="plot-container">
+                    {% include plots/Spearman_Correlation_Heatmap.html %}
+                    <div class="plot-caption">
+                        <p>Spearman Correlation Heatmap</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
             <!-- Text Centered Below Graphs -->
             <div class="centered-text">

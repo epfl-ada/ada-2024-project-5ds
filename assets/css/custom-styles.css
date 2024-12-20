@@ -299,6 +299,7 @@ ul {
     border: none;
     cursor: pointer;
     border-radius: 5px;
+    width: 200px;
 }
 
 .dropdown-btn:hover {

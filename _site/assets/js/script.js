@@ -3,6 +3,10 @@ function toggleDropdown() {
     document.getElementById("dropdown-content").classList.toggle("show");
 }
 
+function hideDropdown() {
+    document.getElementById("dropdown-content").classList.remove("show");
+}
+
 // Show Selected Content
 function showContent(sectionId) {
     // Hide all content sections
@@ -11,6 +15,9 @@ function showContent(sectionId) {
     
     // Show the selected section
     document.getElementById(sectionId).style.display = 'block';
+
+    // Hide dropdown
+    hideDropdown();
 }
 
 let isFirstGraph = true;
