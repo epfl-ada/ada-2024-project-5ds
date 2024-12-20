@@ -1,6 +1,61 @@
 /* Custom stylesheet, add your own styles here */
 /* General layout for two-columns */
 /* Two-columns Layout */
+
+.single-column {
+    display: flex; /* Flexbox for alignment */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    gap: 1.5rem; /* Add spacing between elements */
+    margin-bottom: 2rem; /* Space below the section */
+}
+
+.single-column h2 {
+    text-align: center; /* Center the heading text */
+    margin-bottom: 1rem; /* Space below heading */
+}
+/* Wrapper for Graphs and Centered Text */
+.graphs-with-text {
+    display: flex; /* Use Flexbox */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center-align items horizontally */
+    gap: 1.5rem; /* Space between graphs and text */
+    margin-bottom: 2rem; /* Add space below the section */
+}
+/* Centered Text Below Graphs */
+.centered-text {
+    text-align: center; /* Center-align the text */
+    max-width: 800px; /* Limit the text width */
+    font-size: 1rem; /* Standard font size */
+    line-height: 1.6; /* Add line height for readability */
+    padding: 1rem; /* Add padding around the text */
+}
+.button-container {
+    text-align: center; /* Center the button */
+    margin-top: 1rem; /* Add spacing above the button */
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+.small-graph {
+    width: 10% !important; /* Force the width to 60% */
+    max-width: 50px !important; /* Optional: Limit the maximum width */
+    margin: 0 auto !important; /* Center the graph horizontally */
+    height: auto !important; /* Keep the aspect ratio */
+}
+
 .two-columns {
     display: flex;
     flex-wrap: wrap;
@@ -225,6 +280,8 @@ ul {
     transform: scale(1.02); /* Slight zoom-in effect */
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
 }
+
+
 
 
 /* Dropdown Button */

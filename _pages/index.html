@@ -211,7 +211,7 @@ round-images:
     </div>
 
      <!-- Patterns and Insights -->
-    <div id="patterns" class="content-section" style="display: none;">
+     <div id="patterns" class="content-section" style="display: none;">
         <h2>2. Patterns and Insights</h2>
         <p>
             Initial exploration revealed several intriguing trends. For instance, films with higher box office revenue tended to secure more nominations, 
@@ -219,8 +219,8 @@ round-images:
             action and comedy genres were underrepresented in Oscar history. On the actor side, male actors often win later in their careers, whereas 
             female actors peak earlier.
         </p>
-
-        <!-- New Content: Graphs and Centered Text -->
+            
+            <!-- New Content: Graphs and Centered Text -->
         <div class="graphs-with-text">
             <div class="two-columns">
                 <div class="graph-column">
@@ -254,21 +254,42 @@ round-images:
                     This will leave some freedom for Alice and Bob’s mad lab to do more experiments later…
                 </p>
             </div>
+
+            <!-- New: Image and Text for pvalues.html -->
+            <div class="graphs-with-text">
+                <div class="single-column">
+                    <div class="graph-column">
+                        <div class="plot-container">
+                            {% include plots/pvalues.html %}
+                            <div class="plot-caption">
+                                <p>P-Values table</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="centered-text">
+                <p>
+                    The T-test indicates that indeed we can reject the null hypothesis that the oscar films and non oscar films have the same distribution in :
+                     box office,runtime and review scores at 99% of confidence.
+                </p>
+            </div>
         </div>
     </div>
-        <!-- Challenges and Data Quality -->
-        <div id="challenges" class="content-section" style="display: none;">
-            <h2>3. Challenges and Data Quality</h2>
-            <p>
-                Like any dataset, this one came with its challenges. Merging the two sources required careful alignment of attributes to ensure consistency. 
-                Missing values in certain columns, such as <strong>Capital Cost</strong> and <strong>Awards Nominated</strong>, were imputed using statistical 
-                techniques. Additionally, ensuring data accuracy, particularly for recent films, involved cross-verification with multiple sources.
-            </p>
-            <p>
-                Despite these challenges, the dataset proved robust and reliable, enabling us to uncover meaningful insights about the intricate relationship 
-                between movies, actors, and Oscars.
-            </p>
-        </div>
+
+    <!-- Challenges and Data Quality -->
+    <div id="challenges" class="content-section" style="display: none;">
+        <h2>3. Challenges and Data Quality</h2>
+        <p>
+            Like any dataset, this one came with its challenges. Merging the two sources required careful alignment of attributes to ensure consistency. 
+            Missing values in certain columns, such as <strong>Capital Cost</strong> and <strong>Awards Nominated</strong>, were imputed using statistical 
+            techniques. Additionally, ensuring data accuracy, particularly for recent films, involved cross-verification with multiple sources.
+        </p>
+        <p>
+            Despite these challenges, the dataset proved robust and reliable, enabling us to uncover meaningful insights about the intricate relationship 
+            between movies, actors, and Oscars.
+        </p>
+    </div>
     </div>
 </section>
 
@@ -418,7 +439,7 @@ round-images:
     <div class="two-columns">
         <div class="graph-column">
             <div class="plot-container">
-                {% include plots/yassinefuckingwahidy_monthly_release.html %}
+                {% include plots/award_winning_movies_by_release_month.html%}
                 <p class="plot-caption">Monthly Distribution of Oscar-Winning Movies</p>
             </div>
         </div>
@@ -481,8 +502,33 @@ round-images:
             <p><strong>Bob:</strong> "True, Alice. But like we saw for the movies, Hollywood is still the gold standard. It’s hard to dethrone the king."</p>
         </div>
     </div>
+    <h2>2. Facts about actors careers</h2>
+    <div class="single-column">
+        <div class="graph-column">
+            <div class="plot-container">
+                {% include plots/movies_before_oscar.html%}
+                <div class="plot-caption">
+                    <p>Number of Movies before First Oscar Win</p>
+                </div>
+            </div>
+        </div>
+        <div class="text-column">
+            <p>
+                By looking at this graph, the first thing that triggers us is the number of movies John Wayne has to appear in before his first Oscar win.
+                 Conversely, what’s striking is the fact that a lot of actors won their first Oscar after less than 10 movies : 62 of them fall in this situation!
+            </p>
+        </div>
+    </div>
+    <div class="chat-container">
+        <div class="bubble alice">
+            <p><strong>Alice:</strong> "Poor John Wayne, he really gave everything he got to win his award."</p>
+        </div>
+        <div class="bubble bob">
+            <p><strong>Bob:</strong> "The same can't be said for a few lucky ones like Marlee Martin."</p>
+        </div>
 
-    <h2>2. Gender Representation</h2>
+
+    <h2>3. Gender Representation</h2>
     <div class="single-column">
         <div class="graph-column">
             <div class="plot-container">
@@ -510,7 +556,7 @@ round-images:
         </div>
     </div>
 
-    <h2>3. Age Dynamics</h2>
+    <h2>4. Age Dynamics</h2>
     <div class="single-column">
         <div class="graph-column">
             <div class="plot-container">
@@ -538,7 +584,7 @@ round-images:
         </div>
     </div>
 
-    <h2>4. Box Office and Actor Success</h2>
+    <h2>5. Box Office and Actor Success</h2>
     <div class="single-column">
         <div class="graph-column">
             <div class="plot-container">
@@ -565,25 +611,51 @@ round-images:
             <p><strong>Alice:</strong> "Exactly, Bob. It’s about finding the right balance between artistic merit and commercial appeal."</p>
         </div>
     </div>
-    <h2>5. Genre Representation</h2>
     <div class="single-column">
         <div class="graph-column">
             <div class="plot-container">
-                {% include plots/actors_genres_histo.html %}
+                {% include plots/actor_age_vs_boxoffice.html%}
                 <div class="plot-caption">
-                    <p>A visualization showing the genre breakdown of movies featuring Oscar-winning actors.</p>
+                    <p>Actors age vs. Movie Box Office Revenue (Oscar-winning movies) 
+                    </p>
                 </div>
             </div>
         </div>
         <div class="text-column">
             <p>
-                The genres associated with Oscar-winning actors reveal a dominance of drama, romance, and comedy. However, action and adventure genres have 
-                also made notable contributions, often through technically excellent performances that push the boundaries of traditional acting. The success of 
-                films like <em>Gladiator</em> and <em>Mad Max: Fury Road</em> underscores the Academy’s growing appreciation for dynamic roles in unconventional 
-                genres.
+                By observing the bar plot, we understand that a significant number of movies that grossed over 300 millions of dollars were mostly associated with actors in their 30s,
+                 and that very few old actors consist of outliers as very good box office performers. 
+                 This helps us create a correlation trend such that a good commercial success in the movie industry is featured with middle-aged actors.
             </p>
         </div>
     </div>
+   <h2>6. Genre Representation</h2>
+    <div class="single-column">
+        <!-- Graph Container -->
+        <div class="graph-column">
+            <div class="plot-container" id="graph-container">
+                {% include plots/actors_genres_histo.html %}
+                <div class="plot-caption" id="graph-caption">
+                    <p>A visualization showing the genre breakdown of movies featuring Oscar-winning actors.</p>
+                </div>
+            </div>
+        </div>
+
+    <!-- Button to Switch Graph -->
+    <div class="button-container">
+        <button class="btn" onclick="switchGraph()">Switch Graph</button>
+    </div>
+
+    <!-- Text Description -->
+    <div class="text-column">
+        <p>
+            The genres associated with Oscar-winning actors reveal a dominance of drama, romance, and comedy. However, action and adventure genres have 
+            also made notable contributions, often through technically excellent performances that push the boundaries of traditional acting. The success of 
+            films like <em>Gladiator</em> and <em>Mad Max: Fury Road</em> underscores the Academy’s growing appreciation for dynamic roles in unconventional 
+            genres.
+        </p>
+    </div>
+</div>
 </section>
 
 
@@ -750,6 +822,37 @@ round-images:
 </section>
 
     <h1>Conclusion</h1>
+    <div class="chat-container">
+        <p>As Alice sipped her coffee, she leaned back with a knowing smile.</p>
+        <div class="bubble alice">
+            <p><strong>Alice:</strong> "See, Bob? It’s not just about instinct—it’s about understanding the trends and weaving them into our art."</p>
+        </div>
+        <p>Bob, ever the skeptic, squinted at the data.</p>
+        <div class="bubble bob">
+            <p><strong>Bob:</strong> "So you’re telling me we need to follow some formula to win an Oscar?"</p>
+        </div>
+        <p>Alice countered, her voice filled with excitement.</p>
+        <div class="bubble alice">
+            <p><strong>Alice:</strong> "Not a formula. It’s about recognizing what resonates. Look at this—movies with runtimes that allow characters to grow, with plots that touch on joy, sorrow, and triumph. Those are the stories that stay with people."</p>
+        </div>
+        <p>Bob raised an eyebrow.</p>
+        <div class="bubble bob">
+            <p><strong>Bob:</strong> "And what about diversity? Are we just ticking boxes now?"</p>
+        </div>
+        <p>Alice replied firmly.</p>
+        <div class="bubble alice">
+            <p><strong>Alice:</strong> "No. It’s about telling stories that reflect the world. The Academy is evolving, and so are audiences. Look at the trends—recognition is shifting toward inclusivity. It’s not about ticking boxes; it’s about embracing authenticity."</p>
+        </div>
+        <p>Bob smiled, a glint of admiration in his eyes.</p>
+        <div class="bubble bob">
+            <p><strong>Bob:</strong> "Alright, Alice, I’ll admit it—your data might have a point. But don’t expect me to trade my gut instincts for spreadsheets."</p>
+        </div>
+        <p>Alice laughed.</p>
+        <div class="bubble alice">
+            <p><strong>Alice:</strong> "I wouldn’t dream of it. But imagine what we could achieve together—your artistry and my analytics."</p>
+        </div>
+        <p>Together, they began to map out their next masterpiece: a film that would explore profound themes, evoke layered emotions, and resonate with both the Academy and audiences worldwide. Whether it would win an Oscar or not, they knew one thing for certain: they were crafting something extraordinary.</p>
+    </div>
     <h2>Key Takeaways</h2>
     <p>Summarizing the trends and insights discovered in this project, along with implications for filmmakers and fans alike.</p>
     <h3>What’s Next?</h3>
