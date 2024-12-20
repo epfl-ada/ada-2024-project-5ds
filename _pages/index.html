@@ -167,7 +167,6 @@ round-images:
 
 
 <hr class="section-sep">
-
 <!-- Section: Dataset Analysis -->
 <section class="site-section" id="dataset-analysis">
     <h1>Dataset Analysis: The Foundation of Insight</h1>
@@ -208,55 +207,115 @@ round-images:
                 </div>
             </div>
         </div>
-    </div>
 
-     <!-- Patterns and Insights -->
-     <div id="patterns" class="content-section" style="display: none;">
-        <h2>2. Patterns and Insights</h2>
-        <p>
-            Initial exploration revealed several intriguing trends. For instance, films with higher box office revenue tended to secure more nominations, 
-            although moderate-budget films were more likely to win. Similarly, dramas and biographical films dominated both nominations and wins, while 
-            action and comedy genres were underrepresented in Oscar history. On the actor side, male actors often win later in their careers, whereas 
-            female actors peak earlier.
-        </p>
+        <!-- Patterns and Insights -->
+        <div id="patterns" class="content-section" style="display: none;">
+            <h2>2. Patterns and Insights</h2>
+            <p>
+                Initial exploration revealed several intriguing trends. For instance, films with higher box office revenue tended to secure more nominations, 
+                although moderate-budget films were more likely to win. Similarly, dramas and biographical films dominated both nominations and wins, while 
+                action and comedy genres were underrepresented in Oscar history. On the actor side, male actors often win later in their careers, whereas 
+                female actors peak earlier.
+            </p>
             
-    <!-- New Content: Graphs and Centered Text -->
-    <div class="graphs-with-text">
-        <div class="two-columns">
-            <!-- First Graph -->
-            <div class="graph-column">
-                <div class="plot-container">
-                    {% include plots/Pearson_Correlation_Heatmap.html %}
-                    <div class="plot-caption">
-                        <p>Pearson Correlation Heatmap</p>
+            <!-- Graphs with Text -->
+            <div class="graphs-with-text">
+                <div class="two-columns">
+                    <!-- First Graph -->
+                    <div class="graph-column">
+                        <div class="plot-container">
+                            {% include plots/Pearson_Correlation_Heatmap.html %}
+                            <div class="plot-caption">
+                                <p>Pearson Correlation Heatmap</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Second Graph -->
+                    <div class="graph-column">
+                        <div class="plot-container">
+                            {% include plots/Spearman_Correlation_Heatmap.html %}
+                            <div class="plot-caption">
+                                <p>Spearman Correlation Heatmap</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- Second Graph -->
-            <div class="graph-column">
-                <div class="plot-container">
-                    {% include plots/Spearman_Correlation_Heatmap.html %}
-                    <div class="plot-caption">
-                        <p>Spearman Correlation Heatmap</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-            <!-- Text Centered Below Graphs -->
+                 <!-- Text Centered Below Graphs -->
             <div class="centered-text">
-                <p>
-                    As intended, the number of Oscar nominations is highly linked with the number of Oscars received. 
-                    Box office and capital cost are correlated, meaning high box office films may have cost more money to produce. 
-                    The runtime and the capital cost are also correlated, as a film that is longer may cost more to produce. 
-                    We can see this either with the Spearman and Pearson correlation tables or by the scatter plot.
-                </p>
-                <p>
-                    As we can see, the correlations are higher with Spearman correlation, meaning there is a non-linear relationship between the components we just discussed. 
-                    This will leave some freedom for Alice and Bob’s mad lab to do more experiments later…
-                </p>
+                <div class="insights-section">
+                    <h2>Overall Insights</h2>
+                    <div class="insight">
+                        <h3>1. Box Office Revenue (<code>box_office</code>)</h3>
+                        <ul>
+                            <li>
+                                A strong monotonic correlation with <code>capitalCost</code> suggests that budget size significantly impacts revenue. However, this relationship is complex and not purely linear.
+                            </li>
+                            <li>
+                                Weak correlations with <code>reviewScores</code> and <code>runtime</code> imply that factors like storytelling, marketing, or timing (e.g., holiday releases) might play a more critical role in revenue generation than these individual metrics.
+                            </li>
+                        </ul>
+                    </div>
+                
+                    <div class="insight">
+                        <h3>2. Oscars (<code>nbOscarReceived</code>, <code>nbOscarNominated</code>)</h3>
+                        <ul>
+                            <li>
+                                Nominations are an almost perfect predictor of wins. However, their weak relationships with <code>box_office</code> indicate that while Oscars may boost a movie's prestige, they don't necessarily translate into higher revenue.
+                            </li>
+                        </ul>
+                    </div>
+                
+                    <div class="insight">
+                        <h3>3. Review Scores (<code>reviewScores</code>)</h3>
+                        <ul>
+                            <li>
+                                The negligible correlations suggest that reviews may influence perception but do not strongly determine financial success or production budgets. This highlights that critically acclaimed movies often don't achieve commercial success.
+                            </li>
+                        </ul>
+                    </div>
+                
+                    <div class="insight">
+                        <h3>4. Runtime (<code>runtime</code>)</h3>
+                        <ul>
+                            <li>
+                                Moderate correlation with <code>capitalCost</code> suggests that longer movies might require higher budgets. However, runtime does not significantly impact box office revenue.
+                            </li>
+                        </ul>
+                    </div>
+                
+                    <h2>Practical Implications</h2>
+                    <div class="implication">
+                        <h3>1. For Investors/Producers:</h3>
+                        <ul>
+                            <li>
+                                Focus on balanced budgets and strategic marketing plans, as <code>capitalCost</code> strongly correlates with box office performance.
+                            </li>
+                            <li>
+                                While pursuing Oscars can enhance a movie's prestige, it does not guarantee financial success.
+                            </li>
+                        </ul>
+                    </div>
+                
+                    <div class="implication">
+                        <h3>2. For Filmmakers:</h3>
+                        <ul>
+                            <li>
+                                High-quality production (often implied by a larger budget) and well-timed releases are likely more impactful for box office success than striving for critical acclaim.
+                            </li>
+                        </ul>
+                    </div>
+                
+                    <div class="implication">
+                        <h3>3. For Critics/Audiences:</h3>
+                        <ul>
+                            <li>
+                                The disconnect between high review scores and box office revenue underscores the divide between critical and commercial success, suggesting different criteria for audience engagement and critical evaluation.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+            </div>
             </div>
 
             <!-- New: Image and Text for pvalues.html -->
@@ -271,30 +330,36 @@ round-images:
                         </div>
                     </div>
                 </div>
+                <div class="centered-text">
+                    <p>
+                        The T-test indicates that indeed we can reject the null hypothesis that the Oscar films and non-Oscar films have the same distribution in:
+                        box office, runtime, and review scores at 99% confidence.
+                    </p>
+                    <p>
+                        This is a great start for this analysis, as it indicates we can indeed derive some valuable insights from an analysis on the Oscar-winning films.
+                        Let’s take another look: do we have any data that have a strong correlation? This might be useful when we draw conclusions further in our work.
+                    </p>
+                </div>
             </div>
-            <div class="centered-text">
-                <p>
-                    The T-test indicates that indeed we can reject the null hypothesis that the oscar films and non oscar films have the same distribution in :
-                     box office,runtime and review scores at 99% of confidence.
-                </p>
             </div>
+           
+
+        <!-- Challenges and Data Quality -->
+        <div id="challenges" class="content-section" style="display: none;">
+            <h2>3. Challenges and Data Quality</h2>
+            <p>
+                Like any dataset, this one came with its challenges. Merging the two sources required careful alignment of attributes to ensure consistency. 
+                Missing values in certain columns, such as <strong>Capital Cost</strong> and <strong>Awards Nominated</strong>, were imputed using statistical 
+                techniques. Additionally, ensuring data accuracy, particularly for recent films, involved cross-verification with multiple sources.
+            </p>
+            <p>
+                Despite these challenges, the dataset proved robust and reliable, enabling us to uncover meaningful insights about the intricate relationship 
+                between movies, actors, and Oscars.
+            </p>
         </div>
     </div>
+</section>
 
-    <!-- Challenges and Data Quality -->
-    <div id="challenges" class="content-section" style="display: none;">
-        <h2>3. Challenges and Data Quality</h2>
-        <p>
-            Like any dataset, this one came with its challenges. Merging the two sources required careful alignment of attributes to ensure consistency. 
-            Missing values in certain columns, such as <strong>Capital Cost</strong> and <strong>Awards Nominated</strong>, were imputed using statistical 
-            techniques. Additionally, ensuring data accuracy, particularly for recent films, involved cross-verification with multiple sources.
-        </p>
-        <p>
-            Despite these challenges, the dataset proved robust and reliable, enabling us to uncover meaningful insights about the intricate relationship 
-            between movies, actors, and Oscars.
-        </p>
-    </div>
-    </div>
 </section>
 
 
