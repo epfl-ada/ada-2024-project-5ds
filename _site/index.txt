@@ -115,15 +115,15 @@
           <span class="site-subtitle"> </span>
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/ada-2024-project-5ds/#section-1" title="Get to know the team behind the analysis." >Introduction</a>
+              <a href="/ada-2024-project-5ds/#Introduction" title="Get to know the team behind the analysis." >Introduction</a>
             </li><li class="masthead__menu-item">
-              <a href="/ada-2024-project-5ds/#section-3" title="Explore insights into what makes movies award-winning." >Movie Analysis</a>
+              <a href="/ada-2024-project-5ds/#movie-analysis" title="Explore insights into what makes movies award-winning." >Movie Analysis</a>
             </li><li class="masthead__menu-item">
-              <a href="/ada-2024-project-5ds/#section-4" title="Discover trends and patterns among award-winning actors." >Actor Analysis</a>
+              <a href="/ada-2024-project-5ds/#actor-analysis" title="Discover trends and patterns among award-winning actors." >Actor Analysis</a>
             </li><li class="masthead__menu-item">
-              <a href="/ada-2024-project-5ds/#section-5" title="See how movies and actors combine for cinematic magic." >Combination</a>
+              <a href="/ada-2024-project-5ds/#combination-analysis" title="See how movies and actors combine for cinematic magic." >Combination</a>
             </li><li class="masthead__menu-item">
-              <a href="/ada-2024-project-5ds/#section-6" title="Wrap up the analysis with key takeaways and implications." >Conclusion</a>
+              <a href="/ada-2024-project-5ds/#section-6" title="Wrap up the analysis with key takeaways and implications." >conclusion</a>
             </li></ul>
         
         <button class="greedy-nav__toggle hidden" type="button">
@@ -789,6 +789,33 @@ the rest of the site, but can still edit whatever he/she needs to edit.
 
 
 
+
+
+
+    <script>
+      // Toggle Dropdown Visibility
+      function toggleDropdown() {
+          document.getElementById("dropdown-content").classList.toggle("show");
+      }
+
+      function hideDropdown() {
+          document.getElementById("dropdown-content").classList.remove("show");
+      }
+  
+      // Show Selected Content
+      function showContent(sectionId) {
+          // Hide all content sections
+          const sections = document.querySelectorAll('.content-section');
+          sections.forEach(section => section.style.display = 'none');
+          
+          // Show the selected section
+          document.getElementById(sectionId).style.display = 'block';
+
+          // Hide the dropdown
+          hideDropdown();
+      }
+    </script>
+  
 
   </body>
 </html>

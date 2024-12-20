@@ -163,84 +163,74 @@ round-images:
 
 <hr class="section-sep">
 
-<!-- Section: Dataset Presentation -->
-<section class="site-section" id="dataset">
-        <h1>Movie Dataset: A Fusion of Insights</h1>
-        
-        <p>
-            The foundation of our analysis is a dataset that blends the best of historical and modern data. 
-            This dataset combines two complementary sources:
-        </p>
-        <ul>
-            <li><strong>CMU Movie Dataset:</strong> A detailed and structured dataset offering historical information about movies, including genres, directors, box office data, and more.</li>
-            <li><strong>Wikipedia Scraping:</strong> Fresh data scraped from Wikipedia, covering movies released between 2015 and 2024. This ensures our analysis reflects the most recent trends in cinema.</li>
-        </ul>
-    
-        <p>
-            By merging these datasets, we created a unified resource that provides a comprehensive view of Oscar-worthy films, combining historical context with contemporary insights.
-        </p>
-    
-        <h2>Key Features of the Dataset</h2>
-        <p>The dataset includes several important variables that form the basis of our analysis:</p>
-        <ul>
-            <li><strong>Title and Release Date:</strong> Captures the movie name and release year, enabling chronological analysis of trends.</li>
-            <li><strong>Genres:</strong> Categories such as drama, comedy, action, and biopics, helping us identify which genres dominate the awards.</li>
-            <li><strong>Box Office Revenue:</strong> Financial performance metrics to explore whether profitability correlates with critical acclaim.</li>
-            <li><strong>Awards:</strong> Data on Oscar nominations and wins, including the number of Oscars received and categories awarded.</li>
-            <li><strong>Runtime:</strong> The length of each movie, providing insights into whether longer films are more likely to win awards.</li>
-            <li><strong>Languages and Countries:</strong> Geographic and linguistic data to analyze trends in international and domestic cinema.</li>
-            <li><strong>Capital Cost:</strong> Production costs, highlighting the impact of budget size on success.</li>
-        </ul>
-    
-        <div class="chat-container">
-            <div class="bubble bob">
-                <p><strong>Bob:</strong> "So, Alice, you’re telling me this dataset is like the perfect movie—it has everything: history, modernity, and a touch of intrigue."</p>
-            </div>
-            <div class="bubble alice">
-                <p><strong>Alice:</strong> "Exactly, Bob. Combining CMU’s depth with Wikipedia’s freshness gives us the best of both worlds. It’s the ultimate resource for decoding Oscars success."</p>
-            </div>
+<!-- Section: Dataset Analysis -->
+<section class="site-section" id="dataset-analysis">
+    <h1>Dataset Analysis: The Foundation of Insight</h1>
+
+    <p>
+        Behind every great analysis is a robust dataset. Use the dropdown below to explore different aspects of the dataset:
+    </p>
+
+    <div class="dropdown">
+        <button class="dropdown-btn" onclick="toggleDropdown()">Select Content</button>
+        <div class="dropdown-content" id="dropdown-content">
+            <a onclick="showContent('overview')">Overview</a>
+            <a onclick="showContent('patterns')">Patterns and Insights</a>
+            <a onclick="showContent('challenges')">Challenges and Data Quality</a>
         </div>
-    
-        <h2>Initial Observations</h2>
-        <p>
-            Before diving deep, we noticed some interesting trends while exploring the dataset:
-        </p>
-        <ul>
-            <li><strong>Genres:</strong> Drama is a perennial favorite for the Oscars, but socially conscious films and biopics have gained prominence in recent years.</li>
-            <li><strong>Box Office:</strong> While higher budgets and revenues often align with awards, there are notable exceptions where smaller productions shine.</li>
-            <li><strong>Runtime:</strong> Movies with runtimes exceeding two hours tend to dominate critical acclaim.</li>
-            <li><strong>International Recognition:</strong> The past decade has seen an increase in recognition for non-English films, marking a shift in Academy preferences.</li>
-        </ul>
-    
-        <div class="chat-container">
-            <div class="bubble alice">
-                <p><strong>Alice:</strong> "Bob, even these early patterns show how much we can learn. It’s not just about intuition—it’s about seeing the bigger picture."</p>
-            </div>
-            <div class="bubble bob">
-                <p><strong>Bob:</strong> "Alright, alright, I’ll admit it. This data is like a movie trailer—it’s got me intrigued. Let’s get to the good stuff."</p>
+    </div>
+
+    <!-- Dynamic Content Sections -->
+    <div id="dynamic-content">
+        <!-- Default Content: Overview -->
+        <div id="overview" class="content-section">
+            <h2>1. Dataset Overview</h2>
+            <div class="two-columns">
+                <div class="text-column">
+                    <p>
+                        The dataset contains information on over 5,000 movies and their associated attributes. Key columns include:
+                        <strong>Title</strong>, <strong>Release Date</strong>, <strong>Box Office Revenue</strong>, <strong>Genres</strong>, and <strong>Languages</strong>. 
+                        Additionally, derived metrics such as <strong>Number of Oscars Won</strong> and <strong>Number of Nominations</strong> provide insights 
+                        into award performance.
+                    </p>
+                </div>
+                <div class="text-column">
+                    <p>
+                        The dataset also captures actor-specific details, including <strong>Gender</strong>, <strong>Age at the Time of the Film’s Release</strong>, 
+                        and <strong>Geographic Representation</strong>. These features enabled us to analyze trends and identify factors contributing to an 
+                        actor’s likelihood of winning an Oscar.
+                    </p>
+                </div>
             </div>
         </div>
 
-    <div class="two-columns">
-        <div class="text-column">
-            <h3>Graph 1 Title</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus fermentum felis sit amet arcu faucibus.</p>
+        <!-- Patterns and Insights -->
+        <div id="patterns" class="content-section" style="display: none;">
+            <h2>2. Patterns and Insights</h2>
+            <p>
+                Initial exploration revealed several intriguing trends. For instance, films with higher box office revenue tended to secure more nominations, 
+                although moderate-budget films were more likely to win. Similarly, dramas and biographical films dominated both nominations and wins, while 
+                action and comedy genres were underrepresented in Oscar history. On the actor side, male actors often win later in their careers, whereas 
+                female actors peak earlier.
+            </p>
         </div>
-        <div class="graph-column">
-          <!-- {% include plots/mean_runtime.html %} -->
+
+        <!-- Challenges and Data Quality -->
+        <div id="challenges" class="content-section" style="display: none;">
+            <h2>3. Challenges and Data Quality</h2>
+            <p>
+                Like any dataset, this one came with its challenges. Merging the two sources required careful alignment of attributes to ensure consistency. 
+                Missing values in certain columns, such as <strong>Capital Cost</strong> and <strong>Awards Nominated</strong>, were imputed using statistical 
+                techniques. Additionally, ensuring data accuracy, particularly for recent films, involved cross-verification with multiple sources.
+            </p>
+            <p>
+                Despite these challenges, the dataset proved robust and reliable, enabling us to uncover meaningful insights about the intricate relationship 
+                between movies, actors, and Oscars.
+            </p>
         </div>
     </div>
-    <div class="two-columns">
-        <div class="graph-column">
-          <!-- {% include plots/mean_title_length.html %} -->
-        </div>
-        <div class="text-column">
-            <h3>Graph 2 Title</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tincidunt, odio vel auctor consequat.</p>
-        </div>
-    </div>
-    <!-- Repeat for 3 more graphs -->
 </section>
+
 
 <hr class="section-sep">
 
@@ -416,17 +406,23 @@ round-images:
     </p>
 
     <h2>1. Diversity: A Global Perspective</h2>
-    <p>
-        The majority of Oscar-winning actors hail from North America, particularly the United States, and Europe, with the United Kingdom leading the way. 
-        Despite the rich cinematic traditions of Asia and Africa, actors from these regions remain underrepresented in the Oscars. However, globalization 
-        and the Academy’s recent push for inclusivity suggest a growing opportunity for diverse talents to gain recognition. Notable breakthroughs, like 
-        performances in culturally significant roles, often receive critical acclaim and could signify a shifting trend toward greater diversity in the 
-        industry.
-    </p>
-    <div class="graph-container">
-        <img src="/assets/images/placeholder-diversity.webp" alt="Global Diversity of Oscar-Winning Actors">
-        <div class="plot-caption">
-            <p>A visualization showing the global distribution of Oscar-winning actors.</p>
+    <div class="two-columns">
+        <div class="text-column">
+            <p>
+                The majority of Oscar-winning actors hail from North America, particularly the United States, and Europe, with the United Kingdom leading the way. 
+                Despite the rich cinematic traditions of Asia and Africa, actors from these regions remain underrepresented in the Oscars. However, globalization 
+                and the Academy’s recent push for inclusivity suggest a growing opportunity for diverse talents to gain recognition. Notable breakthroughs, like 
+                performances in culturally significant roles, often receive critical acclaim and could signify a shifting trend toward greater diversity in the 
+                industry.
+            </p>
+        </div>
+        <div class="graph-column">
+            <div class="plot-container">
+                {% include plots/map_oscar_actors.html %}
+                <div class="plot-caption">
+                    <p>A visualization showing the global distribution of Oscar-winning actors.</p>
+                </div>
+            </div>
         </div>
     </div>
     <div class="chat-container">
@@ -434,7 +430,7 @@ round-images:
             <p><strong>Alice:</strong> "Bob, it’s about time the Academy recognized more talent from underrepresented regions."</p>
         </div>
         <div class="bubble bob">
-            <p><strong>Bob:</strong> "True, Alice. But like we saw for the movies Hollywood is still the gold standard. It’s hard to dethrone the king."</p>
+            <p><strong>Bob:</strong> "True, Alice. But like we saw for the movies, Hollywood is still the gold standard. It’s hard to dethrone the king."</p>
         </div>
     </div>
 
@@ -445,8 +441,8 @@ round-images:
         like <em>The Favourite</em> and <em>Nomadland</em> showcase how complex, multifaceted female characters resonate with both audiences and the 
         Academy.
     </p>
-    <div class="graph-container">
-        <img src="/assets/images/placeholder-gender.webp" alt="Gender Representation of Oscar Winners">
+    <div class="plot-container">
+        <h1>JSP C QUELLE GRAPH</h1>
         <div class="plot-caption">
             <p>A visualization of gender distribution among Oscar-winning actors over the decades.</p>
         </div>
@@ -461,16 +457,22 @@ round-images:
     </div>
 
     <h2>3. Age Dynamics</h2>
-    <p>
-        The age distribution of Oscar-winning actors reveals distinct patterns. Male actors tend to win between the ages of 35 and 55, maintaining strong 
-        representation even into their 60s. Female actors, however, typically win between 25 and 40, with representation dropping sharply after the age 
-        of 40. This disparity reflects broader trends in the industry, where opportunities for actresses tend to diminish with age, even as their male 
-        counterparts continue to thrive in leading roles.
-    </p>
-    <div class="graph-container">
-        <img src="/assets/images/placeholder-age.webp" alt="Age Distribution of Oscar-Winning Actors">
-        <div class="plot-caption">
-            <p>A visualization of the age distribution among Oscar-winning actors and actresses.</p>
+    <div class="two-columns">
+        <div class="text-column">
+            <p>
+                The age distribution of Oscar-winning actors reveals distinct patterns. Male actors tend to win between the ages of 35 and 55, maintaining strong 
+                representation even into their 60s. Female actors, however, typically win between 25 and 40, with representation dropping sharply after the age 
+                of 40. This disparity reflects broader trends in the industry, where opportunities for actresses tend to diminish with age, even as their male 
+                counterparts continue to thrive in leading roles.
+            </p>
+        </div>
+        <div class='graph-column'>
+            <div class="plot-container">
+                {% include plots/age_dsitrib_actors_actresses.html %}
+                <div class="plot-caption">
+                    <p>A visualization of the age distribution among Oscar-winning actors and actresses.</p>
+                </div>
+            </div>
         </div>
     </div>
     <div class="chat-container">
@@ -483,16 +485,22 @@ round-images:
     </div>
 
     <h2>4. Box Office and Actor Success</h2>
-    <p>
-        Movies featuring Oscar-winning actors generally exhibit more consistent box office performance compared to films without such actors. However, 
-        high-revenue outliers are more common in movies without Oscar-winning actors, indicating that commercial success doesn’t always correlate with 
-        critical acclaim. While Oscar-winning actors bring consistency, the presence of these actors alone is not a guaranteed formula for box office 
-        dominance.
-    </p>
-    <div class="graph-container">
-        <img src="/assets/images/placeholder-box-office.webp" alt="Box Office Revenue Distribution">
-        <div class="plot-caption">
-            <p>A comparison of box office performance between movies with and without Oscar-winning actors.</p>
+    <div class="two-columns">
+        <div class="text-column">
+            <p>
+                Movies featuring Oscar-winning actors generally exhibit more consistent box office performance compared to films without such actors. However, 
+                high-revenue outliers are more common in movies without Oscar-winning actors, indicating that commercial success doesn’t always correlate with 
+                critical acclaim. While Oscar-winning actors bring consistency, the presence of these actors alone is not a guaranteed formula for box office 
+                dominance.
+            </p>
+        </div>
+        <div class='graph-column'>
+            <div class="plot-container">
+                {% include plots/box_office_distrib_compare.html %}
+                <div class="plot-caption">
+                    <p>A comparison of box office performance between movies with and without Oscar-winning actors.</p>
+                </div>
+            </div>
         </div>
     </div>
     <div class="chat-container">
@@ -505,16 +513,22 @@ round-images:
     </div>
 
     <h2>5. Genre Representation</h2>
-    <p>
-        The genres associated with Oscar-winning actors reveal a dominance of drama, romance, and comedy. However, action and adventure genres have 
-        also made notable contributions, often through technically excellent performances that push the boundaries of traditional acting. The success of 
-        films like <em>Gladiator</em> and <em>Mad Max: Fury Road</em> underscores the Academy’s growing appreciation for dynamic roles in unconventional 
-        genres.
-    </p>
-    <div class="graph-container">
-        <img src="/assets/images/placeholder-genre.webp" alt="Genre Distribution of Oscar-Winning Actors">
-        <div class="plot-caption">
-            <p>A visualization showing the genre breakdown of movies featuring Oscar-winning actors.</p>
+    <div class="two-columns">
+        <div class='graph-column'>
+            <div class="plot-container">
+                {% include plots/actors_genres_histo.html %}
+                <div class="plot-caption">
+                    <p>A visualization showing the genre breakdown of movies featuring Oscar-winning actors.</p>
+                </div>
+            </div>
+        </div>
+        <div class="text-column">
+            <p>
+                The genres associated with Oscar-winning actors reveal a dominance of drama, romance, and comedy. However, action and adventure genres have 
+                also made notable contributions, often through technically excellent performances that push the boundaries of traditional acting. The success of 
+                films like <em>Gladiator</em> and <em>Mad Max: Fury Road</em> underscores the Academy’s growing appreciation for dynamic roles in unconventional 
+                genres.
+            </p>
         </div>
     </div>
     <div class="chat-container">
@@ -528,29 +542,168 @@ round-images:
 </section>
 
 
+
+
 <hr class="section-sep">
 
-<!-- Section: Combination -->
-<section class="site-section alternative-color" id="section-5">
-    <h1>Combination</h1>
-    <h2>Finding the Winning Formula</h2>
-    {% for i in (1..5) %}
+<!-- Section: Combination Analysis -->
+<section class="site-section alternative-color" id="combination-analysis">
+    <h1>Combination Analysis: The Winning Formula</h1>
+
+    <p>
+        What happens when the best elements of a movie come together with exceptional performances by actors? In this section, we dive into the synergy 
+        between cinematic factors and acting prowess to uncover the ultimate Oscar-winning combination.
+    </p>
+
+    <h2>1. Genre and Actor Performance</h2>
     <div class="two-columns">
         <div class="text-column">
-            <h3>Graph {{ i }} Title</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tristique mi quis justo aliquet mollis.</p>
+            <p>
+                Certain genres not only dominate in terms of Best Picture wins but also align strongly with award-winning performances. Drama continues 
+                to lead the charge, with actors in biographical and socially conscious roles frequently earning accolades. However, action and adventure 
+                genres, often underrepresented in major awards, see a significant boost when paired with standout performances.
+            </p>
         </div>
-        <div class="graph-column">
-            <img src="/assets/images/sydney-2.webp" alt="Graph {{ i }}" class="graph-placeholder">
+        <div class="text-column">
+            <p>
+                These trends highlight how certain genres act as natural vehicles for delivering the kinds of performances the Academy loves. 
+                By carefully selecting genres and tailoring roles, filmmakers and actors alike can create the perfect harmony to win over the Oscars.
+            </p>
         </div>
     </div>
-    {% endfor %}
+    <div class="chat-container">
+        <div class="bubble alice">
+            <p><strong>Alice:</strong> "See, Bob? Drama is still the Academy’s darling, but action-packed performances are gaining ground."</p>
+        </div>
+        <div class="bubble bob">
+            <p><strong>Bob:</strong> "Maybe I should write a drama-action hybrid. Think <em>Schindler’s List</em> meets <em>Mad Max</em>."</p>
+        </div>
+    </div>
+
+    <h2>2. Budget, Box Office, and Actor Success</h2>
+    <p>
+        Financial factors play a nuanced role in Oscar success. High-budget films often dominate nominations, but it’s the storytelling and performances 
+        that turn nominations into wins. Films with moderate budgets but strong narratives frequently showcase award-winning performances, indicating 
+        that financial resources must be balanced with artistic intent.
+    </p>
+    <p>
+        While box office success can amplify a film’s visibility, the Academy consistently values substance over spectacle. The presence of award-winning 
+        actors in such films adds gravitas, creating a strong foundation for both critical and commercial success.
+    </p>
+    <div class="chat-container">
+        <div class="bubble bob">
+            <p><strong>Bob:</strong> "Alice, looks like splurging on big budgets isn’t enough. We need a great script too."</p>
+        </div>
+        <div class="bubble alice">
+            <p><strong>Alice:</strong> "Exactly, Bob. Money opens doors, but it’s the story and performances that win hearts."</p>
+        </div>
+    </div>
+
+    <h2>3. Collaborative Trends</h2>
+    <div class="two-columns">
+        <div class="text-column">
+            <p>
+                Successful actor-director collaborations frequently result in Oscar wins, showcasing the importance of creative synergy. Recurring 
+                partnerships, such as Scorsese and De Niro or Spielberg and Hanks, produce performances and films that consistently captivate the Academy. 
+            </p>
+        </div>
+        <div class="text-column">
+            <p>
+                Ensemble casts with multiple award-winning actors also increase a film’s chances of nominations and wins. By assembling a team with proven 
+                chemistry and talent, filmmakers can create productions that stand out in the crowded landscape of cinema.
+            </p>
+        </div>
+    </div>
+    <div class="chat-container">
+        <div class="bubble alice">
+            <p><strong>Alice:</strong> "Bob, maybe we need to form a dream team—an ensemble cast led by a trusted director."</p>
+        </div>
+        <div class="bubble bob">
+            <p><strong>Bob:</strong> "Sounds like a plan, Alice. Let’s call Spielberg. Again."</p>
+        </div>
+    </div>
+
+    <h2>4. Themes, Runtime, and Actor Age</h2>
+    <p>
+        Themes that explore societal issues or personal struggles resonate strongly with the Academy, particularly when paired with actors in their 
+        peak performance years. Additionally, runtime plays a key role, with films between 120–150 minutes often providing the depth required for 
+        both narrative and acting accolades.
+    </p>
+    <p>
+        Films that balance these elements—engaging themes, optimal runtime, and performances from actors at their peak—create an enduring impact. 
+        This balance is what transforms a great movie into an Oscar-winning masterpiece.
+    </p>
+    <div class="chat-container">
+        <div class="bubble alice">
+            <p><strong>Alice:</strong> "Bob, it’s clear—powerful themes and the right runtime are a winning combination."</p>
+        </div>
+        <div class="bubble bob">
+            <p><strong>Bob:</strong> "And don’t forget to cast actors at their peak. Time to start scouting for talent."</p>
+        </div>
+    </div>
 </section>
+
 
 <hr class="section-sep">
 
 <!-- Section: Conclusion -->
-<section class="site-section" id="section-6">
+<section class="site-section" id="conclusion">
+    <h1>Conclusion: Lights, Camera, Action!</h1>
+    
+    <p>
+        As our analysis draws to a close, it’s clear that creating an Oscar-winning movie is as much an art as it is a science. By diving into the data, 
+        we’ve uncovered trends, patterns, and synergies that define success at the Academy Awards. From the importance of strong narratives and standout 
+        performances to the nuanced role of budgets and collaborations, the journey has been both enlightening and inspiring.
+    </p>
+
+    <h2>Key Takeaways</h2>
+    <div class="two-columns">
+        <div class="text-column">
+            <p>
+                - Oscar-winning movies consistently showcase emotional depth, engaging themes, and often historical significance. 
+                Drama and biographical genres dominate, while action and adventure are beginning to break through.
+            </p>
+            <p>
+                - Winning actors bring not only their talent but often work within collaborative environments—trusted directors and ensemble casts amplify 
+                their performances, creating magic on screen.
+            </p>
+        </div>
+        <div class="text-column">
+            <p>
+                - Budget is a tool, not a guarantee. While high-budget films dominate nominations, moderate-budget films with compelling narratives 
+                frequently earn top honors.
+            </p>
+            <p>
+                - Timing is everything. Releasing films closer to awards season ensures maximum visibility, while runtimes in the 120–150 minute range 
+                provide enough space for stories to develop and resonate.
+            </p>
+        </div>
+    </div>
+
+    <h2>Final Thoughts</h2>
+    <p>
+        The recipe for an Oscar-winning movie isn’t set in stone. It’s a dynamic combination of art, strategy, and luck. Data provides a roadmap, 
+        but at the heart of every great film is passion and creativity—qualities that cannot be quantified.
+    </p>
+    <p>
+        For filmmakers and actors alike, understanding these trends offers an opportunity to innovate and connect with audiences in meaningful ways. 
+        By balancing tradition with bold new ideas, the next generation of cinema can continue to captivate and inspire.
+    </p>
+
+    <div class="chat-container">
+        <div class="bubble alice">
+            <p><strong>Alice:</strong> "Bob, looks like we’ve cracked the code. Now it’s time to bring our vision to life."</p>
+        </div>
+        <div class="bubble bob">
+            <p><strong>Bob:</strong> "You’re right, Alice. Let’s create something timeless—Oscars or not, it’s all about the story."</p>
+        </div>
+    </div>
+
+    <div class="centered">
+        <a href="#section-1" class="btn btn--primary">Back to the Beginning</a>
+    </div>
+</section>
+
     <h1>Conclusion</h1>
     <h2>Key Takeaways</h2>
     <p>Summarizing the trends and insights discovered in this project, along with implications for filmmakers and fans alike.</p>
