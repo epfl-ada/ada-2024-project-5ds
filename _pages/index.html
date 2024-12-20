@@ -86,6 +86,11 @@ round-images:
   </div>
 
   <p>They clink glasses, their collaboration set on a delicate balance of artistry and strategy.</p>
+
+   <!-- Add Image -->
+  <div class="image-container">
+    <img src="/assets/images/conversation.png" alt="Alice and Bob having a conversation about data vs. art" />
+</div>
 </section>
 
 
@@ -202,7 +207,28 @@ round-images:
                     </p>
                 </div>
             </div>
+            
+            <!-- New Content: Two Images Side by Side -->
+            <div class="two-columns">
+                <div class="graph-column">
+                    <div class="plot-container">
+                        {% include plots/Pearson_Correlation_Heatmap.html %}
+                        <div class="plot-caption">
+                            <p>Pearson Correlation Heatmap</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="graph-column">
+                    <div class="plot-container">
+                        {% include plots/Spearman_Correlation_Heatmap.html %}
+                        <div class="plot-caption">
+                            <p>Spearman Correlation Heatmap</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
 
         <!-- Patterns and Insights -->
         <div id="patterns" class="content-section" style="display: none;">
