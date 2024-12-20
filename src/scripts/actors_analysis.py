@@ -21,6 +21,8 @@ def data_cleaning(extended_films, winning_actors_info, imdb_ratings, new_film_da
 
 
     """
+
+    #Renaming each column to match the other datasets
     extended_films["Movie genres"] = extended_films["genres"]
     extended_films["Movie release date"] = extended_films["release_date"]
     extended_films["Movie languages"] = extended_films["languages"]
@@ -44,6 +46,7 @@ def data_cleaning(extended_films, winning_actors_info, imdb_ratings, new_film_da
     new_film_dataset['Movie genres'] = new_film_dataset['categories']
     new_film_dataset['Movie box office revenue'] = new_film_dataset['box_office']
 
+    #Dropping the column that are now useless
     new_film_dataset.drop(columns=['wikipedia_id', 'title', 'release_date', 'categories', 'box_office'], inplace=True)
 
     return extended_films, winning_actors_info, imdb_ratings, new_film_dataset
@@ -65,16 +68,16 @@ def deriving_actors_dataset_preprocessing(oscar_winning_actors, oscar_winning_ac
     - oscar_act_info (pd.DataFrame): The dataset containing information about Oscar-winning actors.
     - oscar_act_movies (pd.DataFrame): The dataset containing movies of Oscar-winning actors.
     - oscar_act_movies_all (pd.DataFrame): The dataset containing all movies of Oscar-winning actors.
-
-    
     """
     oscar_act = pd.concat([oscar_winning_actors, oscar_winning_actresses], axis=0)
     oscar_act_movies_cmu  = pd.merge(oscar_act, movie_cmu, left_on='film_id', right_on='Wikipedia movie ID')
     oscar_act_movies_cmu.drop(columns=['film_id'], inplace=True) 
     oscar_act_movies_extendedDS  = pd.merge(oscar_act, extended_films, left_on='film_id', right_on='Wikipedia movie ID')
     oscar_act_movies_extendedDS.drop(columns=['film_id'], inplace=True)
+
     # Convert the 'Movie release date' column to datetime
     oscar_act_movies_extendedDS['Movie release date'] = pd.to_datetime(oscar_act_movies_extendedDS['Movie release date'])
+
     # Format the column to only show Year-Month-Day
     oscar_act_movies_extendedDS['Movie release date'] = oscar_act_movies_extendedDS['Movie release date'].dt.strftime('%Y-%m-%d')
     oscar_act_movies = pd.concat([oscar_act_movies_cmu, oscar_act_movies_extendedDS], axis=0)
@@ -87,6 +90,7 @@ def deriving_actors_dataset_preprocessing(oscar_winning_actors, oscar_winning_ac
     oscar_act_info['Movie release year'] = oscar_act_info['Movie release date'].apply(standardize_date_format)
     oscar_act_info.drop(columns=['sexLabel'], inplace=True)  #Remove the columns that are in character.csv
     duplicates_with_different_ages = oscar_act_info.groupby('Actor name').filter(lambda x: x['page_id'].nunique() > 1)
+
     # Prepare data for box office revenue evolution
     oscar_revenue_data_corrected = oscar_act_info[['Movie box office revenue', 'Movie release year']].dropna()
     oscar_revenue_data_corrected = oscar_revenue_data_corrected.dropna(subset=['Movie release year'])
@@ -96,6 +100,7 @@ def deriving_actors_dataset_preprocessing(oscar_winning_actors, oscar_winning_ac
     revenue_by_year_corrected = oscar_revenue_data_corrected.groupby('Year')['Movie box office revenue'].sum().reset_index()
     oscar_act_info = pd.merge(oscar_act_info, character[['Wikipedia movie ID', 'Actor name', 'Actor age at movie release', 'Actor date of birth', 'Actor ethnicity','Character name', 'Freebase actor ID']], on=['Wikipedia movie ID', 'Actor name'])
     
+    # Merge the character dataset with the film_full dataset
     oscar_act_movies_all = character[character['Freebase actor ID'].isin(oscar_act_info['Freebase actor ID'])]
     oscar_act_movies_all = oscar_act_movies_all.drop(columns=['Freebase movie ID', 'Movie release date'])
     film_full['Movie genres'] = (
@@ -109,8 +114,16 @@ def deriving_actors_dataset_preprocessing(oscar_winning_actors, oscar_winning_ac
 
     return revenue_by_year_corrected, oscar_act_info, oscar_act_movies, oscar_act_movies_all
 
+# Function to standardize date format
 def standardize_date_format(date):
     """
+    Standardizes the date format to extract the year.
+
+    Parameters:
+    - date: The date to be standardized.
+
+    Returns:
+    - The standardized year.
     """
     if pd.isna(date):  # Handle NaN values explicitly
         return None  # Or return a default value, e.g., -1 or an empty string
@@ -121,6 +134,18 @@ def standardize_date_format(date):
     return None  # Handle missing or invalid data
 
 def get_genre_count(oscar_act_info, oscar_act_movies_all):
+    """
+    Returns the count of movies by genre for Oscar-winning actors and actresses.
+
+    Parameters:
+    - oscar_act_info (pd.DataFrame): The dataset containing information about Oscar-winning actors.
+    - oscar_act_movies_all (pd.DataFrame): The dataset containing all movies of Oscar-winning actors.
+
+    Returns:
+    - filtered_genre_counts (pd.DataFrame): The count of movies by genre for Oscar-winning actors and actresses.
+
+    """
+
     # Create a set of unique (Actor name, Wikipedia movie ID) combinations for rewards
     best_act_movies = set(
         zip(oscar_act_info['Actor name'], oscar_act_info['Wikipedia movie ID'])
@@ -150,6 +175,16 @@ def get_genre_count(oscar_act_info, oscar_act_movies_all):
     return filtered_genre_counts
 
 def get_pie_genre_counts(oscar_movies_all):
+    """
+    Returns the count of movies by genre for Oscar-winning actors and actresses.
+
+    Parameters:
+    - oscar_movies_all (pd.DataFrame): The dataset containing all movies of Oscar-winning actors.
+
+    Returns:
+    - genre_counts (pd.DataFrame): The count of movies by genre for Oscar-winning actors and actresses.
+    """
+
     # Extract and clean the genres
     genres_data = oscar_movies_all[['Movie genres']].dropna()
     genres_data = genres_data.assign(Movie_genres_split=genres_data['Movie genres'].str.split(', ')).explode('Movie_genres_split')
@@ -163,12 +198,25 @@ def get_pie_genre_counts(oscar_movies_all):
     return genre_counts
 
 def get_movies_and_first_oscar_date(group):
+    """
+    Returns the number of movies before the first Oscar-winning movie and the date of the first Oscar win.
+
+    Parameters:
+    - group (pd.DataFrame): A group of movies by an actor/actress.
+
+    Returns:
+    - movies_before_first_oscar (int): The number of movies before the first Oscar-winning movie.
+
+    """
+
     # Sort movies by release date
     group["Movie release date"] = group["Movie release date"].apply(lambda x: x.split('-')[0] if isinstance(x, str) else x).astype(int)
     group = group.sort_values(by='Movie release date')
+
     # Find the first Oscar-winning movie and its date
     first_oscar = group.loc[group['Best Actor Reward']].nsmallest(1, 'Movie release date')
     first_oscar_date = first_oscar['Movie release date'].iloc[0] if not first_oscar.empty else None
+
     # Count movies before the first Oscar-winning movie
     if pd.notnull(first_oscar_date):
         movies_before = group[group['Movie release date'] < first_oscar_date].shape[0]
@@ -179,6 +227,18 @@ def get_movies_and_first_oscar_date(group):
 
 
 def evolution_imdb_scores(imdb_ratings, oscar_act_movies_all):
+    """
+    Returns the evolution of IMDb scores for movies starring Oscar-winning actors/actresses.
+
+    Parameters:
+    - imdb_ratings (pd.DataFrame): The IMDb ratings dataset.
+    - oscar_act_movies_all (pd.DataFrame): The dataset containing all movies of Oscar-winning actors.
+
+    Returns:
+    - rating_evolution (pd.DataFrame): The evolution of IMDb scores for movies starring Oscar-winning actors/actresses.
+    """
+
+    # Clean up the data and merge the datasets
     imdb_ratings['Movie name'] = imdb_ratings['Movie name'].str.strip()
     filtered_ratings = imdb_ratings[['Movie name', 'Movie release date', 'imdb_score']]
     filtered_oscar_actors = oscar_act_movies_all[['Movie name', 'Movie release date', 'Actor name', 'Best Actor Reward']]
@@ -207,6 +267,7 @@ def evolution_imdb_scores(imdb_ratings, oscar_act_movies_all):
 def show_imdb_scores(rating_evolution):
     """
     Visualizes the evolution of IMDb scores for movies starring Oscar-winning actors/actresses.
+
     Parameters:
     rating_evolution (pd.DataFrame): A DataFrame containing the following columns:
         - 'Movie release date': The release year of the movie.
@@ -214,14 +275,9 @@ def show_imdb_scores(rating_evolution):
         - 'imdb_score': The IMDb score of the movie.
         - 'Best Actor Reward': Boolean indicating if the actor/actress won the Best Actor/Actress award.
         - 'Movie name': The name of the movie.
-    The function generates an interactive Plotly scatter plot with the following features:
-    - Different colors for different actors/actresses.
-    - Conditional marker sizes and symbols based on whether the actor/actress won the Best Actor/Actress award.
-    - Hover text displaying detailed information about each movie.
-    - Dropdown menu to filter the plot by individual actors/actresses or show all.
-    - Legend indicating the actors/actresses.
+    
     Returns:
-    None: The function displays the plot using Plotly's `fig.show()` method.
+    The function displays the plot using Plotly's `fig.show()` method.
     """
     # Adjust x-axis range to start before the first movie release date
     rating_evolution['Movie release date'] = rating_evolution['Movie release date'].astype(int)
@@ -368,6 +424,15 @@ def show_imdb_scores(rating_evolution):
     fig.show()
 
 def get_actor_genre_distribution(oscar_act_movies_all):
+    """
+    Returns the distribution of movie genres for Oscar-winning actors and actresses.
+
+    Parameters:
+    - oscar_act_movies_all (pd.DataFrame): The dataset containing all movies of Oscar-winning actors.
+
+    Returns:
+    - genre_counts (pd.DataFrame): The distribution of movie genres for Oscar-winning actors and actresses.
+    """
     # First, let's get the genres for each actor
     genre_by_actor = oscar_act_movies_all.groupby('Actor name')['Movie genres'].apply(lambda x: ','.join([str(g) for g in x if pd.notna(g)])).reset_index()
 
@@ -417,19 +482,41 @@ def get_actor_genre_distribution(oscar_act_movies_all):
     return genre_counts
 
 
-def bubble_graph(winning_actors_info, oscar_winning_actors, oscar_winning_actresses, film_full, character, imdb_ratings, oscar_winning_films):
+def bubble_graph(winning_actors_info, oscar_winning_actors, oscar_winning_actresses, film_full, 
+                 character, imdb_ratings, oscar_winning_films):
+    """
+    Returns the rating_box_office needed for the bubble graph for the analysis.
+
+    Parameters:
+    - winning_actors_info (pd.DataFrame): The winning actors information dataset.
+    - oscar_winning_actors (pd.DataFrame): The dataset containing Oscar-winning actors.
+    - oscar_winning_actresses (pd.DataFrame): The dataset containing Oscar-winning actresses.
+    - film_full (pd.DataFrame): The full film dataset.
+    - character (pd.DataFrame): The character dataset.
+    - imdb_ratings (pd.DataFrame): The IMDb ratings dataset.
+    - oscar_winning_films (pd.DataFrame): The dataset containing Oscar-winning films.
+
+    Returns:
+    - rating_box_office (pd.DataFrame): The dataset needed for the bubble graph.
+    
+    """
+    # Combine Oscar-winning actors and actresses into a single DataFrame
     oscar_act = pd.concat([oscar_winning_actors, oscar_winning_actresses], axis=0)
 
+    # Merge the combined DataFrame with the full film dataset
     oscar_act_movies_new = pd.merge(oscar_act, film_full, left_on='film_id', right_on='Wikipedia movie ID')
     oscar_act_movies_new.drop(columns=['film_id'], inplace=True)
 
+    # Merge the winning actors information with the new movies DataFrame for both actors and actresses
     oscar_actress_info_new = pd.merge(winning_actors_info, oscar_act_movies_new, left_on='page_id', right_on='Actress id')
     oscar_actors_info_new = pd.merge(winning_actors_info, oscar_act_movies_new, left_on='page_id', right_on='Actors id')
     oscar_act_info_new = pd.concat([oscar_actors_info_new, oscar_actress_info_new], axis=0)
 
+    # Merge the character dataset with the new actors information DataFrame
     oscar_act_info_new = pd.merge(oscar_act_info_new, character[['Wikipedia movie ID', 'Actor name', 'Actor age at movie release', 'Actor date of birth', 'Actor ethnicity', 'Freebase actor ID']], on=['Wikipedia movie ID', 'Actor name'])
     oscar_act_info_new['Movie release date'] = oscar_act_info_new['Movie release date'].apply(standardize_date_format)
 
+    # Filter the character dataset to include only those with Freebase actor IDs in the new actors information DataFrame
     oscar_act_new_movies_all = character[character['Freebase actor ID'].isin(oscar_act_info_new['Freebase actor ID'])]
     oscar_act_new_movies_all = oscar_act_new_movies_all.drop(columns=['Freebase movie ID', 'Movie release date'])
     oscar_act_new_movies_all = oscar_act_new_movies_all.merge(film_full, on='Wikipedia movie ID', how='left')
@@ -446,35 +533,46 @@ def bubble_graph(winning_actors_info, oscar_winning_actors, oscar_winning_actres
         axis=1
     )
 
+    # Clean up the IMDb ratings data
     imdb_ratings['Movie name'] = imdb_ratings['Movie name'].str.strip()
 
+    # Filter relevant columns from IMDb ratings and new actors information DataFrame
     filtered_ratings = imdb_ratings[['Movie name', 'Movie release date', 'imdb_score']]
     filtered_oscar_act_new = oscar_act_info_new[['Movie name', 'Movie release date', 'Actor name', 'Movie box office revenue']]
 
+    # Merge the filtered ratings with the filtered new actors information DataFrame
     merged_data = pd.merge(filtered_ratings, filtered_oscar_act_new, on=['Movie name', 'Movie release date'])
 
+    # Select relevant columns for the rating and box office DataFrame
     rating_box_office = merged_data[['Actor name', 'Movie name', 'Movie release date', 'imdb_score', 'Movie box office revenue']]
     rating_box_office['Movie release date'] = pd.to_numeric(rating_box_office['Movie release date'], errors='coerce')
 
+    # Filter the DataFrame for movies released from 1980 onwards and drop rows with missing values
     rating_box_office = rating_box_office[rating_box_office['Movie release date'] >= 1980]
     rating_box_office = rating_box_office.dropna(subset=['Movie box office revenue', 'imdb_score'])
 
+    # Filter the full film dataset to include only Oscar-winning films
     new_film_dataset_oscar = film_full[film_full['Wikipedia movie ID'].isin(oscar_winning_films['Page ID'])]
     new_film_dataset_oscar['Movie release date'] = pd.to_datetime(new_film_dataset_oscar['Movie release date'], errors='coerce').dt.year
 
+    # Filter relevant columns from IMDb ratings and new Oscar-winning films DataFrame
     filtered_ratings = imdb_ratings[['Movie name', 'Movie release date', 'imdb_score']]
     filtered_oscar_act_new = new_film_dataset_oscar[['Movie name', 'Movie release date', 'Movie box office revenue', 'nbOscarNominated', 'nbOscarReceived']]
 
+    # Merge the filtered ratings with the filtered new Oscar-winning films DataFrame
     merged_data = pd.merge(filtered_ratings, filtered_oscar_act_new, on=['Movie name', 'Movie release date'])
 
+    # Select relevant columns for the rating and box office DataFrame
     rating_box_office = merged_data[['Movie name', 'Movie release date', 'imdb_score', 'Movie box office revenue', 'nbOscarNominated', 'nbOscarReceived']]
 
+    # Filter the DataFrame for movies released from 1980 onwards and drop rows with missing values
     rating_box_office = rating_box_office[rating_box_office['Movie release date'] >= 1980]
     rating_box_office = rating_box_office.dropna(subset=['Movie box office revenue', 'imdb_score'])
 
     # Filter out rows with missing or invalid data in critical columns
     rating_box_office = rating_box_office.dropna(subset=['Movie release date', 'imdb_score', 'Movie box office revenue', 'nbOscarNominated'])
     rating_box_office = rating_box_office[rating_box_office['Movie name'] != 'Titanic']
+
     # Ensure `nbOscarNominated` is numeric
     rating_box_office['nbOscarNominated'] = pd.to_numeric(
         rating_box_office['nbOscarNominated'], errors='coerce'
