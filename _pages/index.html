@@ -927,6 +927,52 @@ round-images:
     </div>
       <!-- Add Image -->
 
+<section id="mad-lab-intro">
+<h1>Welcome to Alice's Mad Lab!</h1>
+<p>
+    Have you ever wondered what makes a movie Oscar-worthy? Is it the gripping storyline, the stellar performances, or the jaw-dropping cinematography? 
+    Alice, our data-driven mastermind, believes that the key to Oscar glory lies in uncovering the patterns hidden within the data. 
+    Bob, on the other hand, thinks it's all about instinct and passion. So, they’ve built this lab to settle the debate once and for all!
+</p>
+<p>
+    In Alice's Mad Lab, you get to step into the shoes of a movie director. Enter the details of your movie, and let the lab’s cutting-edge 
+    prediction model reveal whether your masterpiece stands a chance of winning an Oscar. It’s data meets creativity—where art and science collide!
+</p>
+<blockquote>
+    <strong>Alice:</strong> "Let’s prove that even art can have a winning formula!"
+    <br>
+    <strong>Bob:</strong> "Sure, but don’t forget to leave room for magic."
+</blockquote>
+</section>
+    
+
+<section id="mad-lab">
+    <h1>Alice's Mad Lab</h1>
+    <form>
+        <label for="movie-title">Movie Title:</label>
+        <input id="movie-title" type="text" placeholder="Enter the movie title" required />
+
+        <label for="categories">Genre:</label>
+        <select id="categories">
+            <option value="Drama">Drama</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Action">Action</option>
+            <option value="Horror">Horror</option>
+            <option value="Romance">Romance</option>
+        </select>
+
+        <label for="box-office">Box Office Revenue ($M):</label>
+        <input id="box-office" type="number" placeholder="Enter box office revenue" required />
+
+        <label for="runtime">Runtime (Minutes):</label>
+        <input id="runtime" type="number" placeholder="Enter runtime" required />
+
+        <button type="button" onclick="handlePrediction()">Predict</button>
+    </form>
+    <div id="prediction-result"></div>
+</section>
+    
+
 </section>
     <a href="#" class="btn btn--primary">Back to Top</a>
 </section>
