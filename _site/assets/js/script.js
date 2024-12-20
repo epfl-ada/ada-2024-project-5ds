@@ -13,14 +13,14 @@ function showContent(sectionId) {
     document.getElementById(sectionId).style.display = 'block';
 }
 
-
 function switchGraph() {
     // Get the graph container and caption
     const graphContainer = document.getElementById('graph-container');
     const graphCaption = document.getElementById('graph-caption');
-
+    const i = 0;
     // Check the current graph and toggle
-    if (graphContainer.innerHTML.includes('actors_genres_histo.html')) {
+    if (i == 0) {
+        console.log('Switching to the new graph');
         // Switch to the new graph
         graphContainer.innerHTML = `
             {% include plots/genres_cloud.html %}
@@ -28,6 +28,7 @@ function switchGraph() {
                 <p>A visualization showing another perspective on genre representation.</p>
             </div>
         `;
+        i = i + 1;
     } else {
         // Switch back to the original graph
         graphContainer.innerHTML = `
@@ -36,5 +37,6 @@ function switchGraph() {
                 <p>A visualization showing the genre breakdown of movies featuring Oscar-winning actors.</p>
             </div>
         `;
+        i = i - 1;
     }
 }

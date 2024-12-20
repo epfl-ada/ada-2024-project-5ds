@@ -18,6 +18,6 @@ main:
     blank: false
     description: "See how movies and actors combine for cinematic magic."
   - title: "Conclusion"
-    url: /#section-6
+    url: /#conclusion
     blank: false
     description: "Wrap up the analysis with key takeaways and implications."
