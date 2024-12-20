@@ -2,29 +2,28 @@
 /* General layout for two-columns */
 /* Two-columns Layout */
 .two-columns {
-    display: flex; /* Align text and plot side by side */
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
-    gap: 2rem; /* Add space between the two columns */
-    margin-bottom: 2rem; /* Add spacing below the section */
-    justify-content: space-between; /* Distribute columns evenly */
-}
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+    gap: 1.5rem;
+  }
   
   .text-column {
     flex: 1;
-    max-width: 40%;
+    max-width: 50%;
     font-size: 1rem;
     line-height: 1.6;
     padding: 1rem;
   }
   
-.graph-column {
-    flex: 1; /* Allow the column to grow or shrink as needed */
-    max-width: 48%; 
-    display: flex; /* Center-align the plot inside the column */
-    flex-direction: column; /* Ensure the plot and caption stack properly */
+  .graph-column {
+    flex: 1;
+    max-width: 50%;
+    display: flex;
     justify-content: center;
     align-items: center;
-}
+  }
+  
   .graph-column img {
     max-width: 100%;
     height: auto;
