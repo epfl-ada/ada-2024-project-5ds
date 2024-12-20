@@ -121,4 +121,3 @@ This enriched dataset will allow us to explore factors affecting both individual
 - Data story hosted on GitHub Pages.
 - README reflecting the comprehensive project scope.
 
-This README reflects updates aligning with Milestone 3 objectives while retaining key elements from previous milestones. Let me know if additional adjustments are required.
