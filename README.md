@@ -1,79 +1,118 @@
-# ADA 2024 - Team 5DS -- "Predicting success through the winning formula: What makes a movie gain an Oscar ?"
+# ADA 2024 - Team 5DS -- "Predicting Success Through the Winning Formula: What Makes a Movie Gain an Oscar?"
 
-### Abstract:
+## Abstract:
+In this project, we aim to identify the factors that make a movie Oscar-worthy. By analyzing an extensive dataset of movies and actors, we aim to uncover patterns and correlations that may reveal a "winning formula" for cinematic recognition. This exploration is motivated by the influence awards have on careers, industry standards, and public interest. Through this analysis, we hope to provide actionable insights for filmmakers and audiences about the elements contributing to Oscar success.
 
-In this project, we’re diving into what makes a movie stand out enough to win an oscar. By analyzing a dataset of movies, we aim to uncover trends across factors such as genre, theme, and actor characteristics, questioning if there exists a “winning formula” for cinematic recognition. This choice is mostly mostivated because award recognition not only boosts a film’s prestige but can also propel careers and influence industry standards, from actors to screenwriters with a deep mark on our society nowadays.
+Our approach also examines how both actors and films benefit from awards, particularly Oscars, and delves into trends surrounding genres, themes, and cast features. This can help uncover how these elements influence recognition by award panels.
 
-Our approach looks at how both actors and films benefit from awards, espcially from an oscar. By exploring these patterns, we aim to understand the main elements that make a movie award-worthy. This could give helpful insights to both filmmakers and audiences about how genre, themes, and cast play a role in making a movie stand out to award panels.
+## Explore Our Data Story
+Dive into our interactive data story to explore the insights and visualizations behind the Oscar-winning formula. [Visit Our Website](https://epfl-ada.github.io/ada-2024-project-5ds/#top)
 
-### Subquestions we want to answer:
+## Research Questions:
+### Core Questions:
+1. What factors (e.g., genre, themes, or plot elements) correlate with a movie’s likelihood of winning an Oscar?
+2. How do actor characteristics (e.g., age, gender, ethnicity) influence their chances of receiving an Oscar?
+3. What role does diversity play in Oscar nominations and wins for actors and films?
+4. Is there a relationship between box office performance and Oscar success?
+5. How does sentiment in movie plots impact their chances of winning?
 
-In this analysis there are several reasearch subquestions we want to answer : 
-- Is there a correlation between an actor's physical characteristics (age, height, ethnicity) and their likelihood of winning an Oscar?
-- Do the Best Actor and Best Supporting Actor awards reflect different patterns in the diversity of actors, particularly in terms of underrepresented groups?
-- Do specific TV tropes associated with characters played by actors increase their chances of receiving an Oscar?
-- Is there a correlation between the movie's phenotype and/or box-office sales and/or plots and the award it won?
-- How does public reviews translate a movie's prestige?
-- How do a movie’s genre, themes, and plot elements correlate with its likelihood of winning an Oscar?
+### Sub-questions:
+1. Is there a correlation between an actor's physical characteristics (age, height, ethnicity) and their likelihood of winning an Oscar?
+2. Do the Best Actor and Best Supporting Actor awards reflect different patterns in diversity, particularly regarding underrepresented groups?
+3. How do public reviews translate a movie's prestige?
 
-### Used Dataset
+## Dataset:
+We utilize the CMU Summary Corpus (updated to 2024), supplemented with IMDb and Rotten Tomatoes scores, to analyze data spanning decades. This dataset provides information on award-winning films, actors, genres, and audience/critic reviews. To ensure relevance, we:
 
-We will use the CMU Summary Corpus, updated to 2024, which includes movies from 2015 to 2024 sourced from Wikipedia. Our focus will be on identifying award-winning films from this period and before, specifically those recognized by the Oscar. In addition,  we also gathered comprehensive data on Oscar-winning actors, actresses, supporting actors, and supporting actresses, as well as winning films. This includes a detailed list of films with the number of awards won and nominations received from 1927 to 2023. It will allow us to analyze both individual and film-specific factors that contribute to winning an Oscar. To enrich our dataset, we will also include Rotten Tomatoes scores out of 100 for both critics and audience reviews.
+- Standardized dates (birth and release years).
+- Extracted key features like genres, languages, and ethnicities.
+- Addressed missing values, retaining NaNs to leverage other variables.
 
-We believe that this comprehensive dataset will provide enough information to address the questions we aim to explore in our analysis.
+This enriched dataset allows us to explore factors affecting both individual and film-specific Oscar success.
 
-### Methods
+## Methods:
+### Data Cleaning:
+- Standardized dates for consistency.
+- Extracted key attributes such as movie genres and actor characteristics.
+- Retained NaN values where relevant.
 
-When extracting data from the CMU dataset, we found that additional processing and filtering were necessary to ensure the data was clean and relevant for our analysis.
+### Exploratory Data Analysis (EDA):
+- Visualized relationships between factors such as actor characteristics, movie genres, and award success.
+- Explored distributions, correlations, and trends.
 
-#### Data cleaning 
-The birth dates were standardized by retaining only the year of birth, and the same process was applied to the movie release dates. Additionally, we extracted important features such as movie genres, languages, and other relevant columns required for our analysis. For ethnicities, we also managed to extract the different values.
+### Advanced Analysis:
+1. **Character Representation and Success:**
+   - Clustering characters by traits (e.g., gender, archetypes) to identify patterns in Oscar-winning roles.
+   - Statistical tests confirming correlations between character traits and awards.
 
-We are aware that our dataframe contains certain NaN values for some columns. However, we have decided to retain them in order to utilize the other available variables.
+2. **Actor Diversity:**
+   - Created a diversity index and analyzed its impact on lead vs. supporting roles.
+   - Explored historical trends and recent shifts in representation.
 
-#### Initial analyses
-Before diving into complex modeling, we performed exploratory data analysis to understand the distribution and trends in our dataset. This included inspecting correlations, missing values, and data ranges to ensure accuracy and completeness.
+3. **Film Genre and Box Office:**
+   - Modeled relationships between genres, box office revenues, and award outcomes.
+   - Built a predictive model evaluating genre and performance correlations.
 
-#### Graph Plotting
-Various graphs were plotted to visualize relationships between factors such as actor characteristics, movie genres, and award success. These visualizations helped in identifying patterns and potential correlations that will be explored further in our analysis.
+4. **Sentiment Analysis:**
+   - Assessed how plot sentiments (e.g., positive, negative) align with Oscar outcomes.
+   - Evaluated sentiment’s interaction with genre and theme.
 
-### Tasks
+5. **Website Development:**
+   - Created a user-friendly website hosted on GitHub Pages, showcasing the project, visualizations, and interactive elements.
+   - Website contributions were led by Yassine Wahidy, ensuring an engaging platform for presenting findings.
 
-##### Task 1: Character Representation and Oscar Success
+6. **Data Story Development:**
+   - Developed the data story to narrate the insights and findings of the project.
+   - The data story integrates analysis, visualizations, and a clear narrative to effectively communicate the "Oscar-winning formula."
+   - Contributions to the data story were a collaborative effort across the team, ensuring accessibility and engagement for a broad audience.
 
-This task will analyze how different character types are represented in Oscar-winning films. We will examine attributes such as gender, age, role significance (lead or supporting), and personality archetypes using the "character" dataset. The goal is to identify if certain character traits are more likely to lead to Oscar nominations or wins. We will also assess if diverse representation—such as non-traditional roles or underrepresented groups—affects Oscar success. This task will involve clustering characters by traits and using statistical tests to uncover patterns in Oscar-winning films.
+### Graph Plotting:
+- Generated visualizations such as world maps, runtime distributions, genre dominance, and sentiment word clouds to identify trends and patterns.
 
-##### Task 2: Actor Diversity Analysis
+## Tasks:
+### Task 1: Character Representation and Oscar Success
+- Analyze attributes such as gender, age, role significance, and personality archetypes using clustering techniques.
+- Perform statistical tests to assess the significance of these traits in Oscar outcomes.
 
-This task will focus on quantifying the diversity of actors in Oscar-winning films. An index will be created to assess the diversity of actors based on ethnicity, gender, and nationality. Statistical comparisons will be made between lead and supporting actors to determine if there is a significant difference in diversity between the two roles. The analysis will also explore whether diversity plays a significant role in Oscar nominations and wins, with potential implications for the broader industry.
+### Task 2: Actor Diversity Analysis
+- Quantify diversity in Oscar-winning films by creating an index encompassing ethnicity, gender, and nationality.
+- Compare diversity trends in lead versus supporting roles.
+- Use historical and recent data to identify shifts in representation.
 
-##### Task 3: Film Genre and Box Office Performance Analysis
+### Task 3: Film Genre and Box Office Performance
+- Analyze the relationship between genres and Oscar success using descriptive statistics and predictive modeling.
+- Evaluate the impact of box office performance on Oscar nominations and wins.
+- Incorporate external data (e.g., Rotten Tomatoes scores) for enhanced analysis.
 
-This task will investigate how genre and box office performance correlate with Oscar nominations and wins. Using the tvtropes dataset, we will classify films by genre and explore how genre affects the likelihood of winning an Oscar. We will also examine the relationship between a film’s box office performance and its chances of winning an Oscar. A predictive model will be developed to assess how well box office and genre performance can predict Oscar nominations and wins.
+### Task 4: Sentiment Analysis
+- Assess sentiment polarity and emotional tones in plot summaries to determine correlations with Oscar success.
+- Investigate sentiment distribution across genres and themes.
+- Develop a predictive model combining sentiment, genre, and box office features.
 
-##### Task 4: Network Modeling of Relationships Between Films, Actors, and Awards
+### Task 5: Website and Data Story Development
+- Design and implement an interactive and visually appealing website using Jekyll and GitHub Pages.
+- Develop the data story to narrate the insights and findings of the project.
+- The data story integrates analysis, visualizations, and a clear narrative to effectively communicate the "Oscar-winning formula."
+- Contributions to the data story were a collaborative effort across the team, ensuring accessibility and engagement for a broad audience.
 
-In this task, we will create a network model in Neo4j to explore the relationships between films, actors, and awards. The network will include nodes representing films, actors, genres, and awards, with relationships linking films to their genres, actors, and the awards they have received. This model will be used to generate insights into the connections between different attributes, such as how film genre and actor diversity are linked to Oscar outcomes.
+## Timeline:
+- **15 Nov 2024:** Data handling, preprocessing, and initial exploratory analysis.
+- **30 Nov 2024:** Complete all tasks and perform preliminary analysis.
+- **6 Dec 2024:** Compile final analysis and draft Jekyll site.
+- **13 Dec 2024:** Write final report.
+- **20 Dec 2024:** Submit final deliverables.
 
+## Team Contributions:
+- Thierry Sokhn: Focused on data cleaning, character representation analysis, and diversity analysis.
+- Yassine Wahidy: Led website development and worked on genre and box office analysis.
+- Khalil Ouazzani Chahdi: Contributed to diversity analysis and exploratory data analysis.
+- William Jallot: Played a key role in data visualization and supporting exploratory data analysis.
+- Amine Bengelloun: Worked on sentiment analysis and contributed to genre and box office analysis.
 
-##### Task 5: Sentiment Analysis of Plot Summaries and Oscar Outcomes
-This task will analyze the sentiment of film plot summaries to determine its impact on Oscar outcomes. Using the "plot_summaries" dataset, we will use our plots classififcation into positive, negative, or mixed sentiments in order to explore if specific types of emotional narratives are more common among Oscar winners. Additionally, we will investigate sentiment distribution across genres to see if certain sentiments are more likely to lead to nominations or wins. This task may also involve building a predictive model that uses sentiment, genre, and other factors to predict Oscar success.
+## Deliverables:
+- Final GitHub repository containing cleaned datasets, scripts, notebooks, and visualizations.
+- Data story hosted on GitHub Pages.
+- README reflecting the comprehensive project scope.
 
-### Proposed timeline
-
-- `15.11.2024`: Data Handling and Preprocessing & Initial Exploratory Data Analysis.
-- `30.11.2024`: Finishing the 5 tasks (each member of the team doing one), and preliminary analysis
-- `06.12.2024`: Commpile the final analysis, and writing on Jekyll.
-- `13.12.2024`: Writing of the final report. 
-- `20.12.2024`: Deadline for submitting.  
-
-### Team Organization
-
-Each member will take care of one task (specified before):
-- Thierry Sokhn: Task 1 & 2
-- Yassine Wahidy: Task 3
-- Khalil Ouazzani Chahdi: Task 2 & 4
-- William Jallot: Task 4
-- Amine Bengelloun: Task 3 & 5
-
-Each team member is responsible of their own task, while of course being responsible for writing their part of the data story and creating the final visualizations. 
+## Call to Action:
+Explore our findings, visualizations, and data story. [Visit Our Website](https://epfl-ada.github.io/ada-2024-project-5ds/#top) to see how data illuminates the path to Oscar glory.
