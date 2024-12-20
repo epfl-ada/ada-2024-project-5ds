@@ -6,22 +6,22 @@
     flex-wrap: wrap; /* Allow wrapping on smaller screens */
     gap: 2rem; /* Add space between the two columns */
     margin-bottom: 2rem; /* Add spacing below the section */
-    justify-content: space-between; 
+    justify-content: space-between; /* Distribute columns evenly */
 }
   
   .text-column {
     flex: 1;
-    max-width: 48%;
+    max-width: 40%;
     font-size: 1rem;
     line-height: 1.6;
     padding: 1rem;
   }
   
 .graph-column {
-    flex: 1; 
+    flex: 1; /* Allow the column to grow or shrink as needed */
     max-width: 48%; 
-    display: flex; 
-    flex-direction: column; 
+    display: flex; /* Center-align the plot inside the column */
+    flex-direction: column; /* Ensure the plot and caption stack properly */
     justify-content: center;
     align-items: center;
 }
@@ -194,64 +194,38 @@ ul {
 
 /* Plot Container */
 .plot-container {
-    display: flex; /* Flex layout for content alignment */
-    flex-direction: column; /* Stack caption below the plot */
-    align-items: center; /* Center content horizontally */
-    justify-content: center; /* Center content vertically */
-    width: 100%; /* Ensure container spans the full width of its parent */
-    max-width: 800px; /* Set a maximum width for larger screens */
-    margin: 1rem auto; /* Center the container and add spacing around it */
-    padding: 1rem; /* Add internal spacing */
-    border: 1px solid #ddd; /* Light border for distinction */
-    border-radius: 8px; /* Rounded corners for aesthetics */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem; /* Space between plots */
+    padding: 0.5rem;
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 8px; /* Rounded corners */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     background-color: #ffffff; /* White background for contrast */
-    overflow: hidden; /* Prevent content from spilling out */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hover effect */
 }
 
-/* Responsive Plot Image or Embedded Iframe */
-.plot-container img,
-.plot-container iframe {
-    width: 100%; /* Ensure plot or image fits the container width */
-    max-height: 500px; /* Limit height to prevent oversized plots */
-    height: auto; /* Maintain aspect ratio */
+/* Plot Image */
+.plot-container .plot-image {
+    height: auto;
     border-radius: 4px; /* Slight rounding for consistency */
 }
 
 /* Plot Caption */
 .plot-container .plot-caption {
-    margin-top: 0.5rem; /* Add space between the plot and caption */
-    font-size: 0.9rem; /* Slightly smaller text for captions */
-    color: #555; /* Softer color for captions */
-    text-align: center; /* Center-align caption text */
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #555; /* Softer text for captions */
+    text-align: center; /* Center-align captions */
 }
 
 /* Hover Effect for Plot Container */
 .plot-container:hover {
-    transform: scale(1.02); /* Subtle zoom-in effect */
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+    transform: scale(1.02); /* Slight zoom-in effect */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
 }
-
-/* Mobile Responsiveness for Plot Container */
-@media (max-width: 768px) {
-    .plot-container {
-        max-width: 100%; /* Allow container to span full width on small screens */
-        margin: 1rem 0; /* Adjust spacing for mobile */
-        padding: 0.8rem; /* Reduce padding for smaller screens */
-    }
-
-    .plot-container img,
-    .plot-container iframe {
-        max-height: 300px; /* Further limit plot height on small screens */
-    }
-
-    .plot-container .plot-caption {
-        font-size: 0.85rem; /* Slightly smaller text for captions */
-    }
-}
-
-
 
 
 /* Dropdown Button */
@@ -304,16 +278,4 @@ ul {
 /* Dynamic Content Sections */
 .content-section {
     margin-top: 1rem;
-}
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-    .two-columns {
-        flex-direction: column; /* Stack the columns vertically */
-    }
-
-    .text-column,
-    .graph-column {
-        max-width: 100%; /* Take full width on smaller screens */
-        padding: 1rem; /* Adjust padding for better readability */
-    }
 }
