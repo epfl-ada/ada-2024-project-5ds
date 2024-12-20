@@ -22,7 +22,7 @@ Dive into our interactive data story to explore the insights and visualizations 
 3. How do public reviews translate a movie's prestige?
 
 ## Dataset:
-We utilize the CMU Summary Corpus (updated to 2024), supplemented with IMDb and Rotten Tomatoes scores, to analyze data spanning decades. This dataset provides information on award-winning films, actors, genres, and audience/critic reviews. To ensure relevance, we:
+We utilize the CMU Summary Corpus (updated to 2024), supplemented with IMDb scores, to analyze data spanning decades. This dataset provides information on award-winning films, actors, genres, and audience/critic reviews. To ensure relevance, we:
 
 - Standardized dates (birth and release years).
 - Extracted key features like genres, languages, and ethnicities.
@@ -36,7 +36,7 @@ This enriched dataset allows us to explore factors affecting both individual and
 - Extracted key attributes such as movie genres and actor characteristics.
 - Retained NaN values where relevant.
 
-### Exploratory Data Analysis (EDA):
+### Exploratory Data Analysis:
 - Visualized relationships between factors such as actor characteristics, movie genres, and award success.
 - Explored distributions, correlations, and trends.
 
