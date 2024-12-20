@@ -11,6 +11,16 @@ import pycountry_convert as pc
 
 # Function to extract only the digits outside parentheses
 def extract_digits(value):
+    """
+    Extracts leading digits from a string and returns them as an integer.
+    
+    Parameters:
+    value (str or any): The input value from which to extract leading digits.
+    
+    Returns:
+    int or any: The extracted leading digits as an integer if the input 
+    is a string starting with digits, otherwise the original input value.
+    """
     if isinstance(value, str): 
         match = re.match(r'^\d+', value) 
         return int(match.group()) if match else None
@@ -53,6 +63,17 @@ def clean_film_full(film_full):
 
 # Function to create heatmap
 def create_heatmap(corr_matrix, title):
+    """
+    Function to create a heatmap of the correlation matrix.
+
+    Parameters:
+    corr_matrix (pd.DataFrame): The correlation matrix to visualize.
+    title (str): The title of the heatmap.
+
+    Returns:
+    showing the heatmap
+
+    """
     continuous_cols = ['box_office', 'runtime', 'reviewScores', 'capitalCost', 'nbOscarReceived', 'nbOscarNominated']
 
     fig = go.Figure(data=go.Heatmap(
@@ -89,6 +110,17 @@ def create_heatmap(corr_matrix, title):
 
 
 def create_pvalue_table(pvalues_df, title):
+    """
+    Creates a table of p-values for the t-test between two groups.
+
+    Parameters:
+    pvalues_df (pd.DataFrame): The DataFrame containing the p-values.
+    title (str): The title of the table.
+
+    Returns:
+    showing the table
+    """
+
     fig = go.Figure(data=[go.Table(
         header=dict(values=["Variable", "P-Value"],
                     fill_color='lightgray',
@@ -107,6 +139,17 @@ def create_pvalue_table(pvalues_df, title):
     fig.show()
 
 def compute_pvalues(group1, group2, columns):
+    """
+    Computes the p-values for the t-test between two groups for each column.
+
+    Parameters:
+    group1 (pd.DataFrame): The first group for the t-test.
+    group2 (pd.DataFrame): The second group for the t-test.
+    columns (list): The list of columns for which to compute the p-values.
+
+    Returns:
+    dict: A dictionary containing the p-values for each column.
+    """
     p_values = {}
     for col in columns:
         stat, p_val = ttest_ind(group1[col], group2[col], alternative='two-sided')
@@ -114,12 +157,30 @@ def compute_pvalues(group1, group2, columns):
     return p_values
 
 def country_to_continent(country_name):
+    """
+    Convert a country name to its continent name.
+    
+    Parameters:
+    country_name (str): The name of the country.
+
+    Returns:
+    str: The name of the continent.
+    """
     country_alpha2 = pc.country_name_to_country_alpha2(country_name)
     country_continent_code = pc.country_alpha2_to_continent_code(country_alpha2)
     country_continent_name = pc.convert_continent_code_to_continent_name(country_continent_code)
     return country_continent_name
 
 def compute_countries_count(film_full):
+    """
+    Compute the number of Oscars received by each country.
+
+    Parameters:
+    film_full (pd.DataFrame): The full dataset of films.
+
+    Returns:
+    pd.DataFrame: A DataFrame containing the number of Oscars received by each country.
+    """
     #Remove Na values in the countries column
     countries = film_full.dropna(subset=['countries'])
     #Handle the formatting of the columns
@@ -157,6 +218,16 @@ def compute_countries_count(film_full):
     return count
 
 def analyze_genres(film_full):
+    """
+    Analyze the genres of the films.
+    
+    Parameters:
+    film_full (pd.DataFrame): The full dataset of films.
+
+    Returns:
+    pd.DataFrame: A DataFrame containing the genres of the films.
+    """
+
     # Drop rows with NaN in the 'categories' column
     genres_analyzed = film_full.dropna(subset=['categories'])
 
@@ -189,6 +260,15 @@ def analyze_genres(film_full):
     return genres_analyzed
 
 def year_formatting(film_full):
+    """
+    Perform the formatting of the year column.
+
+    Parameters:
+    film_full (pd.DataFrame): The full dataset of films.
+
+    Returns:
+    pd.DataFrame: A DataFrame containing the formatted year column.
+    """
     year_analysis = film_full.dropna(subset = 'release_date')
     year_analysis['year'] = year_analysis['release_date'].apply(lambda s : s[: 4])
     year_analysis[year_analysis['year'] == 'http'] = np.nan
@@ -197,41 +277,71 @@ def year_formatting(film_full):
     return year_analysis
 
 def run_time_analysis(year_analysis):
+    """
+    Perform the analysis of the run time of the films.
+    
+    Parameters:
+    year_analysis (pd.DataFrame): The DataFrame containing the year analysis.
+
+    Returns:
+    pd.DataFrame: A DataFrame containing the mean run time per year.
+    """
+    # Filter out films with runtime greater than 1000 minutes
     run_time_analysis = year_analysis[year_analysis['runtime'] <= 1000]
 
-    mean_run_time_per_year_not_oscar = run_time_analysis[run_time_analysis['nbOscarReceived'] == 0].groupby(['year']).agg({'runtime' : 'mean'}).reset_index()
-    mean_run_time_oscar = run_time_analysis[run_time_analysis['nbOscarReceived'] > 0].groupby('year').agg({'runtime' : 'mean'}).reset_index()
+    # Calculate mean runtime per year for films that did not receive an Oscar
+    mean_run_time_per_year_not_oscar = run_time_analysis[run_time_analysis['nbOscarReceived'] == 0].groupby(['year']).agg({'runtime': 'mean'}).reset_index()
+    # Calculate mean runtime per year for films that received at least one Oscar
+    mean_run_time_oscar = run_time_analysis[run_time_analysis['nbOscarReceived'] > 0].groupby('year').agg({'runtime': 'mean'}).reset_index()
 
-
+    # Determine the minimum and maximum year for films that received an Oscar
     min_year_oscar = mean_run_time_oscar['year'].min()
     max_year_oscar = mean_run_time_oscar['year'].max()
 
-    mean_run_time_per_year_not_oscar =  mean_run_time_per_year_not_oscar[mean_run_time_per_year_not_oscar['year'] >= min_year_oscar]
-    mean_run_time_per_year_not_oscar =  mean_run_time_per_year_not_oscar[mean_run_time_per_year_not_oscar['year'] <= max_year_oscar]
+    # Filter the non-Oscar films to match the year range of Oscar films
+    mean_run_time_per_year_not_oscar = mean_run_time_per_year_not_oscar[mean_run_time_per_year_not_oscar['year'] >= min_year_oscar]
+    mean_run_time_per_year_not_oscar = mean_run_time_per_year_not_oscar[mean_run_time_per_year_not_oscar['year'] <= max_year_oscar]
 
-    mean_run_time_per_year_not_oscar = mean_run_time_per_year_not_oscar.rename(columns={'runtime' : 'mean run time without oscar'})
-    mean_run_time_oscar = mean_run_time_oscar.rename(columns={'runtime' : 'mean run time with oscar'})
+    # Rename columns for clarity
+    mean_run_time_per_year_not_oscar = mean_run_time_per_year_not_oscar.rename(columns={'runtime': 'mean run time without oscar'})
+    mean_run_time_oscar = mean_run_time_oscar.rename(columns={'runtime': 'mean run time with oscar'})
 
+    # Merge the two DataFrames on the year column
     mean_run_time = pd.merge(mean_run_time_oscar, mean_run_time_per_year_not_oscar, on='year', how='outer')
 
-    mean_title_length_per_year_not_oscar = year_analysis[year_analysis['nbOscarReceived'] == 0].groupby(['year']).agg({'title_length' : 'mean'}).reset_index()
-    mean_title_length_oscar = year_analysis[year_analysis['nbOscarReceived'] > 0].groupby('year').agg({'title_length' : 'mean'}).reset_index()
+    # Calculate mean title length per year for films that did not receive an Oscar
+    mean_title_length_per_year_not_oscar = year_analysis[year_analysis['nbOscarReceived'] == 0].groupby(['year']).agg({'title_length': 'mean'}).reset_index()
+    # Calculate mean title length per year for films that received at least one Oscar
+    mean_title_length_oscar = year_analysis[year_analysis['nbOscarReceived'] > 0].groupby('year').agg({'title_length': 'mean'}).reset_index()
 
-    mean_title_length_per_year_not_oscar = mean_title_length_per_year_not_oscar.rename(columns={'title_length' : 'title length without oscar'})
-    mean_title_length_oscar  = mean_title_length_oscar.rename(columns={'title_length' : 'mean title length with oscar'})
+    # Rename columns for clarity
+    mean_title_length_per_year_not_oscar = mean_title_length_per_year_not_oscar.rename(columns={'title_length': 'title length without oscar'})
+    mean_title_length_oscar = mean_title_length_oscar.rename(columns={'title_length': 'mean title length with oscar'})
 
-
+    # Determine the minimum and maximum year for films that received an Oscar
     min_year_oscar = mean_title_length_oscar['year'].min()
     max_year_oscar = mean_run_time_per_year_not_oscar['year'].max()
 
-    mean_title_length_per_year_not_oscar=  mean_title_length_per_year_not_oscar[mean_title_length_per_year_not_oscar['year'] >= min_year_oscar]
-    mean_title_length_per_year_not_oscar=  mean_title_length_per_year_not_oscar[mean_title_length_per_year_not_oscar['year'] <= max_year_oscar]
+    # Filter the non-Oscar films to match the year range of Oscar films
+    mean_title_length_per_year_not_oscar = mean_title_length_per_year_not_oscar[mean_title_length_per_year_not_oscar['year'] >= min_year_oscar]
+    mean_title_length_per_year_not_oscar = mean_title_length_per_year_not_oscar[mean_title_length_per_year_not_oscar['year'] <= max_year_oscar]
 
-    mean_title_length = pd.merge(mean_title_length_oscar , mean_title_length_per_year_not_oscar, on='year', how='outer')
+    # Merge the two DataFrames on the year column
+    mean_title_length = pd.merge(mean_title_length_oscar, mean_title_length_per_year_not_oscar, on='year', how='outer')
 
     return mean_run_time, mean_title_length
 
 def sentiment_analysis(plot_summaries, year_analysis):
+    """
+    Perform the sentiment analysis of the plot summaries.
+
+    Parameters:
+    plot_summaries (pd.DataFrame): The DataFrame containing the plot summaries.
+    year_analysis (pd.DataFrame): The DataFrame containing the year analysis.
+
+    Returns:
+    pd.DataFrame: A DataFrame containing the mean sentiment scores per year.
+    """
     summary_analysis = pd.merge(year_analysis, plot_summaries, left_on='wikipedia_id', right_on='Wikipedia movie ID')
 
     mean_positive_per_year_not_oscar = summary_analysis[summary_analysis['oscar']].groupby(['year']).agg({'sentiment_positive' : 'mean', 'sentiment_negative' : 'mean', 'sentiment_compound' : 'mean'}).reset_index()

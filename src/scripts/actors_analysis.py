@@ -4,6 +4,23 @@ import plotly.express as px
 import plotly.graph_objects as go
 
 def data_cleaning(extended_films, winning_actors_info, imdb_ratings, new_film_dataset):
+    """
+    Data cleaning for the datasets used in the analysis.
+
+    Parameters:
+    - extended_films (pd.DataFrame): The extended films dataset.
+    - winning_actors_info (pd.DataFrame): The winning actors information dataset.
+    - imdb_ratings (pd.DataFrame): The IMDb ratings dataset.
+    - new_film_dataset (pd.DataFrame): The new film dataset.
+
+    Returns:
+    - extended_films (pd.DataFrame): The cleaned extended films dataset.
+    - winning_actors_info (pd.DataFrame): The cleaned winning actors information dataset.
+    - imdb_ratings (pd.DataFrame): The cleaned IMDb ratings dataset.
+    - new_film_dataset (pd.DataFrame): The cleaned new film dataset.
+
+
+    """
     extended_films["Movie genres"] = extended_films["genres"]
     extended_films["Movie release date"] = extended_films["release_date"]
     extended_films["Movie languages"] = extended_films["languages"]
@@ -32,7 +49,25 @@ def data_cleaning(extended_films, winning_actors_info, imdb_ratings, new_film_da
     return extended_films, winning_actors_info, imdb_ratings, new_film_dataset
 
 def deriving_actors_dataset_preprocessing(oscar_winning_actors, oscar_winning_actresses, movie_cmu, extended_films, film_full, winning_actors_info, character):
+    """
+    Data preprocessing for the actors dataset.
+
+    Parameters:
+    - oscar_winning_actors (pd.DataFrame): The dataset containing Oscar-winning actors.
+    - movie_cmu (pd.DataFrame): The CMU movie dataset.
+    - extended_films (pd.DataFrame): The extended films dataset.
+    - film_full (pd.DataFrame): The full film dataset.
+    - winning_actors_info (pd.DataFrame): The winning actors information dataset.
+    - character (pd.DataFrame): The character dataset.
+
+    Returns:
+    - revenue_by_year_corrected (pd.DataFrame): The total box office revenue by year.
+    - oscar_act_info (pd.DataFrame): The dataset containing information about Oscar-winning actors.
+    - oscar_act_movies (pd.DataFrame): The dataset containing movies of Oscar-winning actors.
+    - oscar_act_movies_all (pd.DataFrame): The dataset containing all movies of Oscar-winning actors.
+
     
+    """
     oscar_act = pd.concat([oscar_winning_actors, oscar_winning_actresses], axis=0)
     oscar_act_movies_cmu  = pd.merge(oscar_act, movie_cmu, left_on='film_id', right_on='Wikipedia movie ID')
     oscar_act_movies_cmu.drop(columns=['film_id'], inplace=True) 
@@ -75,6 +110,8 @@ def deriving_actors_dataset_preprocessing(oscar_winning_actors, oscar_winning_ac
     return revenue_by_year_corrected, oscar_act_info, oscar_act_movies, oscar_act_movies_all
 
 def standardize_date_format(date):
+    """
+    """
     if pd.isna(date):  # Handle NaN values explicitly
         return None  # Or return a default value, e.g., -1 or an empty string
     if isinstance(date, str):  # If it's a string (datetime-like), process it
@@ -168,6 +205,24 @@ def evolution_imdb_scores(imdb_ratings, oscar_act_movies_all):
     return rating_evolution
 
 def show_imdb_scores(rating_evolution):
+    """
+    Visualizes the evolution of IMDb scores for movies starring Oscar-winning actors/actresses.
+    Parameters:
+    rating_evolution (pd.DataFrame): A DataFrame containing the following columns:
+        - 'Movie release date': The release year of the movie.
+        - 'Actor name': The name of the actor/actress.
+        - 'imdb_score': The IMDb score of the movie.
+        - 'Best Actor Reward': Boolean indicating if the actor/actress won the Best Actor/Actress award.
+        - 'Movie name': The name of the movie.
+    The function generates an interactive Plotly scatter plot with the following features:
+    - Different colors for different actors/actresses.
+    - Conditional marker sizes and symbols based on whether the actor/actress won the Best Actor/Actress award.
+    - Hover text displaying detailed information about each movie.
+    - Dropdown menu to filter the plot by individual actors/actresses or show all.
+    - Legend indicating the actors/actresses.
+    Returns:
+    None: The function displays the plot using Plotly's `fig.show()` method.
+    """
     # Adjust x-axis range to start before the first movie release date
     rating_evolution['Movie release date'] = rating_evolution['Movie release date'].astype(int)
     x_range = [1975, 2020]  
