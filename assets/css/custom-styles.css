@@ -30,7 +30,12 @@
     line-height: 1.6;
     padding: 1rem;
   }
-  
+  .text-column, .graph-column {
+    flex: 1;
+    min-width: 300px;
+    max-width: 48%; 
+    box-sizing: border-box;
+}
   .graph-column {
     flex: 1;
     max-width: 50%;
