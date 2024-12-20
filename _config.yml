@@ -18,7 +18,7 @@ baseurl                  : "/ada-2024-project-5ds/" # the subpath of your site, 
 repository               : "epfl-ada/ada-2024-project-5ds" # GitHub username/repo-name
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : "/assets/images/logo.webp" # Site logo displayed in the masthead
-show-popup               : true # set to false if you don't need / want to show a cookie-banner / cdn-usage popup.
+show-popup               : false # set to false if you don't need / want to show a cookie-banner / cdn-usage popup.
                                 # Edit the popup itself in the respective /includes file
 masthead_title           : " "  # Overrides the website title displayed in the masthead, use " " for no title
 sticky-masthead          : true # if true, masthead/navigation bar will stay visible when the user scrolls down.

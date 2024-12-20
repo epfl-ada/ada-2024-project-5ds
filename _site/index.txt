@@ -815,6 +815,6 @@ the rest of the site, but can still edit whatever he/she needs to edit.
           hideDropdown();
       }
     </script>
-    <script src="/assets/js/switchGraph.js"></script>
+    <script src="/ada-2024-project-5ds/assets/js/script.js"></script>
   </body>
 </html>

@@ -634,13 +634,17 @@ round-images:
         <!-- Graph Container -->
         <div class="graph-column">
             <div class="plot-container" id="graph-container">
-                {% include plots/actors_genres_histo.html %}
+                <div id="graph1" class="graph">
+                    {% include plots/actors_genres_histo.html %}
+                </div>
+                <div id="graph2" class="graph" style="display: none;">
+                    {% include plots/genres_cloud.html %}
+                </div>
                 <div class="plot-caption" id="graph-caption">
                     <p>A visualization showing the genre breakdown of movies featuring Oscar-winning actors.</p>
                 </div>
             </div>
         </div>
-     <script src="/assets/js/switchGraph.js"></script>
          <!-- Button to Switch Graph -->
     <div class="button-container">
         <button class="btn" onclick="switchGraph()">Switch Graph</button>

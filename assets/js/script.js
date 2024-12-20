@@ -13,30 +13,26 @@ function showContent(sectionId) {
     document.getElementById(sectionId).style.display = 'block';
 }
 
+let isFirstGraph = true;
+
 function switchGraph() {
-    // Get the graph container and caption
-    const graphContainer = document.getElementById('graph-container');
+    // Get graph elements
+    const graph1 = document.getElementById('graph1');
+    const graph2 = document.getElementById('graph2');
     const graphCaption = document.getElementById('graph-caption');
-    const i = 0;
-    // Check the current graph and toggle
-    if (i == 0) {
-        console.log('Switching to the new graph');
-        // Switch to the new graph
-        graphContainer.innerHTML = `
-            {% include plots/genres_cloud.html %}
-            <div id="graph-caption" class="plot-caption">
-                <p>A visualization showing another perspective on genre representation.</p>
-            </div>
-        `;
-        i = i + 1;
+
+    // Toggle visibility
+    if (isFirstGraph) {
+        graph1.style.display = 'none';
+        graph2.style.display = 'block';
+        graphCaption.innerHTML = `<p>A visualization showing another perspective on genre representation.</p>`;
     } else {
-        // Switch back to the original graph
-        graphContainer.innerHTML = `
-            {% include plots/actors_genres_histo.html %}
-            <div id="graph-caption" class="plot-caption">
-                <p>A visualization showing the genre breakdown of movies featuring Oscar-winning actors.</p>
-            </div>
-        `;
-        i = i - 1;
+        graph1.style.display = 'block';
+        graph2.style.display = 'none';
+        graphCaption.innerHTML = `<p>A visualization showing the genre breakdown of movies featuring Oscar-winning actors.</p>`;
     }
+
+    // Toggle graph state
+    isFirstGraph = !isFirstGraph;
 }
+
