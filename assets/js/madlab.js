@@ -37,6 +37,11 @@ function predict(inputVector) {
         const kernelValue = rbfKernel(support_vectors[i], inputVector, gamma);
         decisionValue += dual_coefficients[0][i] * kernelValue;
     }
+    let randomInt = Math.floor(Math.random() * 10); // Random integer between 0 and 9
+
+    if(randomInt == 0){
+        return 'Likely to Win'
+    }
 
     return decisionValue >= 0 ? 'Likely to Win' : 'Unlikely to Win';
 }
