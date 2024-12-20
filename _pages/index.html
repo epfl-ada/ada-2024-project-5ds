@@ -404,9 +404,16 @@ round-images:
         In this section, we analyze the trends and factors that distinguish Oscar-winning actors from the rest, exploring their demographics, roles, and 
         industry impact.
     </p>
-
     <h2>1. Diversity: A Global Perspective</h2>
-    <div class="two-columns">
+    <div class="single-column">
+        <div class="graph-column">
+            <div class="plot-container">
+                {% include plots/map_oscar_actors.html %}
+                <div class="plot-caption">
+                    <p>A visualization showing the global distribution of Oscar-winning actors.</p>
+                </div>
+            </div>
+        </div>
         <div class="text-column">
             <p>
                 The majority of Oscar-winning actors hail from North America, particularly the United States, and Europe, with the United Kingdom leading the way. 
@@ -415,14 +422,6 @@ round-images:
                 performances in culturally significant roles, often receive critical acclaim and could signify a shifting trend toward greater diversity in the 
                 industry.
             </p>
-        </div>
-        <div class="graph-column">
-            <div class="plot-container">
-                {% include plots/map_oscar_actors.html %}
-                <div class="plot-caption">
-                    <p>A visualization showing the global distribution of Oscar-winning actors.</p>
-                </div>
-            </div>
         </div>
     </div>
     <div class="chat-container">
@@ -435,16 +434,22 @@ round-images:
     </div>
 
     <h2>2. Gender Representation</h2>
-    <p>
-        Male actors have historically dominated the Oscars, particularly in the Best Actor and Supporting Actor categories. However, female actors have 
-        been gaining ground, with the Academy increasingly recognizing performances that challenge societal norms or depict powerful narratives. Films 
-        like <em>The Favourite</em> and <em>Nomadland</em> showcase how complex, multifaceted female characters resonate with both audiences and the 
-        Academy.
-    </p>
-    <div class="plot-container">
-        <h1>JSP C QUELLE GRAPH</h1>
-        <div class="plot-caption">
-            <p>A visualization of gender distribution among Oscar-winning actors over the decades.</p>
+    <div class="single-column">
+        <div class="graph-column">
+            <div class="plot-container">
+                <h1>JSP C QUELLE GRAPH</h1>
+                <div class="plot-caption">
+                    <p>A visualization of gender distribution among Oscar-winning actors over the decades.</p>
+                </div>
+            </div>
+        </div>
+        <div class="text-column">
+            <p>
+                Male actors have historically dominated the Oscars, particularly in the Best Actor and Supporting Actor categories. However, female actors have 
+                been gaining ground, with the Academy increasingly recognizing performances that challenge societal norms or depict powerful narratives. Films 
+                like <em>The Favourite</em> and <em>Nomadland</em> showcase how complex, multifaceted female characters resonate with both audiences and the 
+                Academy.
+            </p>
         </div>
     </div>
     <div class="chat-container">
@@ -457,7 +462,15 @@ round-images:
     </div>
 
     <h2>3. Age Dynamics</h2>
-    <div class="two-columns">
+    <div class="single-column">
+        <div class="graph-column">
+            <div class="plot-container">
+                {% include plots/age_dsitrib_actors_actresses.html %}
+                <div class="plot-caption">
+                    <p>A visualization of the age distribution among Oscar-winning actors and actresses.</p>
+                </div>
+            </div>
+        </div>
         <div class="text-column">
             <p>
                 The age distribution of Oscar-winning actors reveals distinct patterns. Male actors tend to win between the ages of 35 and 55, maintaining strong 
@@ -465,14 +478,6 @@ round-images:
                 of 40. This disparity reflects broader trends in the industry, where opportunities for actresses tend to diminish with age, even as their male 
                 counterparts continue to thrive in leading roles.
             </p>
-        </div>
-        <div class='graph-column'>
-            <div class="plot-container">
-                {% include plots/age_dsitrib_actors_actresses.html %}
-                <div class="plot-caption">
-                    <p>A visualization of the age distribution among Oscar-winning actors and actresses.</p>
-                </div>
-            </div>
         </div>
     </div>
     <div class="chat-container">
