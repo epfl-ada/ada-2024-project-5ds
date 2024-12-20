@@ -490,7 +490,15 @@ round-images:
     </div>
 
     <h2>4. Box Office and Actor Success</h2>
-    <div class="two-columns">
+    <div class="single-column">
+        <div class="graph-column">
+            <div class="plot-container">
+                {% include plots/box_office_distrib_compare.html %}
+                <div class="plot-caption">
+                    <p>A comparison of box office performance between movies with and without Oscar-winning actors.</p>
+                </div>
+            </div>
+        </div>
         <div class="text-column">
             <p>
                 Movies featuring Oscar-winning actors generally exhibit more consistent box office performance compared to films without such actors. However, 
@@ -498,14 +506,6 @@ round-images:
                 critical acclaim. While Oscar-winning actors bring consistency, the presence of these actors alone is not a guaranteed formula for box office 
                 dominance.
             </p>
-        </div>
-        <div class='graph-column'>
-            <div class="plot-container">
-                {% include plots/box_office_distrib_compare.html %}
-                <div class="plot-caption">
-                    <p>A comparison of box office performance between movies with and without Oscar-winning actors.</p>
-                </div>
-            </div>
         </div>
     </div>
     <div class="chat-container">
