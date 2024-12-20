@@ -14,6 +14,22 @@
     text-align: center; /* Center the heading text */
     margin-bottom: 1rem; /* Space below heading */
 }
+/* Wrapper for Graphs and Centered Text */
+.graphs-with-text {
+    display: flex; /* Use Flexbox */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center-align items horizontally */
+    gap: 1.5rem; /* Space between graphs and text */
+    margin-bottom: 2rem; /* Add space below the section */
+}
+/* Centered Text Below Graphs */
+.centered-text {
+    text-align: center; /* Center-align the text */
+    max-width: 800px; /* Limit the text width */
+    font-size: 1rem; /* Standard font size */
+    line-height: 1.6; /* Add line height for readability */
+    padding: 1rem; /* Add padding around the text */
+}
 
 .two-columns {
     display: flex;
