@@ -2,17 +2,6 @@
 /* General layout for two-columns */
 /* Two-columns Layout */
 
-body {
-    overflow-x: hidden; /* Prevent horizontal scrolling */
-}
-
-* {
-    box-sizing: border-box; /* Ensure padding and border are included in width/height */
-}
-
-
-
-
 .single-column {
     display: flex; /* Flexbox for alignment */
     flex-direction: column; /* Stack items vertically */

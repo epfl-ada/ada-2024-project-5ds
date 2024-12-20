@@ -538,6 +538,23 @@ round-images:
             <p><strong>Bob:</strong> "Good to know, Alice. Let’s aim for a December release for maximum impact."</p>
         </div>
     </div>
+    <div class="single-column">
+        <div class="graph-column">
+            <div class="plot-container">
+                {% include plots/bubble_graph.html %}
+                <div class="plot-caption">
+                    <p>Bubble Graph: IMDb score vs Movie Release Date</p>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Centered Text Below Graph -->
+        <div class="centered-text">
+            <p>
+                By taking a look at the graph, we can derive that the period from 1990 to 2010 appears to be a "golden age" for critically and commercially successful films, with many highly nominated movies achieving moderate-to-high IMDb scores and significant box office revenue. However, large bubbles (meaning high revenue) do not consistently align with the highest IMDb scores, meaning that no trend can be deduced from this graph.
+            </p>
+        </div>
+    </div>
 </section>
 
 
@@ -599,6 +616,24 @@ round-images:
             </p>
         </div>
     </div>
+    <div class="single-column">
+        <div class="graph-column">
+            <div class="plot-container">
+                {% include plots/genre_by_actor.html%}
+                <div class="plot-caption">
+                    <p>Major film genres by oscar-winning Actors</p>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Centered Text Below Graph -->
+        <div class="centered-text">
+            <p>
+                By looking at the genre distribution of movies by oscar-winning actors, we can deduce that comedy and drama are well distributed across actors, while action/adventure dominate.
+
+            </p>
+        </div>
+    </div>
     <div class="chat-container">
         <div class="bubble alice">
             <p><strong>Alice:</strong> "Poor John Wayne, he really gave everything he got to win his award."</p>
@@ -606,8 +641,25 @@ round-images:
         <div class="bubble bob">
             <p><strong>Bob:</strong> "The same can't be said for a few lucky ones like Marlee Martin."</p>
         </div>
+       
 
-
+    <div class="single-column">
+        <div class="graph-column">
+            <div class="plot-container">
+                {% include plots/imdb_scores_actors.html%}
+                <div class="plot-caption">
+                    <p>Evolution of IMDb Scores for Movies Starring Oscar-Winning Actresses/Actresses before and after the rewards</p>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Centered Text Below Graph -->
+        <div class="centered-text">
+            <p>
+                From a quick visualization of the graph, we can see that movies for which actors won Oscars generally achieve high IMDb ratings, which means that the movie is not only acclaimed by the critics, but also by the audience, achieving above 7 scores. Post-1990, the cluster of scores becomes tighter, potentially indicating an industry-wide shift toward more consistently well-received films for actors in leading roles. Even though some actors are associated with consistently high-scoring films, others show broader variation, indicating that winning an Oscar doesn’t guarantee only top-rated projects.
+            </p>
+        </div>
+    </div>
     <h2>3. Gender Representation</h2>
     <div class="single-column">
         <div class="graph-column">

@@ -42,4 +42,3 @@ function switchGraph() {
     // Toggle graph state
     isFirstGraph = !isFirstGraph;
 }
-
