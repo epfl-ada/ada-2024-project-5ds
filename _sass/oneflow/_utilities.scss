@@ -264,6 +264,11 @@ body:hover .visually-hidden button {
     border-radius: 50%;
 }
 
+.round-image img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
 
 /*
    Image-Text-Rows
