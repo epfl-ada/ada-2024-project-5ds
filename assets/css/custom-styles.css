@@ -7,23 +7,10 @@
     margin-bottom: 2rem;
     gap: 1.5rem;
   }
-
-.single-column h2 {
-    text-align: center; /* Centers the heading text */
-    margin-bottom: 1rem; /* Adds spacing below the heading */
-}
-
-
-.single-column {
-    display: flex;
-    flex-direction: column; /* Stack items vertically */
-    align-items: center; /* Center all items horizontally */
-    gap: 1rem; /* Space between elements */
-    margin-bottom: 2rem; /* Add spacing below the section */
-}
+  
   .text-column {
     flex: 1;
-    max-width: 50%;
+    max-width: 40%;
     font-size: 1rem;
     line-height: 1.6;
     padding: 1rem;
