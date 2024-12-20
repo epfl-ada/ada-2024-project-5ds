@@ -7,6 +7,15 @@ import plotly.graph_objects as go
 from scipy.stats import ttest_ind
 import pycountry
 import pycountry_convert as pc
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+from sklearn.svm import SVC
+from sklearn.model_selection import GridSearchCV, cross_val_score
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, classification_report
+from imblearn.over_sampling import SMOTE
+from sklearn.compose import make_column_transformer
+import joblib
 
 
 # Function to extract only the digits outside parentheses
@@ -360,3 +369,147 @@ def sentiment_analysis(plot_summaries, year_analysis):
     mean_positive.dropna(subset=['mean_positive_oscar', 'mean_positive_not_oscar'], inplace=True)
     
     return mean_positive, summary_analysis
+
+def process_and_train(data, output_dir='.'):
+      """
+      Preprocess data, train an SVM model, and save artifacts.
+  
+      Parameters:
+          data (pd.DataFrame): Input dataset containing 'categories', 'nbOscarReceived', 'title_length', 'box_office', and 'runtime'.
+          output_dir (str): Directory to save the trained model and preprocessing objects.
+  
+      Returns:
+          dict: Dictionary containing the best parameters, cross-validation scores, and classification report.
+      """
+      # Drop rows with NaN in the 'categories' column
+      data = data.dropna(subset=['categories'])
+  
+      # Create target column 'oscar'
+      data['oscar'] = data['nbOscarReceived'] >= 1
+  
+      # Select relevant columns
+      data = data[['oscar', 'title_length', 'categories', 'box_office', 'runtime']]
+  
+      # Clean the 'categories' column
+      data['categories'] = (
+          data['categories']
+          .str.strip('[]')
+          .str.replace("'", '')
+          .str.replace('"', '')
+          .str.strip()
+      )
+  
+      # Process categories column into clean lists
+      data['categories'] = data['categories'].apply(lambda s: [x.strip() for x in s.split(',')] if isinstance(s, str) else [])
+      data['categories'] = data['categories'].apply(lambda s: list(set(filter(None, s))))
+      data['categories'] = data['categories'].apply(lambda s: [x.lower().capitalize() for x in s])
+  
+      # Explode categories and drop NA rows
+      data = data.explode('categories')
+      data = data.dropna(subset=['oscar', 'title_length', 'categories', 'box_office', 'runtime'])
+  
+      # Features and target
+      y = data['oscar']
+      X = data[['title_length', 'categories', 'box_office', 'runtime']]
+  
+      # Preprocess categorical and numerical features before SMOTE
+      pre_smote_preprocessor = make_column_transformer(
+          (StandardScaler(with_mean=False), ['title_length', 'box_office', 'runtime']),
+          (OneHotEncoder(drop='first', sparse_output=True), ['categories'])
+      )
+  
+      # Apply preprocessing before SMOTE
+      X_preprocessed = pre_smote_preprocessor.fit_transform(X)
+  
+      # Resample data using SMOTE
+      smote = SMOTE(random_state=42)
+      X_resampled, y_resampled = smote.fit_resample(X_preprocessed, y)
+  
+      # Define preprocessing for the pipeline
+      pipeline_preprocessor = ColumnTransformer(
+          transformers=[
+              ('num', StandardScaler(with_mean=False), slice(0, X_resampled.shape[1]))
+          ]
+      )
+  
+      # Create the SVM pipeline with RBF kernel
+      svm_pipeline = Pipeline(steps=[
+          ('preprocessor', pipeline_preprocessor),
+          ('svm', SVC(kernel='rbf', class_weight='balanced', probability=True, random_state=42))
+      ])
+  
+      # Hyperparameter tuning
+      param_grid = {
+          'svm__C': [10],
+          'svm__gamma': [24]
+      }
+      grid_search = GridSearchCV(svm_pipeline, param_grid, cv=5, scoring='balanced_accuracy', verbose=2, n_jobs=-1)
+      grid_search.fit(X_resampled, y_resampled)
+  
+      # Best parameters
+      best_params = grid_search.best_params_
+  
+      # Evaluate the best model
+      best_model = grid_search.best_estimator_
+      cv_scores = cross_val_score(best_model, X_resampled, y_resampled, cv=5, scoring='recall')
+  
+      # Fit the model and generate predictions
+      best_model.fit(X_resampled, y_resampled)
+      y_pred = best_model.predict(pre_smote_preprocessor.transform(X))
+  
+      # Compute confusion matrix
+      cm = confusion_matrix(y, y_pred)
+      disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=best_model.named_steps['svm'].classes_)
+      disp.plot(cmap='Blues')
+      plt.title('Confusion Matrix (RBF Kernel)')
+      plt.show()
+  
+      # Classification report
+      report = classification_report(y, y_pred, output_dict=True)
+  
+      # Save artifacts
+      joblib.dump(pre_smote_preprocessor, f'{output_dir}/pre_smote_preprocessor.pkl')
+      joblib.dump(smote, f'{output_dir}/smote.pkl')
+      joblib.dump(best_model, f'{output_dir}/svm_model.pkl')
+  
+      print("Preprocessor, SMOTE, and model saved successfully.")
+  
+      return {
+          'best_params': best_params,
+          'cv_scores': cv_scores,
+          'mean_cv_score': np.mean(cv_scores),
+          'classification_report': report
+      }
+
+def load_and_predict(film, input_dir ="data/", preprocessor_path='pre_smote_preprocessor.pkl', 
+                     smote_path='smote.pkl', model_path='svm_model.pkl'):
+    """
+    Load pre-trained components and make predictions for a given film.
+
+    Parameters:
+        film (list): List containing the film data [title_length, categories, box_office, runtime].
+        preprocessor_path (str): Path to the saved preprocessor.
+        smote_path (str): Path to the saved SMOTE object.
+        model_path (str): Path to the saved model.
+
+    Returns:
+        dict: Dictionary containing predictions and probabilities.
+    """
+    # Load saved components
+    loaded_preprocessor = joblib.load(input_dir+ preprocessor_path)
+    loaded_smote = joblib.load(input_dir + smote_path)
+    loaded_model = joblib.load( input_dir + model_path)
+
+    print("Components loaded successfully.")
+
+    # Prepare the film data
+    film_data = pd.DataFrame([film], columns=['title_length', 'categories', 'box_office', 'runtime'])
+
+    # Preprocess the new data
+    X_new_preprocessed = loaded_preprocessor.transform(film_data)
+
+    # Generate predictions and probabilities using the loaded model
+    new_predictions = loaded_model.predict(X_new_preprocessed)
+    new_probabilities = loaded_model.predict_proba(X_new_preprocessed)
+
+    return new_predictions, new_probabilities
