@@ -63,7 +63,14 @@ def deriving_actors_dataset_preprocessing(oscar_winning_actors, oscar_winning_ac
     
     oscar_act_movies_all = character[character['Freebase actor ID'].isin(oscar_act_info['Freebase actor ID'])]
     oscar_act_movies_all = oscar_act_movies_all.drop(columns=['Freebase movie ID', 'Movie release date'])
-    oscar_act_movies_all = oscar_act_movies_all.merge(movie_cmu, on='Wikipedia movie ID', how='left')
+    film_full['Movie genres'] = (
+        film_full['Movie genres']
+        .str.strip('[]')  # Remove square brackets
+        .str.replace("'", '')  # Remove single quotes
+        .str.replace('"', '')  # Remove double quotes
+        .str.strip()  # Remove leading and trailing spaces
+    )
+    oscar_act_movies_all = oscar_act_movies_all.merge(film_full, on='Wikipedia movie ID', how='left')
 
     return revenue_by_year_corrected, oscar_act_info, oscar_act_movies, oscar_act_movies_all
 
@@ -120,7 +127,7 @@ def get_pie_genre_counts(oscar_movies_all):
 
 def get_movies_and_first_oscar_date(group):
     # Sort movies by release date
-    group["Movie release date"] = group["Movie release date"].apply(lambda x: int(x.split('-')[0]) if isinstance(x, str) else int(x))
+    group["Movie release date"] = group["Movie release date"].apply(lambda x: x.split('-')[0] if isinstance(x, str) else x).astype(int)
     group = group.sort_values(by='Movie release date')
     # Find the first Oscar-winning movie and its date
     first_oscar = group.loc[group['Best Actor Reward']].nsmallest(1, 'Movie release date')
