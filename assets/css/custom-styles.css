@@ -2,28 +2,29 @@
 /* General layout for two-columns */
 /* Two-columns Layout */
 .two-columns {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
-    gap: 1.5rem;
-  }
+    display: flex; /* Align text and plot side by side */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 2rem; /* Add space between the two columns */
+    margin-bottom: 2rem; /* Add spacing below the section */
+    justify-content: space-between; /* Distribute columns evenly */
+}
   
   .text-column {
     flex: 1;
-    max-width: 50%;
+    max-width: 48%;
     font-size: 1rem;
     line-height: 1.6;
     padding: 1rem;
   }
   
-  .graph-column {
-    flex: 1;
-    max-width: 50%;
-    display: flex;
+.graph-column {
+    flex: 1; 
+    max-width: 48%; 
+    display: flex; 
+    flex-direction: column; 
     justify-content: center;
     align-items: center;
-  }
-  
+}
   .graph-column img {
     max-width: 100%;
     height: auto;
@@ -277,4 +278,16 @@ ul {
 /* Dynamic Content Sections */
 .content-section {
     margin-top: 1rem;
+}
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .two-columns {
+        flex-direction: column; /* Stack the columns vertically */
+    }
+
+    .text-column,
+    .graph-column {
+        max-width: 100%; /* Take full width on smaller screens */
+        padding: 1rem; /* Adjust padding for better readability */
+    }
 }
