@@ -1,6 +1,21 @@
 /* Custom stylesheet, add your own styles here */
 /* General layout for two-columns */
 /* Two-columns Layout */
+
+.single-column {
+    display: flex; /* Flexbox for alignment */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    gap: 1.5rem; /* Add spacing between elements */
+    margin-bottom: 2rem; /* Space below the section */
+}
+
+.single-column h2 {
+    text-align: center; /* Center the heading text */
+    margin-bottom: 1rem; /* Space below heading */
+}
+
+
 .two-columns {
     display: flex;
     flex-wrap: wrap;
@@ -10,7 +25,7 @@
   
   .text-column {
     flex: 1;
-    max-width: 40%;
+    max-width: 50%;
     font-size: 1rem;
     line-height: 1.6;
     padding: 1rem;
