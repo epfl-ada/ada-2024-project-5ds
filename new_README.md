@@ -63,6 +63,11 @@ This enriched dataset will allow us to explore factors affecting both individual
    - Created a user-friendly website hosted on GitHub Pages, showcasing the project, visualizations, and interactive elements.
    - Website contributions were led by Yassine Wahidy, ensuring an engaging platform for presenting findings.
 
+7. **Data Story Development:**
+   - Developed the data story to narrate the insights and findings of the project.
+   - The data story integrates analysis, visualizations, and a clear narrative to effectively communicate the "Oscar-winning formula."
+   - Contributions to the data story were a collaborative effort across the team, ensuring accessibility and engagement for a broad audience.
+
 ### Graph Plotting:
 - Generated visualizations such as world maps, runtime distributions, genre dominance, and sentiment word clouds to identify trends and patterns.
 
@@ -91,9 +96,11 @@ This enriched dataset will allow us to explore factors affecting both individual
 - Investigate sentiment distribution across genres and themes.
 - Develop a predictive model combining sentiment, genre, and box office features.
 
-### Task 6: Website Development
+### Task 6: Website and Data Story Development
 - Design and implement an interactive and visually appealing website using Jekyll and GitHub Pages.
-- Integrate dynamic visualizations and summaries of findings for accessibility and engagement.
+- Develop the data story to narrate the insights and findings of the project.
+- The data story integrates analysis, visualizations, and a clear narrative to effectively communicate the "Oscar-winning formula."
+- Contributions to the data story were a collaborative effort across the team, ensuring accessibility and engagement for a broad audience.
 
 ## Timeline:
 - **15 Nov 2024:** Data handling, preprocessing, and initial exploratory analysis.
@@ -104,7 +111,7 @@ This enriched dataset will allow us to explore factors affecting both individual
 
 ## Team Contributions:
 - Thierry Sokhn: Task 1 & 2 (Character Representation, Diversity Analysis).
-- Yassine Wahidy: Task 3 & 6 (Genre and Box Office Analysis, Website Development).
+- Yassine Wahidy: Task 3 & 6 (Genre and Box Office Analysis, Website and Data Story Development).
 - Khalil Ouazzani Chahdi: Task 2 & 4 (Diversity and Network Analysis).
 - William Jallot: Task 4 (Network Modeling).
 - Amine Bengelloun: Task 3 & 5 (Genre, Box Office, Sentiment Analysis).
@@ -114,3 +121,4 @@ This enriched dataset will allow us to explore factors affecting both individual
 - Data story hosted on GitHub Pages.
 - README reflecting the comprehensive project scope.
 
+This README reflects updates aligning with Milestone 3 objectives while retaining key elements from previous milestones. Let me know if additional adjustments are required.
