@@ -19,7 +19,7 @@
   
 .graph-column {
     flex: 1; 
-    max-width: 30%; 
+    max-width: 48%; 
     display: flex; 
     flex-direction: column; 
     justify-content: center;
@@ -194,38 +194,64 @@ ul {
 
 /* Plot Container */
 .plot-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 2rem; /* Space between plots */
-    padding: 0.5rem;
-    border: 1px solid #ddd; /* Light border */
-    border-radius: 8px; /* Rounded corners */
+    display: flex; /* Flex layout for content alignment */
+    flex-direction: column; /* Stack caption below the plot */
+    align-items: center; /* Center content horizontally */
+    justify-content: center; /* Center content vertically */
+    width: 100%; /* Ensure container spans the full width of its parent */
+    max-width: 800px; /* Set a maximum width for larger screens */
+    margin: 1rem auto; /* Center the container and add spacing around it */
+    padding: 1rem; /* Add internal spacing */
+    border: 1px solid #ddd; /* Light border for distinction */
+    border-radius: 8px; /* Rounded corners for aesthetics */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     background-color: #ffffff; /* White background for contrast */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hover effect */
+    overflow: hidden; /* Prevent content from spilling out */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
 }
 
-/* Plot Image */
-.plot-container .plot-image {
-    height: auto;
+/* Responsive Plot Image or Embedded Iframe */
+.plot-container img,
+.plot-container iframe {
+    width: 100%; /* Ensure plot or image fits the container width */
+    max-height: 500px; /* Limit height to prevent oversized plots */
+    height: auto; /* Maintain aspect ratio */
     border-radius: 4px; /* Slight rounding for consistency */
 }
 
 /* Plot Caption */
 .plot-container .plot-caption {
-    margin-top: 0.5rem;
-    font-size: 0.9rem;
-    color: #555; /* Softer text for captions */
-    text-align: center; /* Center-align captions */
+    margin-top: 0.5rem; /* Add space between the plot and caption */
+    font-size: 0.9rem; /* Slightly smaller text for captions */
+    color: #555; /* Softer color for captions */
+    text-align: center; /* Center-align caption text */
 }
 
 /* Hover Effect for Plot Container */
 .plot-container:hover {
-    transform: scale(1.02); /* Slight zoom-in effect */
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
+    transform: scale(1.02); /* Subtle zoom-in effect */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
 }
+
+/* Mobile Responsiveness for Plot Container */
+@media (max-width: 768px) {
+    .plot-container {
+        max-width: 100%; /* Allow container to span full width on small screens */
+        margin: 1rem 0; /* Adjust spacing for mobile */
+        padding: 0.8rem; /* Reduce padding for smaller screens */
+    }
+
+    .plot-container img,
+    .plot-container iframe {
+        max-height: 300px; /* Further limit plot height on small screens */
+    }
+
+    .plot-container .plot-caption {
+        font-size: 0.85rem; /* Slightly smaller text for captions */
+    }
+}
+
+
 
 
 /* Dropdown Button */
